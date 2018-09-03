@@ -1,0 +1,2 @@
+class AgeGame < ApplicationRecord
+end

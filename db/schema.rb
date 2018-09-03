@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180903144613) do
+ActiveRecord::Schema.define(version: 20180903144828) do
+
+  create_table "age_games", force: :cascade do |t|
+    t.integer "game_id"
+    t.integer "age_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "ages", force: :cascade do |t|
     t.string "old"
