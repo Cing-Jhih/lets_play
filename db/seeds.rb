@@ -43,3 +43,10 @@ situation_list.each do |situation|
 end
 
 puts "Situation seed data created!"
+
+# Deafult admin and test user
+
+User.create(email: "admin@test.com", password: "123456", role:"admin")
+User.create(email: "user@tst.com", password:"123456")
+
+puts "Default admin and test user created!"
