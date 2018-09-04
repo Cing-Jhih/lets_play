@@ -1,0 +1,2 @@
+class SituationGame < ApplicationRecord
+end
