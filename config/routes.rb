@@ -10,18 +10,14 @@ Rails.application.routes.draw do
   end
 
   resources :games do
-    # 隨機推薦遊戲
+    # 隨機推薦遊戲、關鍵字搜尋遊戲
     collection do
       get :random
-    end
-
-    # 關鍵字搜尋遊戲
-    collection do
       get :search
     end
   
+    # 收藏 / 取消收藏
     member do
-      # 收藏 / 取消收藏
       post :favorite
       post :unfavorite
     end
@@ -35,7 +31,7 @@ Rails.application.routes.draw do
 
   resources :ages, only: :show
 
-  root "home#index"
+  root "games#home"
 
   namespace :admin do
     resources :games, only: [:index, :edit, :update, :destroy]
