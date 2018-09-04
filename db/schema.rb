@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180903145940) do
+ActiveRecord::Schema.define(version: 20180904145743) do
 
   create_table "age_games", force: :cascade do |t|
     t.integer "game_id"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20180903145940) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
-    t.string "kid_birth"
+    t.date "kid_birth"
     t.text "intro"
     t.string "avatar"
     t.string "role"
