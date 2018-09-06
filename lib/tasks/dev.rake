@@ -41,24 +41,53 @@ namespace :dev  do
     puts "Now you have #{Game.count} fake games"
   end
 
+    task fake_favorites: :environment do
+    Favorite.destroy_all
+    50.times do |i|
+        Favorite.create!(
+          user_id: User.all.shuffle.pop.id,
+          game_id: Game.all.shuffle.pop.id,
+          )
+      end
+    puts "Now you have #{Favorite.count} fake favorites"
+  end
+
+    task fake_replies: :environment do
+    Reply.destroy_all
+    100.times do |i|
+        Reply.create!(
+          user_id: User.all.shuffle.pop.id,
+          game_id: Game.all.shuffle.pop.id,
+          content: FFaker::Lorem::sentence(13)
+          )
+      end
+    puts "Now you have #{Reply.count} fake replies"
+  end
+
   task rebuild: [
     "db:drop",
     "db:create",
     "db:migrate",
     "db:seed",
     :fake_users,
-    :fake_games
+    :fake_games,
+    :fake_favorites,
+    :fake_replies
     ]
 
   task rebuild_heroku: [
     "db:migrate",
     :fake_users,
-    :fake_games
+    :fake_games,
+    :fake_favorites,
+    :fake_replies
     ]
     
   task fake_all: [
     :fake_users,
-    :fake_games
+    :fake_games,
+    :fake_favorites,
+    :fake_replies
     ]  
 
 end
