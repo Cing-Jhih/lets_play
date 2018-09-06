@@ -20,7 +20,13 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-
+   
+  <div class>
+    <%= f.label "Ked's birthday:" %><br />
+    <%= f.date_select :kid_birth, {order: [:year, :month, :day ], prompt: { year: '西元年', month: '月份', day: '日期'  }, start_year: Date.today.year, end_year: Date.today.year - 12, use_two_digit_numbers: true} %>
+  </div>
+  <p>填寫小朋友生日，網站可以隨著小朋友逐漸長大，推薦適合的遊戲喔！</p>
+  
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
