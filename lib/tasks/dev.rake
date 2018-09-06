@@ -38,10 +38,23 @@ namespace :dev  do
         user_id: User.all.sample.id           
         )
     end
+    
+    AgeGame.destroy_all
+    SituationGame.destroy_all
+
+    100.times do |j|
+      AgeGame.create!(
+        game_id: Game.all.shuffle.pop.id,
+        age_id: Age.all.sample.id
+        )
+      SituationGame.create!(
+        game_id: Game.all.shuffle.pop.id,
+        situation_id: Situation.all.sample.id )
+    end  
     puts "Now you have #{Game.count} fake games"
   end
 
-    task fake_favorites: :environment do
+  task fake_favorites: :environment do
     Favorite.destroy_all
     50.times do |i|
         Favorite.create!(
@@ -52,7 +65,7 @@ namespace :dev  do
     puts "Now you have #{Favorite.count} fake favorites"
   end
 
-    task fake_replies: :environment do
+  task fake_replies: :environment do
     Reply.destroy_all
     100.times do |i|
         Reply.create!(
