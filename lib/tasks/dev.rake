@@ -29,28 +29,26 @@ namespace :dev  do
 
   task fake_games: :environment do
     Game.destroy_all
-    100.times do |i|
-      Game.create!(
-        title: FFaker::Lorem::phrase,
-        tool: FFaker::Product::product_name, # 讓tool數量可從0~8
-        step: FFaker::Lorem::sentence(113),
-        image:"https://via.placeholder.com/800*600", # modify after CarrierWave installed
-        user_id: User.all.sample.id           
-        )
-    end
-    
     AgeGame.destroy_all
     SituationGame.destroy_all
 
-    100.times do |j|
+    100.times do |i|
+      Game.create!(
+        title: FFaker::Lorem::phrase,
+        tool:  FFaker::Product::product_name*rand(8), # modify to random different items
+        step: FFaker::Lorem::sentence(113),
+        image: FFaker::Image::url, # modify after CarrierWave installed
+        user_id: User.all.sample.id           
+        )
       AgeGame.create!(
-        game_id: Game.all.shuffle.pop.id,
-        age_id: Age.all.sample.id
+        age_id: Age.all.sample.id,
+        game_id: Game.last.id,
         )
       SituationGame.create!(
-        game_id: Game.all.shuffle.pop.id,
-        situation_id: Situation.all.sample.id )
-    end  
+        situation_id: Situation.all.sample.id,
+        game_id: Game.last.id,
+        )
+    end
     puts "Now you have #{Game.count} fake games"
   end
 
