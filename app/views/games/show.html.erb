@@ -2,6 +2,9 @@
 <h1>Game#show</h1>
 <p>標題:<%= @game.title %></p>
 <p>發表者：<%= image_tag @game.user.avatar %><%= @game.user.name %></p>
+<p>收藏數：<%= @game.favorites.size %></p>
+<p>回應數：<%= @game.replies.size %></p>
+<p>加入收藏</p>
 <p>遊戲圖片:<%= image_tag @game.image %></p>
 <p>適玩情境：
   <% @game.situation_games.each do |situation_game| %>
