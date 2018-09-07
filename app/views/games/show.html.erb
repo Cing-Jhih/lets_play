@@ -1,0 +1,27 @@
+<%# game info %>
+<h1>Game#show</h1>
+<p>標題:<%= @game.title %></p>
+<p>發表者：<%= image_tag @game.user.avatar %><%= @game.user.name %></p>
+<p>遊戲圖片:<%= image_tag @game.image %></p>
+<p>適玩情境：
+  <% @game.situation_games.each do |situation_game| %>
+    <%= situation_game.situation.condition %>
+  <% end %>  
+</p>
+<p>適合年齡：
+   <% @game.age_games.each do |age_game| %>
+    <%= age_game.age.name %>
+  <% end %> 
+</p>
+<p>遊戲道具：<%= @game.tool %></p>
+<p>遊戲方式：<%= @game.step %></p>
+<hr>
+<p>--Replies--</p>
+<%# replies display %>
+<% @game.replies.each do |reply| %>
+  <p><%= reply.user.name %></p>
+  <p><%= reply.content %></p>
+  <hr>
+<% end %>
+
+<%# New reply form %>
