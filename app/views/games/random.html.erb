@@ -1,0 +1,7 @@
+Game title<%= @game.title %>
+<% @game.situation_games.each do |situation_game| %>
+  <%= situation_game.situation.condition %>
+<% end %>  
+<% @game.age_games.each do |age_game| %>
+  <%= age_game.age.name %>
+<% end %>  
