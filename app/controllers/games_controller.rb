@@ -1,34 +1,33 @@
 class GamesController < ApplicationController
-  def home
-    
+  def home  
+  end
+
+  def show
+    @game = Game.find(params[:id])
   end
 
   def random
-    if params[:age_game][:age_id]
-      @age_games = AgeGame.where(age_id: params[:age_game][:age_id]).all
-      age_game_ids = []
-      @age_games.each do |age_game|
-        age_game_ids << age_game.game_id
-      end
-
-      if params[:situation_game][:situation_id]
-        @game = games.find_by(id: params[:situation_game][:situation_id]).all.sample
-
-      else
-        @game = Game.find_by(id: @age_games.sample.game_id)
-      end
-
-    elsif
-      params[:situation_game][:situation_id]
-      @situation_games = SituationGame.where(id: params[:situation_game][:situation_id]).all
-      @game = Game.find_by(id: @situation_games.sample.game_id)
-    else  
-      @game = Game.all.sample
+    age_game_ids = []
+    AgeGame.where(age_id: params[:age_game][:age_id]).find_each do |age_game|
+      age_game_ids << age_game.game_id
     end
-  end
 
-end
-  def show
-    @game = Game.find(params[:id])
+    situation_game_ids = []
+    SituationGame.where("situation_id = ?", params[:situation_game][:situation_id]).find_each do |situation_game|
+      situation_game_ids << situation_game.game_id
+    end
+
+    if params[:age_game][:age_id] == "" && params[:situation_game][:situation_id] == ""
+      @game = Game.all.sample
+
+    elsif params[:situation_game][:situation_id] == ""
+      @game = Game.where(id: age_game_ids).all.sample
+    
+    elsif params[:age_game][:age_id] == ""
+      @game = Game.where(id: situation_game_ids).all.sample
+    
+    else
+      @game = Game.where(id: situation_game_ids & age_game_ids).all.sample
+    end
   end
 end
