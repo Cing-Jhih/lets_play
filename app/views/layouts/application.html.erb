@@ -6,9 +6,37 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script type="text/javascript">
+      if (window.location.hash && window.location.hash == '#_=_') {
+        if (window.history && history.pushState) {
+            window.history.pushState("", document.title, window.location.pathname);
+        } else {
+            // Prevent scrolling by storing the page's current scroll offset
+            var scroll = {
+                top: document.body.scrollTop,
+                left: document.body.scrollLeft
+            };
+            window.location.hash = '';
+            // Restore the scroll offset, should be flicker free
+            document.body.scrollTop = scroll.top;
+            document.body.scrollLeft = scroll.left;
+        }
+      }
+    </script>
   </head>
 
   <body>
+    <% if current_user %>
+    <li><p >Hi, <%= current_user.email %></p></li>
+    <li><%= link_to('登出', destroy_user_session_path, method: :delete) %></li>
+    <% else %>
+    <li><%= link_to('註冊', new_user_registration_path) %></li>
+    <li><%= link_to('登入', new_user_session_path) %></li>
+    <li><%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %></li>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
+
