@@ -1,0 +1,13 @@
+<h1>Index</h1>
+
+<%# latest game %>
+<h1>Latest Games</h1>
+<% @games.each do |game| %>
+  <%= image_tag game.image, size: "200" %>
+  <%= link_to game.title, game_path(game) %>
+  <%= truncate(game.step, length: 200) %>
+<% end %>
+
+<%# popular game %>
+
+<%# game situations %>

@@ -1,4 +1,9 @@
 class GamesController < ApplicationController
+
+  def index
+    @games = Game.all.order(created_at: :desc)
+  end
+
   def home
   end
 
@@ -22,10 +27,10 @@ class GamesController < ApplicationController
 
     elsif params[:situation_game][:situation_id] == ""
       @game = Game.where(id: age_game_ids).all.sample
-    
+
     elsif params[:age_game][:age_id] == ""
       @game = Game.where(id: situation_game_ids).all.sample
-    
+
     else
       @game = Game.where(id: situation_game_ids & age_game_ids).all.sample
     end
