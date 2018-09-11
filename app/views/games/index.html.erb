@@ -4,10 +4,19 @@
 <h1>Latest Games</h1>
 <% @games.each do |game| %>
   <%= image_tag game.image, size: "200" %>
-  <%= link_to game.title, game_path(game) %>
-  <%= truncate(game.step, length: 200) %>
+  <p><%= link_to game.title, game_path(game) %></p>
+  <p><%= truncate(game.step, length: 200) %></p>
 <% end %>
 
 <%# popular game %>
+<h1>Popular Games</h1>
+<% @game.each do |game| %>
+  <%= image_tag game.image, size: "200" %>
+  <p><%= link_to game.title, game_path(game) %></p>
+  <p><%= truncate(game.step, length: 200) %></p>
+  <%# favorite/unfavorite buttons %>
+  <%= link_to "Favorite", favorite_game_path(@game), method: :post %>
+  <%= link_to "Unfavorite", unfavorite_game_path(@game), method: :post %>
+<% end %>
 
 <%# game situations %>
