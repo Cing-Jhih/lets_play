@@ -265,7 +265,7 @@ Devise.setup do |config|
     raise "No host url for callback" unless host_url
   end
 
-  config.omniauth :facebook, ENV["facebook_app_id"], ENV["facebook_secret"], scope: "public_profile,email", info_fields: "email,name", callback_url: host_url + "/users/auth/facebook/callback"
+  config.omniauth :facebook, ENV["facebook_app_id"], ENV["facebook_secret"], scope: "public_profile,email", info_fields: "email,name,picture", callback_url: host_url + "/users/auth/facebook/callback"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

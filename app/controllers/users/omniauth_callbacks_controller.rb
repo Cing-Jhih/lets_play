@@ -16,6 +16,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       session["devise.facebook_data"] = request.env["omniauth.auth"]
       redirect_to new_user_registration_url
     end
+
+    puts "omniauth_origin: #{request.env['omniauth.origin']}"
+    puts "omniauth_auth: #{request.env['omniauth.auth']}"
   end
 
   def failure
