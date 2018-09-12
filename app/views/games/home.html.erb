@@ -1,0 +1,19 @@
+
+<h1>HOME</h1>
+
+<% if current_user %>
+  <%= current_user.email %>
+  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+<% else %>
+  <%= link_to('Logoin', new_user_session_path) %>
+<% end %>
+
+<%# select age and situation, rand a game  %>
+  <p>
+    <%= form_tag '/games/random', method: :get do %>
+      <%= collection_select(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}) %>
+      <%= collection_select(:situation_game, :situation_id, Situation.all, :id, :condition, {prompt:true}) %>
+      <%= submit_tag "Random" %>
+    <% end %>
+  </p>
+

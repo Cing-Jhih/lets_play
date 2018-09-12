@@ -27,6 +27,7 @@
   </head>
 
   <body>
+
     <% if current_user %>
     <li><p >Hi, <%= current_user.email %></p></li>
     <li><%= link_to('登出', destroy_user_session_path, method: :delete) %></li>
@@ -58,7 +59,6 @@
       </div>
     </div>
     <% end %> 
-
     <%= yield %>
   </body>
 </html>

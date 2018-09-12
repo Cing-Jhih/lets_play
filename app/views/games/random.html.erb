@@ -1,0 +1,12 @@
+Game title:<%= @game.title %>
+<hr>
+<% @game.situation_games.each do |situation_game| %>
+  <%= situation_game.situation.condition %>
+<% end %>  
+<hr>
+<% @game.age_games.each do |age_game| %>
+  <%= age_game.age.name %>
+<% end %>  
+<hr>
+<%= link_to 'Random Again', random_games_url(params[:age_game][:age_id]) %>
+<%# can't reload with existing params  %>
