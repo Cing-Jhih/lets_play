@@ -14,10 +14,6 @@ class ApplicationController < ActionController::Base
     request.env['omniauth.origin'] || session[:previous_url] || root_path
   end
 
-  def after_sign_out_path_for(resource)
-    request.referrer
-  end
-
   protected
 
   def configure_permitted_parameters
