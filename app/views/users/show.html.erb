@@ -4,7 +4,7 @@
 </p>
 
 <p>
-  <% if @user.kid_birth.blank? %>
+  <% if @user.kid_age.blank? %>
     <strong>？歲孩子的玩伴<strong>
     <p><%= "(未填寫孩子的生日,記得到Edit Profile填寫小孩的生日)" if @user == current_user %></p>
   <% else %>

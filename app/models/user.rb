@@ -44,7 +44,11 @@ class User < ApplicationRecord
   end
 
   def kid_age
-    now = Time.now.utc.to_date
-    now.year - self.kid_birth.year - ((now.month > self.kid_birth.month || (now.month == self.kid_birth.month && now.day >= self.kid_birth.day)) ? 0 : 1)
+    if self.kid_birth.blank?
+      return
+    else
+      now = Time.now.utc.to_date
+      now.year - self.kid_birth.year - ((now.month > self.kid_birth.month || (now.month == self.kid_birth.month && now.day >= self.kid_birth.day)) ? 0 : 1)
+    end
   end
 end
