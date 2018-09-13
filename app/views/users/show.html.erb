@@ -1,7 +1,15 @@
-<p id="notice"><%= notice %></p>
 
 <p>
-  <%= image_tag @user.avatar unless @user.avatar.blank?%>
+  <%= image_tag @user.avatar, size:100%>
+</p>
+
+<p>
+  <% if @user.kid_age.blank? %>
+    <strong>？歲孩子的玩伴<strong>
+    <p><%= "(未填寫孩子的生日,記得到Edit Profile填寫小孩的生日)" if @user == current_user %></p>
+  <% else %>
+    <strong><%= @user.kid_age %>歲孩子的玩伴<strong>
+  <% end %>
 </p>
 
 <p>
@@ -10,19 +18,44 @@
 </p>
 
 <p>
-  <strong>Kid Birth:</strong>
-  <%= @user.kid_birth %>
-</p>
-
-<p>
   <strong>Intro:</strong>
   <%= @user.intro %>
 </p>
 
 <% if @user.email == current_user.email %>
-  <%= link_to 'Edit Profile', edit_user_path(current_user) %>|
-  <%= link_to '修改密碼', edit_user_registration_path(current_user) %>
+  <%= link_to 'Edit Profile', edit_user_path(current_user) , class: "btn btn-primary" %>
+  <%= link_to '修改密碼', edit_user_registration_path(current_user), class: "btn btn-primary" %>
 <% end %>
-
-<br>
 <%= link_to 'Back', :back %>
+<hr>
+
+<p>收藏(<%= @user.favorites.size %>)</p>
+<p>發表(<%= @user.games.size %>)</p>
+<p>回應(<%= @user.replied_games.size %>)</p>
+<hr>
+
+
+<div>
+  <p>收藏的遊戲清單</p>
+  <% @favorited_games.each do |game| %>
+    <p>標題:<%= game.title %></p>
+    <p>發表者：<%= game.user.name %></p>
+    <p>收藏數：<%= game.favorites.size %></p>
+    <p>回應數：<%= game.replies.size %></p>
+    <p>遊戲圖片:<%= image_tag game.image %></p>
+    <p>適玩情境：
+      <% game.situation_games.each do |situation_game| %>
+        <%= situation_game.situation.condition %>
+      <% end %>  
+    </p>
+    <p>適合年齡：
+      <% game.age_games.each do |age_game| %>
+        <%= age_game.age.name %>
+      <% end %> 
+    </p>
+    <p>遊戲道具：<%= game.tool %></p>
+    <p>遊戲方式：<%= game.step %></p>
+    <hr>
+  <% end %>
+</div>
+
