@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+before_action :set_game, only: [:edit, :update]
+
   def home
   end
 
@@ -45,16 +47,42 @@ class GamesController < ApplicationController
     @game.user = current_user
     
     if @game.save
-      redirect_to games_user_path(current_user)
+      redirect_to games_path #better to js:histroy.go(-2) or games_uer_path
       flash[:notice] = "成功張貼新遊戲"
     else
       render :new
       flash[:alert] = "糟糕！新遊戲有資料錯漏啦！"
-    end     
+    end
+  end
+
+  def edit
+    unless @game.user == current_user || current_user.role == "admin"
+      redirect_to game_path(@game) 
+      flash[:alert] = "You can not edit the game posted by other user"
+    end  
+  end
+
+  def update
+    if @game.user == current_user || current_user.role == "admin"
+      if @game.update(game_params)
+        redirect_to game_path(@game) #better to js:histroy.go(-2) or games_uer_path
+        flash[:notice] = "成功編輯遊戲"
+      else
+        render :edit
+        flash[:alert] = "糟糕！遊戲有資料錯漏啦！"
+      end
+    else
+      redirect_to game_path(@game) 
+      flash[:alert] = "You can not edit the game posted by other user"
+    end       
   end  
 
   private
     def game_params
       params.require(:game).permit(:title, :image, :tool, :step, :user_id)
     end
+
+    def set_game
+      @game = Game.find(params[:id])
+    end  
 end
