@@ -35,4 +35,26 @@ class GamesController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def new
+    @game = Game.new
+  end  
+
+  def create
+    @game = Game.new(game_params)
+    @game.user = current_user
+    
+    if @game.save
+      redirect_to games_user_path(current_user)
+      flash[:notice] = "成功張貼新遊戲"
+    else
+      render :new
+      flash[:alert] = "糟糕！新遊戲有資料錯漏啦！"
+    end     
+  end  
+
+  private
+    def game_params
+      params.require(:game).permit(:title, :image, :tool, :step, :user_id)
+    end
 end
