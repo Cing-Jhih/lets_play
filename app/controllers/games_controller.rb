@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-before_action :set_game, only: [:edit, :update]
+before_action :set_game, only: [:edit, :update, :destroy]
 
   def index
     @latest_games = Game.all.order(created_at: :desc)
@@ -83,6 +83,13 @@ before_action :set_game, only: [:edit, :update]
       redirect_to game_path(@game) 
       flash[:alert] = "You can not edit the game posted by other user"
     end
+  end
+
+  def destroy
+    @game.destroy
+    session[:return_to] ||= request.referer
+    redirect_to session.delete(:return_to)
+    flash[:alert] = "game was deleted"
   end
 
 private

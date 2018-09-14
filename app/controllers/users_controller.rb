@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :games]
 
   def show
-    @favorited_games = @user.favorited_games
+    @favorited_games = @user.favorited_games.order(created_at: :desc)
   end
 
   def edit
@@ -20,6 +20,10 @@ class UsersController < ApplicationController
       flash.now[:alert] = "profile was failed to update"
       render :edit
     end
+  end
+
+  def games
+    @posted_games = @user.games.order(created_at: :desc)
   end
 
   private
