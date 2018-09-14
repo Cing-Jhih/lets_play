@@ -2,7 +2,7 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.all.order(created_at: :desc)
-    @game = Game.all
+    @popular_games = Game.all.order(favorites_count: :desc).limit(10)
   end
 
   def home
@@ -41,4 +41,5 @@ class GamesController < ApplicationController
       redirect_to root_path
     end
   end
+
 end
