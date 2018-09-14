@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
+  
+  mount_uploader :avatar, AvatarUploader
 
   has_many :games
   has_many :replies
@@ -36,8 +38,17 @@ class User < ApplicationRecord
     user.email = auth.info.email
     user.password = Devise.friendly_token[0,20]
     user.name = auth.info.name
-    user.avatar = auth.info.image
+    user.remote_avatar_url = auth.info.image
     user.save!
     return user
+  end
+
+  def kid_age
+    if self.kid_birth.blank?
+      return
+    else
+      now = Time.now.utc.to_date
+      now.year - self.kid_birth.year - ((now.month > self.kid_birth.month || (now.month == self.kid_birth.month && now.day >= self.kid_birth.day)) ? 0 : 1)
+    end
   end
 end
