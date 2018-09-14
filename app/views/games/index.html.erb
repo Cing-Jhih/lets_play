@@ -2,7 +2,7 @@
 
 <%# latest game %>
 <h1>Latest Games</h1>
-<% @games.each do |game| %>
+<% @latest_games.each do |game| %>
   <%= image_tag game.image, size: "200" %>
   <p><%= link_to game.title, game_path(game) %></p>
   <p><%= truncate(game.step, length: 200) %></p>

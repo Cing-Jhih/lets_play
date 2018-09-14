@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
 
   def index
-    @games = Game.all.order(created_at: :desc)
+    @latest_games = Game.all.order(created_at: :desc)
     @popular_games = Game.all.order(favorites_count: :desc).limit(10)
   end
 
