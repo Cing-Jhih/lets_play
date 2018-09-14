@@ -1,4 +1,9 @@
 class GamesController < ApplicationController
+  def index
+     @latest_games = Game.all.order(created_at: :desc)
+     @popular_games = Game.all.order(favorites_count: :desc).limit(10)
+   end
+
   def home
   end
 
@@ -22,10 +27,10 @@ class GamesController < ApplicationController
 
     elsif params[:situation_game][:situation_id] == ""
       @game = Game.where(id: age_game_ids).all.sample
-    
+
     elsif params[:age_game][:age_id] == ""
       @game = Game.where(id: situation_game_ids).all.sample
-    
+
     else
       @game = Game.where(id: situation_game_ids & age_game_ids).all.sample
     end
