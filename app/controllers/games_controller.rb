@@ -47,6 +47,7 @@ before_action :set_game, only: [:edit, :update]
     @game.user = current_user
     
     if @game.save
+       create_relationship
       redirect_to games_path #better to js:histroy.go(-2) or games_uer_path
       flash[:notice] = "成功張貼新遊戲"
     else
@@ -65,6 +66,7 @@ before_action :set_game, only: [:edit, :update]
   def update
     if @game.user == current_user || current_user.role == "admin"
       if @game.update(game_params)
+        create_relationship
         redirect_to game_path(@game) #better to js:histroy.go(-2) or games_uer_path
         flash[:notice] = "成功編輯遊戲"
       else
@@ -84,5 +86,18 @@ before_action :set_game, only: [:edit, :update]
 
     def set_game
       @game = Game.find(params[:id])
-    end  
+    end
+
+    def create_relationship
+      @game.age_games.destroy_all
+        AgeGame.create!(
+          age_id: params[:age_game][:age_id],
+          game_id: @game.id,
+          )
+      @game.situation_games.destroy_all
+        SituationGame.create!(
+          situation_id: params[:situation_game][:situation_id],
+          game_id: @game.id,
+          )
+    end
 end

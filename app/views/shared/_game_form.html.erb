@@ -16,6 +16,9 @@
     <%= form.text_field :title %>
   </div>
 
+  <%= collection_select(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}) %>
+  <%= collection_select(:situation_game, :situation_id, Situation.all, :id, :condition, {prompt:true}) %>
+
   <div class="field">
     <%= form.label :image %>
     <%= form.text_field :image %>
