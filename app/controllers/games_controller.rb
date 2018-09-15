@@ -94,15 +94,20 @@ private
   end
 
   def create_relationship
-    @game.age_games.destroy_all
-    AgeGame.create!(
-      age_id: params[:age_game][:age_id],
-      game_id: @game.id,
-      )
+    unless params[:age_game][:age_id] == ""
+      @game.age_games.destroy_all
+      AgeGame.create!(
+        age_id: params[:age_game][:age_id],
+        game_id: @game.id,
+        )
+    end
+
+    unless params[:situation_game][:situation_id] == ""
     @game.situation_games.destroy_all
     SituationGame.create!(
       situation_id: params[:situation_game][:situation_id],
       game_id: @game.id,
       )
+    end  
   end
 end
