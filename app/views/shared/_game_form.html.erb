@@ -15,10 +15,16 @@
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
-
-  <%= collection_select(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}) %>
-  <%= collection_select(:situation_game, :situation_id, Situation.all, :id, :condition, {prompt:true}) %>
-
+  <div>
+    <p>
+      適合年齡：<%= collection_select(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}) %><br />
+    </p>
+    
+    <p>
+      適玩情境：<%= collection_select(:situation_game, :situation_id, Situation.all, :id, :condition, {prompt:true}) %><br/>
+    </p>
+    
+  </div>
   <div class="field">
     <%= form.label :image %>
     <%= form.text_field :image %>
