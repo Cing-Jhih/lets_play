@@ -33,9 +33,15 @@ namespace :dev  do
     SituationGame.destroy_all
 
     100.times do |i|
+      tools = []
+      8.times do |t|
+        tool = FFaker::Product::product_name + ","
+        tools << tool
+      end
+        
       Game.create!(
         title: FFaker::Lorem::phrase,
-        tool:  FFaker::Product::product_name*rand(8), # modify to random different items
+        tool:  tools.first(rand(0..8)).join,
         step: FFaker::Lorem::sentence(113),
         image: FFaker::Image::url, # modify after CarrierWave installed
         user_id: User.all.sample.id           
