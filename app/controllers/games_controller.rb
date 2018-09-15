@@ -14,6 +14,16 @@ before_action :set_game, only: [:edit, :update, :destroy]
     @game = Game.find(params[:id])
   end
 
+  def popular
+    # need to add a filer to limit games by age
+    @games = Game.all.order(favorites_count: :desc)
+  end
+
+  def latest
+    # need to add a filer to limit games by age
+    @games = Game.all.order(created_at: :desc)
+  end
+
   def random
     age_game_ids = [] # 存放所有符合選定年齡的game.id
     AgeGame.where(age_id: params[:age_game][:age_id]).find_each do |age_game|
