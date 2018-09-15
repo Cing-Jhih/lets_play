@@ -18,7 +18,7 @@ namespace :dev  do
         password: "123456",
         name: data["name"],
         intro: FFaker::Lorem.paragraph,
-        avatar: data["photo"], # modify after CarrierWave installed
+        remote_avatar_url: data["photo"], 
         kid_birth: FFaker::Time::between(12.years.ago, 2.days.ago)
       ) 
       user.save!
