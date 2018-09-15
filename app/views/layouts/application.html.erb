@@ -6,10 +6,93 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script type="text/javascript">
+      if (window.location.hash && window.location.hash == '#_=_') {
+        if (window.history && history.pushState) {
+            window.history.pushState("", document.title, window.location.pathname);
+        } else {
+            // Prevent scrolling by storing the page's current scroll offset
+            var scroll = {
+                top: document.body.scrollTop,
+                left: document.body.scrollLeft
+            };
+            window.location.hash = '';
+            // Restore the scroll offset, should be flicker free
+            document.body.scrollTop = scroll.top;
+            document.body.scrollLeft = scroll.left;
+        }
+      }
+    </script>
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
+    <% if !@home %>
+    <%# nav bar %>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #9370DB;">
+      <%= link_to"Let's Play", games_path, class: "navbar-brand" %>
+      <%= link_to"推薦遊戲", root_path, class: "navbar-brand" %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <%# collapse %>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav">     
+        <% if current_user %>  
+          <li class="nav-item">
+            <span class="navbar-text">
+              Hi! <%= current_user.name %> 
+              &nbsp;
+            </span>
+          </li>
+          <li class="nav-item">
+            <%= link_to'<i class="fas fa-user fa-lg"></i>&nbsp;Profile'.html_safe, user_path(current_user), class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to '<i class="fas fa-sign-out-alt fa-lg"></i> Logout'.html_safe, destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <span class="navbar-text">Hi! Guest&nbsp;</span>
+          </li>
+          <li class="nav-item">
+            <%= link_to '<i class="fas fa-user-plus fa-lg"></i> Sign Up'.html_safe, new_user_registration_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to '<i class="fas fa-sign-in-alt fa-lg"></i> Sign In'.html_safe, new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>  
+        </ul>
+      </div>
+    </nav>   
+    <% end %>
+    <!-- 用flash提示action訊息 -->
+      <% if flash[:notice] %>
+        <div class="container">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= notice %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- 用flash提示錯誤警告訊息 -->
+      <% if flash[:alert] %>
+        <div class="container">
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <%= alert %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      <% end %>    
+
+      <!-- 呼叫action對應之html.erb -->
     <%= yield %>
   </body>
 </html>
+
