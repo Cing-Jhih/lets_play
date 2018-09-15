@@ -13,6 +13,7 @@ before_action :set_game, only: [:edit, :update, :destroy]
   def show
     @game = Game.find(params[:id])
     @age_games = @game.age_games.all.order(age_id: :asc)
+    @reply = Reply.new
   end
 
   def popular

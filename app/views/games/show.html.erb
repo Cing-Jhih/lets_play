@@ -9,12 +9,12 @@
 <p>適玩情境：
   <% @game.situation_games.each do |situation_game| %>
     <%= situation_game.situation.condition %>
-  <% end %>  
+  <% end %>
 </p>
 <p>適合年齡：
    <% @age_games.each do |age_game| %>
     <%= age_game.age.name %>
-  <% end %> 
+  <% end %>
 </p>
 <p>遊戲道具：<%= @game.tool %></p>
 <p>遊戲方式：<%= @game.step %></p>
@@ -28,3 +28,16 @@
 <% end %>
 
 <%# New reply form %>
+<div class="container">
+  <div class="row">
+   <%= form_for [@game, @reply] do |f| %>
+    <div class="form-group">
+      <%= f.text_area :content, placeholder: "put your reply here", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit class: "btn btn-primary" %>
+      <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
+    </div>
+  <% end %>
+  </div>
+</div>
