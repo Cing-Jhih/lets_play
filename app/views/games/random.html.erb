@@ -4,7 +4,8 @@ Game title:<%= @game.title %>
   <%= situation_game.situation.condition %>
 <% end %>  
 <hr>
-<% @age_games.each do |age_game| %>
+<% @game.age_games.all.order(age_id: :asc).each do |age_game| %>
+<%# Why can not set @age_games = @age.age_games.all.order(age: :asc) in controller?  %>
   <%= age_game.age.name %>
 <% end %>  
 <hr>

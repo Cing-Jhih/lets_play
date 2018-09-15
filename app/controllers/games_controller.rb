@@ -43,8 +43,6 @@ before_action :set_game, only: [:edit, :update]
       flash[:notice] = "糟糕！您指定的玩家年齡與情境，我們找不到遊戲推薦給您Q_Q 請重新設置或進來逛逛其他遊戲"
       redirect_to root_path
     end
-
-    @age_games = @game.age_games.all.order(age_id: :asc)
   end
 
   def new
