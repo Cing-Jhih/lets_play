@@ -1,0 +1,22 @@
+body {
+  padding-top: 90px;
+  font-family: Meiryo, "微軟正黑體", "Microsoft JhengHei", Verdana, Arial, sans-serif;
+}
+
+.click div:hover{
+  -webkit-transform: scale(1.1);
+}
+
+.inline{
+  display: inline-block;
+}
+
+.counter {
+  width: 70px;
+  height: 70px;
+  text-align: center;
+}
+
+.un-linkline{
+  text-decoration:none;
+}
