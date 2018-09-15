@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     collection do
       get :random
       get :search
+      get :popular
+      get :latest
     end
   
     # 收藏 / 取消收藏
