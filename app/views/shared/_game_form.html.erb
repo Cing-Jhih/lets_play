@@ -1,0 +1,48 @@
+<%= form_with(model: game, local: true) do |form| %>
+  <% if game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(game.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% game.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div>
+    <p>
+      適合年齡：<%= collection_select(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}) %><br />
+    </p>
+    
+    <p>
+      適玩情境：<%= collection_select(:situation_game, :situation_id, Situation.all, :id, :condition, {prompt:true}) %><br/>
+    </p>
+    
+  </div>
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.text_field :image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tool %><br />
+    <%= form.text_area :tool %>
+  </div>
+
+  <div class="field">
+    <%= form.label :step %><br />
+    <%= form.text_area :step %>
+  </div>
+
+  <div class="form-gruop">
+    <%= form.submit "Submit", class: "btn btn-primary" %>
+    <%= link_to "Cancel", :back, class: "btn btn-default" %>
+  </div>   
+
+<% end %>

@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+before_action :set_game, only: [:edit, :update]
 
   def index
     @latest_games = Game.all.order(created_at: :desc)
@@ -43,4 +44,71 @@ class GamesController < ApplicationController
     end
   end
 
+  def new
+    @game = Game.new
+  end
+
+  def create
+    @game = Game.new(game_params)
+    @game.user = current_user
+
+    if @game.save
+       create_relationship
+      redirect_to games_path #better to js:histroy.go(-2) or games_uer_path
+      flash[:notice] = "成功張貼新遊戲"
+    else
+      render :new
+      flash[:alert] = "糟糕！新遊戲有資料錯漏啦！"
+    end
+  end
+
+  def edit
+    unless @game.user == current_user || current_user.role == "admin"
+      redirect_to game_path(@game) 
+      flash[:alert] = "You can not edit the game posted by other user"
+    end
+  end
+
+  def update
+    if @game.user == current_user || current_user.role == "admin"
+      if @game.update(game_params)
+        create_relationship
+        redirect_to game_path(@game) #better to js:histroy.go(-2) or games_uer_path
+        flash[:notice] = "成功編輯遊戲"
+      else
+        render :edit
+        flash[:alert] = "糟糕！遊戲有資料錯漏啦！"
+      end
+    else
+      redirect_to game_path(@game) 
+      flash[:alert] = "You can not edit the game posted by other user"
+    end
+  end
+
+private
+  def game_params
+    params.require(:game).permit(:title, :image, :tool, :step, :user_id)
+  end
+
+  def set_game
+    @game = Game.find(params[:id])
+  end
+
+  def create_relationship
+    unless params[:age_game][:age_id] == ""
+      @game.age_games.destroy_all
+      AgeGame.create!(
+        age_id: params[:age_game][:age_id],
+        game_id: @game.id,
+        )
+    end
+
+    unless params[:situation_game][:situation_id] == ""
+    @game.situation_games.destroy_all
+    SituationGame.create!(
+      situation_id: params[:situation_game][:situation_id],
+      game_id: @game.id,
+      )
+    end  
+  end
 end
