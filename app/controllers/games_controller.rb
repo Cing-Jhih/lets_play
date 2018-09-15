@@ -12,6 +12,7 @@ before_action :set_game, only: [:edit, :update]
 
   def show
     @game = Game.find(params[:id])
+    @age_games = @game.age_games.all.order(age_id: :asc)
   end
 
   def random
@@ -42,6 +43,8 @@ before_action :set_game, only: [:edit, :update]
       flash[:notice] = "糟糕！您指定的玩家年齡與情境，我們找不到遊戲推薦給您Q_Q 請重新設置或進來逛逛其他遊戲"
       redirect_to root_path
     end
+
+    @age_games = @game.age_games.all.order(age_id: :asc)
   end
 
   def new
@@ -96,19 +99,26 @@ private
 
   def create_relationship
     unless params[:age_game][:age_id] == ""
+      age_ids = params[:age_game][:age_id]
       @game.age_games.destroy_all
-      AgeGame.create!(
-        age_id: params[:age_game][:age_id],
-        game_id: @game.id,
-        )
+      (age_ids.length - 1).times do
+        AgeGame.create!(
+          age_id: age_ids.pop,
+          game_id: @game.id,
+          )
+      end  
     end
 
     unless params[:situation_game][:situation_id] == ""
-    @game.situation_games.destroy_all
-    SituationGame.create!(
-      situation_id: params[:situation_game][:situation_id],
-      game_id: @game.id,
-      )
+      @game.situation_games.destroy_all
+      situation_ids = params[:situation_game][:situation_id]
+      # Why can not use arr.campact to remove ""??
+      (situation_ids.length - 1).times do 
+        SituationGame.create!(
+          situation_id: situation_ids.pop,
+          game_id: @game.id,
+          )
+      end  
     end  
   end
 end

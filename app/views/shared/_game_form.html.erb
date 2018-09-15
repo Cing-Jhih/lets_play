@@ -17,11 +17,11 @@
   </div>
   <div>
     <p>
-      適合年齡：<%= collection_select(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}) %><br />
+      適合年齡：<%= collection_check_boxes(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}) %><br />
     </p>
     
     <p>
-      適玩情境：<%= collection_select(:situation_game, :situation_id, Situation.all, :id, :condition, {prompt:true}) %><br/>
+      適玩情境：<%= collection_check_boxes(:situation_game, :situation_id, Situation.all, :id, :condition) %><br/>
     </p>
     
   </div>
