@@ -1,6 +1,11 @@
 class GamesController < ApplicationController
 before_action :set_game, only: [:edit, :update]
 
+  def index
+    @latest_games = Game.all.order(created_at: :desc)
+    @popular_games = Game.all.order(favorites_count: :desc).limit(10)
+  end
+
   def home
   end
 
@@ -24,10 +29,10 @@ before_action :set_game, only: [:edit, :update]
 
     elsif params[:situation_game][:situation_id] == ""
       @game = Game.where(id: age_game_ids).all.sample
-    
+
     elsif params[:age_game][:age_id] == ""
       @game = Game.where(id: situation_game_ids).all.sample
-    
+
     else
       @game = Game.where(id: situation_game_ids & age_game_ids).all.sample
     end
@@ -40,12 +45,12 @@ before_action :set_game, only: [:edit, :update]
 
   def new
     @game = Game.new
-  end  
+  end
 
   def create
     @game = Game.new(game_params)
     @game.user = current_user
-    
+
     if @game.save
        create_relationship
       redirect_to games_path #better to js:histroy.go(-2) or games_uer_path
@@ -60,7 +65,7 @@ before_action :set_game, only: [:edit, :update]
     unless @game.user == current_user || current_user.role == "admin"
       redirect_to game_path(@game) 
       flash[:alert] = "You can not edit the game posted by other user"
-    end  
+    end
   end
 
   def update
@@ -76,28 +81,28 @@ before_action :set_game, only: [:edit, :update]
     else
       redirect_to game_path(@game) 
       flash[:alert] = "You can not edit the game posted by other user"
-    end       
-  end  
-
-  private
-    def game_params
-      params.require(:game).permit(:title, :image, :tool, :step, :user_id)
     end
+  end
 
-    def set_game
-      @game = Game.find(params[:id])
-    end
+private
+  def game_params
+    params.require(:game).permit(:title, :image, :tool, :step, :user_id)
+  end
 
-    def create_relationship
-      @game.age_games.destroy_all
-        AgeGame.create!(
-          age_id: params[:age_game][:age_id],
-          game_id: @game.id,
-          )
-      @game.situation_games.destroy_all
-        SituationGame.create!(
-          situation_id: params[:situation_game][:situation_id],
-          game_id: @game.id,
-          )
-    end
+  def set_game
+    @game = Game.find(params[:id])
+  end
+
+  def create_relationship
+    @game.age_games.destroy_all
+    AgeGame.create!(
+      age_id: params[:age_game][:age_id],
+      game_id: @game.id,
+      )
+    @game.situation_games.destroy_all
+    SituationGame.create!(
+      situation_id: params[:situation_game][:situation_id],
+      game_id: @game.id,
+      )
+  end
 end
