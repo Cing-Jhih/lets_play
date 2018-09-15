@@ -6,6 +6,7 @@ class GamesController < ApplicationController
   end
 
   def home
+    @home = []
   end
 
   def show

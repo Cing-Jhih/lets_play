@@ -1,13 +1,5 @@
 
-<h1>HOME</h1>
-
-<% if current_user %>
-  <%= current_user.email %>
-  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-<% else %>
-  <%= link_to('Logoin', new_user_session_path) %>
-<% end %>
-
+<%= link_to "Let's Play", games_path %>
 <%# select age and situation, rand a game  %>
   <p>
     <%= form_tag '/games/random', method: :get do %>
