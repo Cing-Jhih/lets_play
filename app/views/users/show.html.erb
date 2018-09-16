@@ -1,8 +1,8 @@
 <%= render partial: "shared/user_info", locals:{user:@user}  %>
 
-<p>收藏(<%= @user.favorites.size %>)</p>
-<p><%= link_to "發表", games_user_path %>(<%= @user.games.size %>)</p>
-<p><%= link_to "回應", replies_user_path %>(<%= @user.replied_games.size %>)</p>
+<p>收藏(<%= @user.favorites_count %>)</p>
+<p><%= link_to "發表", games_user_path %>(<%= @user.games_count %>)</p>
+<p><%= link_to "回應", replies_user_path %>(<%= @user.replies_count %>)</p>
 <hr>
 
 
