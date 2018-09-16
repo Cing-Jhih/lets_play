@@ -25,6 +25,7 @@
   <p><%= reply.user.name %></p>
   <p><%= reply.content %></p>
   <% if reply.user.email == current_user.email %>
+      <%= link_to "編輯", edit_game_reply_path(@game, reply), class: "btn btn-primary" %>
       <%= link_to "刪除", game_reply_path(@game, reply), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-default" %>
     <% end %>
   <hr>

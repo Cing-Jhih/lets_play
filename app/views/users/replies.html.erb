@@ -9,7 +9,7 @@
   <p>回應的遊戲清單</p>
   <% @replied_games.each do |game| %>
     <% if @user.email == current_user.email %>
-      <%= link_to "看自己的回應", game_path(game), class: "btn btn-primary" %>
+      <%= link_to "看回應", game_path(game) %>
     <% end %>
     <p>標題:<%= game.title %></p>
     <p>發表者：<%= game.user.name %></p>

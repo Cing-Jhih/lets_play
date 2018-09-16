@@ -1,0 +1,9 @@
+<%= form_for [@game, reply] do |form| %>
+  <div class="field">
+    <%= form.text_area :content %>
+  </div>
+  <div class="form-gruop">
+    <%= form.submit "Update", class: "btn btn-primary" %>
+    <%= link_to "Cancel", game_path(@game), class: "btn btn-default" %>
+  </div>   
+<% end %>
