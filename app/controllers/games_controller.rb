@@ -13,6 +13,7 @@ before_action :set_game, only: [:edit, :update, :destroy]
   def show
     @game = Game.find(params[:id])
     @age_games = @game.age_games.all.order(age_id: :asc)
+    @reply = Reply.new
   end
 
   def popular
@@ -75,7 +76,7 @@ before_action :set_game, only: [:edit, :update, :destroy]
 
   def edit
     unless @game.user == current_user || current_user.role == "admin"
-      redirect_to game_path(@game) 
+      redirect_to game_path(@game)
       flash[:alert] = "You can not edit the game posted by other user"
     end
   end
@@ -91,7 +92,7 @@ before_action :set_game, only: [:edit, :update, :destroy]
         flash[:alert] = "糟糕！遊戲有資料錯漏啦！"
       end
     else
-      redirect_to game_path(@game) 
+      redirect_to game_path(@game)
       flash[:alert] = "You can not edit the game posted by other user"
     end
   end
@@ -121,19 +122,19 @@ private
           age_id: age_ids.pop,
           game_id: @game.id,
           )
-      end  
+      end
     end
 
     unless params[:situation_game][:situation_id] == ""
       @game.situation_games.destroy_all
       situation_ids = params[:situation_game][:situation_id]
       # Why can not use arr.campact to remove ""??
-      (situation_ids.length - 1).times do 
+      (situation_ids.length - 1).times do
         SituationGame.create!(
           situation_id: situation_ids.pop,
           game_id: @game.id,
           )
-      end  
-    end  
+      end
+    end
   end
 end
