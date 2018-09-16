@@ -7,6 +7,12 @@ class RepliesController < ApplicationController
     redirect_to game_path(@game)
   end
 
+  def destroy
+    @game = Game.find(params[:game_id])
+    @reply = Reply.find(params[:id])
+    @reply.destroy
+    redirect_to game_path(@game)
+  end
 
 private
   def reply_params

@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def replies
-    @replied_games = @user.replied_games.order(created_at: :desc)
+    @replied_games = @user.replied_games.uniq
   end
 
   private
