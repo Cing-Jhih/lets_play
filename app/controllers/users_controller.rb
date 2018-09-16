@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :games]
+  before_action :set_user, only: [:show, :edit, :update, :games, :replies]
 
   def show
     @favorited_games = @user.favorited_games.order(created_at: :desc)
@@ -24,6 +24,10 @@ class UsersController < ApplicationController
 
   def games
     @posted_games = @user.games.order(created_at: :desc)
+  end
+
+  def replies
+    @replied_games = @user.replied_games.uniq
   end
 
   private

@@ -25,8 +25,8 @@ Rails.application.routes.draw do
       post :unfavorite
     end
 
-     # 評論遊戲
-     resources :replies, only: [:create, :destroy]
+    # 評論遊戲
+    resources :replies, only: [:create, :destroy, :edit, :update]
 
   end
 
