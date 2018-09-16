@@ -24,6 +24,9 @@
 <% @game.replies.each do |reply| %>
   <p><%= reply.user.name %></p>
   <p><%= reply.content %></p>
+  <% if reply.user.email == current_user.email %>
+      <%= link_to "刪除", game_reply_path(@game, reply), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-default" %>
+    <% end %>
   <hr>
 <% end %>
 
