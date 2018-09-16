@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
 before_action :set_game, only: [:edit, :update, :destroy]
+before_action :validates_search_key, only: [:search]
 
   def index
     @latest_games = Game.all.order(created_at: :desc)
@@ -8,6 +9,10 @@ before_action :set_game, only: [:edit, :update, :destroy]
 
   def home
     @home = []
+  end
+
+  def search
+  	@games = Game.ransack({:title_or_tool_or_step_cont => @q}).result(distinct: true)
   end
 
   def show
@@ -113,6 +118,10 @@ private
 
   def set_game
     @game = Game.find(params[:id])
+  end
+
+  def validates_search_key
+  	@q = params[:query_string].gsub(/\\|\'|\/|\?/, "") if params[:query_string].present?
   end
 
   def create_relationship
