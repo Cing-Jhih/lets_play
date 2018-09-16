@@ -10,8 +10,10 @@ class RepliesController < ApplicationController
   def destroy
     @game = Game.find(params[:game_id])
     @reply = Reply.find(params[:id])
-    @reply.destroy
-    redirect_to game_path(@game)
+    if @reply.user == current_user || current_user.role == "admin"
+      @reply.destroy
+      redirect_to game_path(@game)
+    end
   end
 
 private
