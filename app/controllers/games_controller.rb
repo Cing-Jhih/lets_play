@@ -4,6 +4,7 @@ before_action :set_game, only: [:edit, :update, :destroy]
   def index
     @latest_games = Game.all.order(created_at: :desc)
     @popular_games = Game.all.order(favorites_count: :desc).limit(10)
+    @situations = Situation.all
   end
 
   def home
