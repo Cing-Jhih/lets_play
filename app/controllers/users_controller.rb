@@ -14,8 +14,13 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:notice] = "profile was successfully updated"
-      redirect_to user_path(@user)
+      if session[:fb_first_login]
+        session[:fb_first_login] = nil
+        redirect_to session[:previous_url]
+      else
+        flash[:notice] = "profile was successfully updated"
+        redirect_to user_path(@user)
+      end
     else
       flash.now[:alert] = "profile was failed to update"
       render :edit
