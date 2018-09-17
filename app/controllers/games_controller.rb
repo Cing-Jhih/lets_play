@@ -54,6 +54,8 @@ before_action :set_game, only: [:edit, :update, :destroy]
       flash[:notice] = "糟糕！您指定的玩家年齡與情境，我們找不到遊戲推薦給您Q_Q 請重新設置或進來逛逛其他遊戲"
       redirect_to root_path
     end
+
+    url = '/games/random?utf8=%E2%9C%93&age_game%5Bage_id%5D=#{{params[:age_game][:age_id]}}&situation_game%5Bsituation_id%5D=#{params[:situation_game][:situation_id]}&commit=Random'
   end
 
   def new
