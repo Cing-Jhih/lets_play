@@ -19,3 +19,9 @@
 <% end %>
 
 <%# game situations %>
+<h1>遊戲分類</h1>
+<ul>
+  <% @situations.each do |situation| %>
+    <li><%= link_to situation.condition, situation_path(situation) %></li>
+  <% end %>
+</ul>

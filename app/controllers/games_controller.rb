@@ -5,6 +5,7 @@ before_action :validates_search_key, only: [:search]
   def index
     @latest_games = Game.all.order(created_at: :desc)
     @popular_games = Game.all.order(favorites_count: :desc).limit(10)
+    @situations = Situation.all
   end
 
   def home
