@@ -1,0 +1,25 @@
+<div class="content">
+    <%= render partial: "shared/search_bar"%>
+  <% if @games.blank? %>
+    <div class="text-center">
+      沒有符合資料！<br>
+      <%= link_to("Index", games_path, class: "btn btn-sm btn-success") %>
+    </div>
+  <% else %>
+    <div class="text-center">
+      <strong>
+      找到 <%= @games.count %>篇符合 "<%= @q %>" 的遊戲單
+      </strong>
+    </div>
+    <table class="table table-hover table-bordered table-responsive">
+      <thead>
+        <tr>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+       <td><%= render partial: "shared/game_list", locals:{games:@games}  %></td>
+      </tbody>
+    </table>
+  <% end %>
+</div>

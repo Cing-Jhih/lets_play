@@ -1,0 +1,12 @@
+<div class="col-sm-9 col-lg-8 col-lg-offset-2">
+  <%= form_tag search_games_path, method: :get do %>
+    <div class="input-group input-group-lg">
+      <input type="text" class="form-control" name="query_string" placeholder="關鍵字..">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-danger">
+          search
+        </button>
+      </span>
+    </div>
+  <% end %>
+</div>
