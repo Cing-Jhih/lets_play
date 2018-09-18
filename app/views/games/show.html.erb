@@ -19,6 +19,13 @@
 <p>遊戲道具：<%= @game.tool %></p>
 <p>遊戲方式：<%= @game.step %></p>
 <hr>
+
+<%# social share button  %>
+<hr class="pd-des-container-bottom-line">
+<div class="product-show__social-share-button">
+  <%= social_share_button_tag(@game.title, :allow_sites => %w(facebook twitter email google_plus ), :image => @game.image, desc: @game.tool) %>
+</div>
+<hr>
 <p>--Replies--</p>
 <%# replies display %>
 <% @game.replies.each do |reply| %>
