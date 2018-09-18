@@ -23,7 +23,8 @@
 <%# social share button  %>
 <hr class="pd-des-container-bottom-line">
 <div class="product-show__social-share-button">
-  <%= social_share_button_tag(@game.title, :allow_sites => %w(facebook twitter email google_plus ), :image => @game.image,:url => 'https://rand-by-speech.herokuapp.com/games/100', desc:@game.tool) %>
+  <%# FB： URL用相對路徑會噴錯ㄝ必須用全網址  %>
+  <%= social_share_button_tag(@game.title, :allow_sites => %w(facebook twitter email google_plus ), :image => @game.image, desc:@game.tool,:url => @url) %>
 </div>
 <hr>
 <p>--Replies--</p>
