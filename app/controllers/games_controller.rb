@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
 before_action :set_game, only: [:edit, :update, :destroy]
 before_action :validates_search_key, only: [:search]
+before_action :authenticate_user!, only: [:new]
 
   def index
     @latest_games = Game.all.order(created_at: :desc)
