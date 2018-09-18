@@ -6,8 +6,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       return # be sure to include an return if there is code after this otherwise it will be executed
     end
 
+    @fb_first_login = User.find_by_fb_uid( request.env["omniauth.auth"].uid ) ? false : true
+
     # You need to implement the method below in your model (e.g. app/models/user.rb)
     @user = User.from_omniauth(request.env["omniauth.auth"])
+
+    if @fb_first_login
+      request.env['omniauth.origin'] = edit_user_path @user.id
+      session[:fb_first_login] = true
+    end
 
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication #this will throw if @user is not activated
@@ -16,9 +23,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       session["devise.facebook_data"] = request.env["omniauth.auth"]
       redirect_to new_user_registration_url
     end
-
-    puts "omniauth_origin: #{request.env['omniauth.origin']}"
-    puts "omniauth_auth: #{request.env['omniauth.auth']}"
   end
 
   def failure
