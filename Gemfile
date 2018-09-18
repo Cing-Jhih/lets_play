@@ -24,6 +24,9 @@ gem 'kaminari'
 # search engine
 gem 'ransack', github: 'activerecord-hackery/ransack'
 
+# read in YouTube url and generate youtube embed HTML code
+gem 'youtube_rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
 # Use sqlite3 as the database for Active Record
