@@ -3,6 +3,10 @@ class UsersController < ApplicationController
 
   def show
     @favorited_games = @user.favorited_games.order(created_at: :desc)
+    if session[:fb_first_login]
+      session[:fb_first_login] = nil
+      redirect_to session[:previous_url]
+    end
   end
 
   def edit
