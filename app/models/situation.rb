@@ -1,3 +1,3 @@
 class Situation < ApplicationRecord
-  has_many :sutuation_games
+  has_many :situation_games
 end

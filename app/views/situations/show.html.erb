@@ -1,6 +1,6 @@
 <%# situation games list %>
 <% @situation_games.each do |situation_game| %>
   <%= image_tag situation_game.game.image, size: "200" %>
-  <p><%= link_to situation_game.game.title, game_path(@game) %></p>
-  <p><%= truncate(@game.step, length: 200) %></p>
+  <p><%= link_to situation_game.game.title, situation_path(@situation.id) %></p>
+  <p><%= truncate(situation_game.game.step, length: 200) %></p>
 <% end %>

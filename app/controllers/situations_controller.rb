@@ -1,6 +1,6 @@
 class SituationsController < ApplicationController
   def show
-    @game = Game.find(params[:id])
-    @situation_games = @game.situation_games.all.order(situation_id: :asc)
+    @situation = Situation.find(params[:id])
+    @situation_games = @situation.situation_games.all.order(game_id: :asc)
   end
 end
