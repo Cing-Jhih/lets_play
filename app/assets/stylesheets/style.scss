@@ -20,3 +20,25 @@ body {
 .un-linkline{
   text-decoration:none;
 }
+
+/*--social-share-button--*/
+
+.pd-des-container-bottom-line {
+  width: 100%;
+}
+
+.product-show__social-share-button {
+  position: absolute;
+}
+
+$size: 24px;
+
+.social-share-button {
+  .ssb-icon {
+    background-size: $size $size;
+    height: $size;
+    width: $size;
+    // filter: grayscale(100%);        //禁掉就變彩色
+    // filter: gray;     //禁掉就變彩色
+  }
+}

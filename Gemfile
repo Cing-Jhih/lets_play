@@ -23,6 +23,8 @@ gem 'kaminari'
 
 # search engine
 gem 'ransack', github: 'activerecord-hackery/ransack'
+# share page to FB, Line
+gem 'social-share-button'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'

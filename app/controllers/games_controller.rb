@@ -19,6 +19,7 @@ before_action :validates_search_key, only: [:search]
     @game = Game.find(params[:id])
     @age_games = @game.age_games.all.order(age_id: :asc)
     @reply = Reply.new
+    @url = 'https://rand-by-speech.herokuapp.com/games/'+@game.id.to_s
   end
 
   def popular
