@@ -8,7 +8,7 @@ class Game < ApplicationRecord
 
   after_create do
     game = Game.find_by(id: self.id)
-    hashtags = self.step.scan(/#\w+/)
+    hashtags = self.step.encode('utf-8').scan(/#[\u4e00-\u9fa5_a-zA-Z0-9]+/)
     hashtags.map do |hashtag|
       tag = Tag.find_or_create_by(name: hashtag.downcase.delete('#'))
       game.tags << tag
@@ -18,11 +18,11 @@ class Game < ApplicationRecord
   before_update do
     game = Game.find_by(id: self.id)
     game.tags.clear
-    hashtags = self.step.scan(/#\w+/)
+    hashtags = self.step.scan(/#[\u4e00-\u9fa5_a-zA-Z0-9]+/)
     hashtags.map do |hashtag|
       tag = Tag.find_or_create_by(name: hashtag.downcase.delete('#'))
       game.tags << tag
     end
   end
-  
+
 end
