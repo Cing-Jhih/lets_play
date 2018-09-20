@@ -17,7 +17,7 @@
   <% end %>
 </p>
 <p>遊戲道具：<%= @game.tool %></p>
-<p>遊戲方式：<%= @game.step %></p>
+<p>遊戲方式：<%= render_with_hashtags(@game.step) %></p>
 <hr>
 
 <%# social share button  %>
