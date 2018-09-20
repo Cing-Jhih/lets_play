@@ -26,7 +26,9 @@ before_action :authenticate_user!, only: [:new]
     @game = Game.find(params[:id])
     @age_games = @game.age_games.all.order(age_id: :asc)
     @reply = Reply.new
+    @youtube_url = YouTubeRails.youtube_embed_url_only(@game.url) # transform youtube share url to embed url
     @url = 'https://rand-by-speech.herokuapp.com/games/'+@game.id.to_s
+
   end
 
   def popular
@@ -121,7 +123,7 @@ before_action :authenticate_user!, only: [:new]
 
 private
   def game_params
-    params.require(:game).permit(:title, :image, :tool, :step, :user_id)
+    params.require(:game).permit(:title, :image, :tool, :step, :user_id, :url)
   end
 
   def set_game

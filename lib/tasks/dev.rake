@@ -44,7 +44,8 @@ namespace :dev  do
         tool:  tools.first(rand(0..8)).join,
         step: FFaker::Lorem::sentence(113),
         image: FFaker::Image::url, # modify after CarrierWave installed
-        user_id: User.all.sample.id           
+        url: FFaker::Youtube::share_url,
+        user_id: User.all.sample.id
         )
       AgeGame.create!(
         age_id: Age.all.sample.id,
