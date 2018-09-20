@@ -21,7 +21,7 @@ before_action :validates_search_key, only: [:search]
     @reply = Reply.new
     @url = YouTubeRails.youtube_embed_url_only(@game.url) # transform youtube share url to embed url
   end
-    
+
   def popular
     # need to add a filer to limit games by age
     @games = Game.all.order(favorites_count: :desc)
@@ -114,7 +114,7 @@ before_action :validates_search_key, only: [:search]
 
 private
   def game_params
-    params.require(:game).permit(:title, :image, :tool, :step, :user_id)
+    params.require(:game).permit(:title, :image, :tool, :step, :user_id, :url)
   end
 
   def set_game
