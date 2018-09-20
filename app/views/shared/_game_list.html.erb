@@ -2,5 +2,10 @@
   <%= image_tag game.image, size: "200" %>
   <p><%= link_to game.title, game_path(game) %></p>
   <p><%= truncate(game.step, length: 200) %></p>
+  <p>
+    <% game.tags.each do |tag| %>
+      <%= link_to tag.name, "/games/hashtag/#{tag.name}" %>
+    <% end %>
+  </p>
   <hr>
 <% end %>
