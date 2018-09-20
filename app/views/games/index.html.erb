@@ -1,7 +1,11 @@
 <h1>Index</h1>
 <%#search bar %>
  <%= render partial: "shared/search_bar"%>
- 
+
+<br>
+<%= link_to "發表遊戲", new_game_path, class: "btn btn-primary" %>
+<br>
+
 <%# latest game %>
 <h1>Latest Games</h1>
 <% @latest_games.each do |game| %>
@@ -19,3 +23,9 @@
 <% end %>
 
 <%# game situations %>
+<h1>遊戲分類</h1>
+<ul>
+  <% @situations.each do |situation| %>
+    <li><%= link_to situation.condition, situation_path(situation) %></li>
+  <% end %>
+</ul>

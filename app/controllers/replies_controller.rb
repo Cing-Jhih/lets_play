@@ -1,4 +1,6 @@
 class RepliesController < ApplicationController
+  before_action :authenticate_user!, only: [:create]
+
   def create
     @game = Game.find(params[:game_id])
     @reply = @game.replies.build(reply_params)

@@ -23,6 +23,8 @@ gem 'kaminari'
 
 # search engine
 gem 'ransack', github: 'activerecord-hackery/ransack'
+# share page to FB, Line
+gem 'social-share-button'
 
 # read in YouTube url and generate youtube embed HTML code
 gem 'youtube_rails'

@@ -1,10 +1,12 @@
 class GamesController < ApplicationController
 before_action :set_game, only: [:edit, :update, :destroy]
 before_action :validates_search_key, only: [:search]
+before_action :authenticate_user!, only: [:new]
 
   def index
     @latest_games = Game.all.order(created_at: :desc)
     @popular_games = Game.all.order(favorites_count: :desc).limit(10)
+    @situations = Situation.all
   end
 
   def home
@@ -19,7 +21,9 @@ before_action :validates_search_key, only: [:search]
     @game = Game.find(params[:id])
     @age_games = @game.age_games.all.order(age_id: :asc)
     @reply = Reply.new
-    @url = YouTubeRails.youtube_embed_url_only(@game.url) # transform youtube share url to embed url
+    @youtube_url = YouTubeRails.youtube_embed_url_only(@game.url) # transform youtube share url to embed url
+    @url = 'https://rand-by-speech.herokuapp.com/games/'+@game.id.to_s
+
   end
 
   def popular
