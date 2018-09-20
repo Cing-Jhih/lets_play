@@ -27,7 +27,8 @@
   </div>
   <div class="field">
     <%= form.label :image %>
-    <%= form.text_field :image %>
+    <%= image_tag game.image, size: 300 %>
+    <%= form.file_field :image %>
   </div>
 
   <div class="field">
