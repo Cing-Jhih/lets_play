@@ -17,6 +17,10 @@ before_action :authenticate_user!, only: [:new]
   	@games = Game.ransack({:title_or_tool_or_step_cont => @q}).result(distinct: true)
   end
 
+  def hashtags
+    tag = Tag.find_by(name: params[:name])
+  end
+
   def show
     @game = Game.find(params[:id])
     @age_games = @game.age_games.all.order(age_id: :asc)

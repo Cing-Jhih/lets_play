@@ -12,7 +12,7 @@ class Game < ApplicationRecord
     hashtags.map do |hashtag|
       tag = Tag.find_or_create_by(name: hashtag.downcase.delete('#'))
       game.tags << tag
-    end  
+    end
   end
 
   before_update do
@@ -22,6 +22,7 @@ class Game < ApplicationRecord
     hashtags.map do |hashtag|
       tag = Tag.find_or_create_by(name: hashtag.downcase.delete('#'))
       game.tags << tag
-    end  
+    end
   end
+  
 end
