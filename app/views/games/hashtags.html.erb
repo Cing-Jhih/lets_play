@@ -1,0 +1,5 @@
+<h1>Hashtag: <%= @tag.name %> Game List</h1>
+
+<%= render partial: "shared/game_list", locals:{games:@games}  %>
+
+<%= link_to 'Back', :back %>

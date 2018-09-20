@@ -18,7 +18,8 @@ before_action :authenticate_user!, only: [:new]
   end
 
   def hashtags
-    tag = Tag.find_by(name: params[:name])
+    @tag = Tag.find_by(name: params[:name])
+    @games = @tag.games
   end
 
   def show
