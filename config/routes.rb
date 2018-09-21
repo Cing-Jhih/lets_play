@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
   resources :ages, only: :show
 
-  root "games#home"
+  root "games#index"
   get '/games/hashtag/:name', to:'games#hashtags'
 
   namespace :admin do

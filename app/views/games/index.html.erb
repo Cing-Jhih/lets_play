@@ -1,36 +1,49 @@
 <h1>Index</h1>
-<%#search bar %>
- <%= render partial: "shared/search_bar"%>
-
-<br>
-<%= link_to "發表遊戲", new_game_path, class: "btn btn-primary" %>
-<br>
-
-<%# latest game %>
-<h1>Latest Games</h1>
-<% @latest_games.each do |game| %>
-  <%= image_tag game.image, size: "200" %>
-  <p><%= link_to game.title, game_path(game) %></p>
-  <p><%= truncate(game.step, length: 200) %></p>
+<%# set the anchor css 90px heigher than target(the anchor links the target on the top of the page, ignore padding-top setting  %>
+<div id="random">
+<%# select age and situation, rand a game  %>
   <p>
-    <% game.tags.each do |tag| %>
-      <%= link_to tag.name, "/games/hashtag/#{tag.name}" %>
+    <%= form_tag '/games/random', method: :get do %>
+      <%= collection_select(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}) %>
+      <%= collection_select(:situation_game, :situation_id, Situation.all, :id, :condition, {prompt:true}) %>
+      <%= submit_tag "Random" %>
     <% end %>
   </p>
-<% end %>
+</div>  
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-<%# popular game %>
-<h1>Popular Games</h1>
-<% @popular_games.each do |game| %>
-  <%= image_tag game.image, size: "200" %>
-  <p><%= link_to game.title, game_path(game) %></p>
-  <p><%= truncate(game.step, length: 200) %></p>
-<% end %>
-
-<%# game situations %>
-<h1>遊戲分類</h1>
-<ul>
-  <% @situations.each do |situation| %>
-    <li><%= link_to situation.condition, situation_path(situation) %></li>
+<div id="index">
+  <%#search bar %>
+  <%= render partial: "shared/search_bar"%>
+  <br>
+  <%= link_to "發表遊戲", new_game_path, class: "btn btn-primary" %>
+  <br>
+  <%# latest game %>
+  <h1>Latest Games</h1>
+  <% @latest_games.each do |game| %>
+    <%= image_tag game.image, size: "200" %>
+    <p><%= link_to game.title, game_path(game) %></p>
+    <p><%= truncate(game.step, length: 200) %></p>
+    <p>
+      <% game.tags.each do |tag| %>
+        <%= link_to tag.name, "/games/hashtag/#{tag.name}" %>
+      <% end %>
+    </p>
   <% end %>
-</ul>
+
+  <%# popular game %>
+  <h1>Popular Games</h1>
+  <% @popular_games.each do |game| %>
+    <%= image_tag game.image, size: "200" %>
+    <p><%= link_to game.title, game_path(game) %></p>
+    <p><%= truncate(game.step, length: 200) %></p>
+  <% end %>
+
+  <%# game situations %>
+  <h1>遊戲分類</h1>
+  <ul>
+    <% @situations.each do |situation| %>
+      <li><%= link_to situation.condition, situation_path(situation) %></li>
+    <% end %>
+  </ul>
+</div>
