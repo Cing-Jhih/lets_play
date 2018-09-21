@@ -43,7 +43,7 @@ namespace :dev  do
         title: FFaker::Lorem::phrase,
         tool:  tools.first(rand(0..8)).join,
         step: FFaker::Lorem::sentence(113),
-        image: FFaker::Image::url, # modify after CarrierWave installed
+        remote_image_url: FFaker::Image::url,
         url: FFaker::Youtube::share_url,
         user_id: User.all.sample.id
         )
