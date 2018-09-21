@@ -15,4 +15,5 @@
 //= require jquery3
 //= require bootstrap-sprockets
 //= require social-share-button
+//= require app
 //= require_tree .
