@@ -27,11 +27,10 @@
   </head>
 
   <body>
-    <% if !@home %>
     <%# nav bar %>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #9370DB;">
-      <%= link_to"Let's Play", games_path, class: "navbar-brand" %>
-      <%= link_to"推薦遊戲", root_path, class: "navbar-brand" %>
+      <%= link_to"Let's Play", games_path(anchor: 'index'), class: "navbar-brand" %>
+      <%= link_to"推薦遊戲", games_path(anchor: 'random'), class: "navbar-brand" %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -66,7 +65,7 @@
         </ul>
       </div>
     </nav>   
-    <% end %>
+   
     <!-- 用flash提示action訊息 -->
       <% if flash[:notice] %>
         <div class="container">
