@@ -19,3 +19,17 @@
 //= require google-map
 //= require jquery-ui
 //= require fancybox
+//= require jquery.syotimer
+//= require wow.min
+//= require jquery.counterup.min
+//= require isotope.min
+//= require isotope-triger
+//= require owl.carousel
+//= require jquery.themepunch.enablelog
+//= require jquery.themepunch.revolution
+//= require jquery.themepunch.revolution.min
+//= require jquery.themepunch.tools.min
+//= require jquery.selectbox-0.1.3.min
+//= require SmoothScroll
+//= require velocity.min
+//= require waypoints.min
