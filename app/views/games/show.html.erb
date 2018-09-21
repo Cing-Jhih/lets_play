@@ -36,8 +36,10 @@
 <% @game.replies.each do |reply| %>
   <p><%= reply.user.name %></p>
   <p><%= reply.content %></p>
-  <% if reply.user.email == current_user.email || current_user.role == "admin" %>
-      <%= link_to "刪除", game_reply_path(@game, reply), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-default" %>
+  <% if current_user %>
+    <% if reply.user.email == current_user.email || current_user.role == "admin" %>
+        <%= link_to "刪除", game_reply_path(@game, reply), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-default" %>
+    <% end %>
   <% end %>
   <hr>
 <% end %>
