@@ -8,8 +8,10 @@
 <div>
   <p>回應的遊戲清單</p>
   <% @replied_games.each do |game| %>
-    <% if @user.email == current_user.email %>
-      <%= link_to "看回應", game_path(game) %>
+    <% if current_user %>
+      <% if @user.email == current_user.email %>
+        <%= link_to "看回應", game_path(game) %>
+      <% end %>
     <% end %>
     <p>標題:<%= game.title %></p>
     <p>發表者：<%= game.user.name %></p>
