@@ -6,23 +6,19 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Let's PLAY</title>
+  <title>Let's Play </title>
   <!-- PLUGINS CSS STYLE -->
-  <link href="/assets/plugins/jquery-ui/jquery-ui.css" rel="stylesheet">
-  <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="/assets/plugins/rs-plugin/css/settings.css" rel="stylesheet">
-  <link href="/assets/plugins/selectbox/select_option1.css" rel="stylesheet">
-  <link href="/assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
-  <link href="/assets/plugins/fancybox/jquery.fancybox.min.css" rel="stylesheet">
-  <link href="/assets/plugins/isotope/isotope.css" rel="stylesheet">
-  <link href="/assets/plugins/animate/animate.css" rel="stylesheet">
+  <link href="/assets/plugins/rs-plugin/scss/settings.scss" rel="stylesheet">
+  <link href="/assets/plugins/selectbox/select_option1.scss" rel="stylesheet">
+  <link href="/assets/plugins/owl-carousel/owl.carousel.scss" rel="stylesheet">
+  <link href="/assets/plugins/isotope/isotope.scss" rel="stylesheet">
+  <link href="/assets/plugins/animate/animate.scss" rel="stylesheet">
   <!-- GOOGLE FONT -->
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Dosis:400,300,600,700' rel='stylesheet' type='text/css'>
   <!-- CUSTOM CSS -->
-  <link href="/assets/css/app.scss" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/scss/default.scss" id="option_color">
+  <link href="/assets/app.scss" rel="stylesheet">
+  <link rel="stylesheet" href="assets/default.scss" id="option_color">
   <!-- Icons -->
   <link rel="shortcut icon" href="/assets/favicon.png">
   <%= csrf_meta_tags %>
@@ -49,8 +45,8 @@
 
 <body class="body-wrapper">
   <!-- ====================================
-    ——— PRELOADER
-    ===================================== -->
+  ——— PRELOADER
+  ===================================== -->
   <div id="preloader" class="smooth-loader-wrapper">
     <div class="smooth-loader">
       <div class="loader">
@@ -61,10 +57,11 @@
       </div>
     </div>
   </div>
+
   <div class="main-wrapper">
     <!-- ====================================
-      ——— HEADER
-      ===================================== -->
+    ——— HEADER
+    ===================================== -->
     <header id="pageTop" class="header-wrapper">
       <!-- COLOR BAR -->
       <div class="container-fluid color-bar top-fixed clearfix">
@@ -83,6 +80,7 @@
           <div class="col-sm-1 bg-color-6 hidden-xs">fix bar</div>
         </div>
       </div>
+
       <!-- TOP INFO BAR -->
       <div class="top-info-bar bg-color-7 hidden-xs">
         <div class="container">
@@ -105,12 +103,12 @@
                     <option value="3">Hindi</option>
                   </select>
                 </li>
-                <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href='#loginModal' data-toggle="modal">Login</a><span>or</span><a href='#createAccount' data-toggle="modal">Create an account</a></li>
+                <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href='#loginModal' data-toggle="modal" >Login</a><span>or</span><a href='#createAccount' data-toggle="modal">Create an account</a></li>
                 <li class="cart-dropdown">
-                  <a href="#" class="bg-color-6 shop-cart">
-                      <i class="fa fa-shopping-basket " aria-hidden="true"></i>
-                      <span class="badge bg-color-1">3</span>
-                    </a>
+                  <a href="#" class="bg-color-6 shop-cart" >
+                    <i class="fa fa-shopping-basket " aria-hidden="true"></i>
+                    <span class="badge bg-color-1">3</span>
+                  </a>
                   <ul class="dropdown-menu dropdown-menu-right">
                     <li><i class="fa fa-shopping-basket " aria-hidden="true"></i>3 items in your cart</li>
                     <li>
@@ -179,6 +177,7 @@
           </div>
         </div>
       </div>
+
       <!-- NAVBAR -->
       <nav id="menuBar" class="navbar navbar-default lightHeader" role="navigation">
         <div class="container">
@@ -192,13 +191,14 @@
             </button>
             <a class="navbar-brand" href="index-v2.html"><img src="/assets/logo-toys.png" alt="Kidz Store"></a>
           </div>
+
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown singleDrop color-1  active ">
                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-home bg-color-1" aria-hidden="true"></i> <span>Home</span>
-                  </a>
+                  <i class="fa fa-home bg-color-1" aria-hidden="true"></i> <span>Home</span>
+                </a>
                 <ul class="dropdown-menu dropdown-menu-left">
                   <li class=""><a href="index.html">Kidz School</a></li>
                   <li class=" active "><a href="index-v2.html">Kidz Store</a></li>
@@ -212,7 +212,7 @@
                   <li class=" "><a href="about_us.html">About</a></li>
                   <li class="dropdown dropdown-submenu ">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Team<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                      </a>
+                    </a>
                     <ul class="dropdown-menu">
                       <li class=" "><a href="teachers.html">Teachers</a></li>
                       <li class=" "><a href="teachers-details.html">Teacher Details</a></li>
@@ -220,11 +220,11 @@
                   </li>
                   <li class=" "><a href="testimonial.html">Testimonial</a></li>
                   <li class="dropdown dropdown-submenu
-                       ||
-                       ||
-                       ">
+                     ||
+                     ||
+                     ">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Events <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                      </a>
+                    </a>
                     <ul class="dropdown-menu">
                       <li class=" "><a href="all-events.html">All Events</a></li>
                       <li class=""><a href="single-event-left-sidebar.html">Single Event Left Sidebar</a></li>
@@ -239,15 +239,15 @@
                   <li class=""><a href="contact-us.html">Contact Us</a></li>
                   <li class=""><a href="faq.html">FAQ</a></li>
                   <li class=""><a href="sign-up-or-login.html">Sign Up / Login</a></li>
-                  <li class=""><a href="404.html">Error 404</a></li>
+                  <li class="" ><a href="404.html">Error 404</a></li>
                   <li><a href="coming-soon.html">Coming Soon</a></li>
                 </ul>
               </li>
               <li class=" dropdown megaDropMenu color-2">
                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true" aria-expanded="false">
-                    <i class="fa fa-file-text-o bg-color-2" aria-hidden="true"></i>
-                    <span>Courses</span>
-                  </a>
+                  <i class="fa fa-file-text-o bg-color-2" aria-hidden="true"></i>
+                  <span>Courses</span>
+                </a>
                 <ul class="row dropdown-menu">
                   <li class="col-sm-3 col-xs-12">
                     <ul class="list-unstyled">
@@ -276,25 +276,25 @@
                   <li class="col-sm-3 col-xs-12">
                     <ul class="list-unstyled">
                       <li>Checkout</li>
-                      <li class=""><a href="checkout-step-1.html">Personal Info</a></li>
-                      <li class=""><a href="checkout-step-2.html">Payment Info</a></li>
-                      <li class=""><a href="checkout-step-3.html">Confirmation</a></li>
+                      <li class="" ><a href="checkout-step-1.html">Personal Info</a></li>
+                      <li class="" ><a href="checkout-step-2.html">Payment Info</a></li>
+                      <li class="" ><a href="checkout-step-3.html">Confirmation</a></li>
                     </ul>
                   </li>
                 </ul>
               </li>
               <li class="dropdown singleDrop color-4">
                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-pencil-square-o bg-color-4" aria-hidden="true"></i>
-                    <span>Store</span>
-                  </a>
+                  <i class="fa fa-pencil-square-o bg-color-4" aria-hidden="true"></i>
+                  <span>Store</span>
+                </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li class="dropdown dropdown-submenu
-                       ||
-                       ||
-                       ">
+                     ||
+                     ||
+                     ">
                     <a href="javascript:void(0)" class="dropdown-toggle " data-toggle="dropdown">Products<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                      </a>
+                    </a>
                     <ul class="dropdown-menu">
                       <li class=""><a href="product.html">Products Fullwidth</a></li>
                       <li class=""><a href="product-left-sidebar.html">Products Left Sidebar</a></li>
@@ -306,7 +306,7 @@
                   <li class=""><a href="cart-page.html">Cart</a></li>
                   <li class="dropdown dropdown-submenu">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Checkout<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                      </a>
+                    </a>
                     <ul class="dropdown-menu">
                       <li class=" "><a href="checkout-step-1.html">Personal Info</a></li>
                       <li class=" "><a href="checkout-step-2.html">Payment Info</a></li>
@@ -317,17 +317,17 @@
               </li>
               <li class="dropdown singleDrop color-5 ">
                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-calendar bg-color-5" aria-hidden="true"></i>
-                    <span>Blog</span>
-                  </a>
+                  <i class="fa fa-calendar bg-color-5" aria-hidden="true"></i>
+                  <span>Blog</span>
+                </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li class="dropdown dropdown-submenu
-                       ||
-                      
-                      
-                    ">
+                     ||
+                    
+                    
+                  ">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Blog Grid<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                      </a>
+                    </a>
                     <ul class="dropdown-menu">
                       <li class=""><a href="blog-grid.html">Blog Grid Fullwidth</a></li>
                       <li class=""><a href="blog-grid-left-sidebar.html">Blog Grid Left Sidebar</a></li>
@@ -335,23 +335,23 @@
                     </ul>
                   </li>
                   <li class="dropdown dropdown-submenu
-                       ||
-                       ||
-                       ">
+                     ||
+                     ||
+                     ">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Blog List<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                      </a>
+                    </a>
                     <ul class="dropdown-menu">
-                      <li class=""><a href="blog-list.html">Blog List Fullwidth</a></li>
+                      <li class="" ><a href="blog-list.html">Blog List Fullwidth</a></li>
                       <li class=""><a href="blog-list-left-sidebar.html">Blog List Left Sidebar</a></li>
                       <li class=""><a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a></li>
                     </ul>
                   </li>
                   <li class="dropdown dropdown-submenu
-                       ||
-                       ||
-                       ">
+                     ||
+                     ||
+                     ">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Single Blog<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                      </a>
+                    </a>
                     <ul class="dropdown-menu">
                       <li class=""><a href="single-blog.html">Single Blog Fullwidth</a></li>
                       <li class=""><a href="single-blog-left-sidebar.html">Single Blog Left Sidebar</a></li>
@@ -377,11 +377,12 @@
               </li>
             </ul>
           </div>
+
           <div class="cart-dropdown">
             <a href="#" class="bg-color-6 shop-cart">
-                <i class="fa fa-shopping-basket " aria-hidden="true"></i>
-                <span class="badge bg-color-1">3</span>
-              </a>
+              <i class="fa fa-shopping-basket " aria-hidden="true"></i>
+              <span class="badge bg-color-1">3</span>
+            </a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li><i class="fa fa-shopping-basket " aria-hidden="true"></i>3 items in your cart</li>
               <li>
@@ -448,67 +449,154 @@
         </div>
       </nav>
     </header>
-    <%# nav bar %>
-      <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #9370DB;">
-        <%= link_to"Let's Play", games_path(anchor: 'index'), class: "navbar-brand" %>
-          <%= link_to"推薦遊戲", games_path(anchor: 'random'), class: "navbar-brand" %>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <%# collapse %>
-              <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                  <% if current_user %>
-                    <li class="nav-item">
-                      <span class="navbar-text">
-              Hi! <%= current_user.name %> 
-              &nbsp;
-            </span>
-                    </li>
-                    <li class="nav-item">
-                      <%= link_to'<i class="fas fa-user fa-lg"></i>&nbsp;Profile'.html_safe, user_path(current_user), class: "nav-link" %>
-                    </li>
-                    <li class="nav-item">
-                      <%= link_to '<i class="fas fa-sign-out-alt fa-lg"></i> Logout'.html_safe, destroy_user_session_path, method: :delete, class: "nav-link" %>
-                    </li>
-                    <% else %>
-                      <li class="nav-item">
-                        <span class="navbar-text">Hi! Guest&nbsp;</span>
-                      </li>
-                      <li class="nav-item">
-                        <%= link_to '<i class="fas fa-user-plus fa-lg"></i> Sign Up'.html_safe, new_user_registration_path, class: "nav-link" %>
-                      </li>
-                      <li class="nav-item">
-                        <%= link_to '<i class="fas fa-sign-in-alt fa-lg"></i> Sign In'.html_safe, new_user_session_path, class: "nav-link" %>
-                      </li>
-                      <% end %>
-                </ul>
-              </div>
-      </nav>
-      <!-- 用flash提示action訊息 -->
-      <% if flash[:notice] %>
-        <div class="container">
-          <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <%= notice %>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
+
+  <!-- ====================================
+  ——— Call controller-action
+  ===================================== -->
+
+  <%= yield %>
+
+    <!-- ====================================
+    ——— FOOTER
+    ===================================== -->
+    <footer class="footer-2">
+      <!-- COLOR BAR -->
+      <div class="container-fluid color-bar clearfix">
+        <div class="row">
+          <div class="col-sm-1 col-xs-2 bg-color-1">fix bar</div>
+          <div class="col-sm-1 col-xs-2 bg-color-2">fix bar</div>
+          <div class="col-sm-1 col-xs-2 bg-color-3">fix bar</div>
+          <div class="col-sm-1 col-xs-2 bg-color-4">fix bar</div>
+          <div class="col-sm-1 col-xs-2 bg-color-5">fix bar</div>
+          <div class="col-sm-1 col-xs-2 bg-color-6">fix bar</div>
+          <div class="col-sm-1 bg-color-1 hidden-xs">fix bar</div>
+          <div class="col-sm-1 bg-color-2 hidden-xs">fix bar</div>
+          <div class="col-sm-1 bg-color-3 hidden-xs">fix bar</div>
+          <div class="col-sm-1 bg-color-4 hidden-xs">fix bar</div>
+          <div class="col-sm-1 bg-color-5 hidden-xs">fix bar</div>
+          <div class="col-sm-1 bg-color-6 hidden-xs">fix bar</div>
         </div>
-        <% end %>
-          <!-- 用flash提示錯誤警告訊息 -->
-          <% if flash[:alert] %>
-            <div class="container">
-              <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <%= alert %>
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+      </div>
+      
+      <!-- COPY RIGHT -->
+      <div class="copyRight clearfix">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-5 col-sm-push-7 col-xs-12">
+              <ul class="list-inline">
+                <li><a href="#" class="bg-color-1"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="#" class="bg-color-2"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li><a href="#" class="bg-color-3"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                <li><a href="#" class="bg-color-4"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                <li><a href="#" class="bg-color-5"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+              </ul>
+            </div>
+            <div class="col-sm-7 col-sm-pull-5 col-xs-12">
+              <div class="copyRightText">
+                <p>© 2016 Copyright Kidz School Bootstrap Template by <a href="https://www.iamabdus.com/">Abdus</a>.</p>
               </div>
             </div>
-            <% end %>
-              <!-- 呼叫action對應之html.erb -->
-              <%= yield %>
+          </div>
+        </div>
+      </div>
+    </footer>
+    </div>
+
+    <div class="scrolling">
+      <a href="#pageTop" class="backToTop hidden-xs" id="backToTop"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+    </div>
+
+    <!-- ====================================
+    ——— LOGIN MODAL
+    ===================================== -->
+    <div class="modal fade customModal" id="loginModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="panel panel-default formPanel">
+            <div class="panel-heading bg-color-1 border-color-1">
+              <h3 class="panel-title">Login</h3>
+            </div>
+            <div class="panel-body">
+              <form action="#" method="POST" role="form">
+                <div class="form-group formField">
+                  <input type="text" class="form-control" placeholder="User name">
+                </div>
+                <div class="form-group formField">
+                  <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-group formField">
+                  <input type="submit" class="btn btn-primary btn-block bg-color-3 border-color-3" value="Log in">
+                </div>
+                <div class="form-group formField">
+                  <p class="help-block"><a href="#">Forgot password?</a></p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================
+    ——— CREATE ACCOUNT MODAL
+    ===================================== -->
+    <div class="modal fade customModal" id="createAccount" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="panel panel-default formPanel">
+            <div class="panel-heading bg-color-1 border-color-1">
+              <h3 class="panel-title">Create  an account</h3>
+            </div>
+            <div class="panel-body">
+              <form action="#" method="POST" role="form">
+                <div class="form-group formField">
+                  <input type="text" class="form-control" placeholder="Name">
+                </div>
+                <div class="form-group formField">
+                  <input type="text" class="form-control" placeholder="User name">
+                </div>
+                <div class="form-group formField">
+                  <input type="text" class="form-control" placeholder="Phone">
+                </div>
+                <div class="form-group formField">
+                  <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-group formField">
+                  <input type="password" class="form-control" placeholder="Re-Password">
+                </div>
+                <div class="form-group formField">
+                  <input type="submit" class="btn btn-primary btn-block bg-color-3 border-color-3" value="Register">
+                </div>
+                <div class="form-group formField">
+                  <p class="help-block">Allready have an account? <a href="#">Log in</a></p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <script src="/assets/plugins/jquery/jquery-min.js"></script>
+    <script src="/assets/plugins/jquery-ui/jquery-ui.js"></script>
+    <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/plugins/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+    <script src="/assets/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="/assets/plugins/selectbox/jquery.selectbox-0.1.3.min.js"></script>
+    <script src="/assets/plugins/owl-carousel/owl.carousel.js"></script>
+    <script src="/assets/plugins/waypoint/waypoints.min.js"></script>
+    <script src="/assets/plugins/counter-up/jquery.counterup.min.js"></script>
+    <script src="/assets/plugins/isotope/isotope.min.js"></script>
+    <script src="/assets/plugins/fancybox/jquery.fancybox.min.js"></script>
+    <script src="/assets/plugins/isotope/isotope-triger.js"></script>
+    <script src="/assets/plugins/countdown/jquery.syotimer.js"></script>
+    <script src="/assets/plugins/velocity/velocity.min.js"></script>
+    <script src="/assets/plugins/smoothscroll/SmoothScroll.js"></script>
+    <script src="/assets/plugins/wow/wow.min.js"></script>
+    <script src="/assets/js/app.js"></script>
+
 </body>
 
 </html>

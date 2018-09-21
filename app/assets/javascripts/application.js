@@ -16,4 +16,6 @@
 //= require bootstrap-sprockets
 //= require social-share-button
 //= require app
-//= require_tree .
+//= require google-map
+//= require jquery-ui
+//= require fancybox
