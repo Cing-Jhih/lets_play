@@ -1,8 +1,6 @@
-
-<%# Put the anchor 90px heigher than target(the anchor links the target on the top of the page, ignore padding-top setting  %>
-<div id="random">
 <h1>Index</h1>
-<br><br><br><br><br><br><br><br>
+<%# set the anchor css 90px heigher than target(the anchor links the target on the top of the page, ignore padding-top setting  %>
+<div id="random">
 <%# select age and situation, rand a game  %>
   <p>
     <%= form_tag '/games/random', method: :get do %>
@@ -12,10 +10,9 @@
     <% end %>
   </p>
 </div>  
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <div id="index">
-<br><br><br>
   <%#search bar %>
   <%= render partial: "shared/search_bar"%>
   <br>
