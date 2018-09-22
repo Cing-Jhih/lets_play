@@ -1,5 +1,4 @@
 <%# game info %>
-<h1>Game#show</h1>
 <p>標題:<%= game.title %></p>
 <p>發表者：<%= image_tag game.user.avatar %><%= link_to game.user.name, user_path(game.user)%></p>
 <p>收藏數：<%= game.favorites.size %></p>
