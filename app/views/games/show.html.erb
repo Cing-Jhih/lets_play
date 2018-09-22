@@ -4,7 +4,13 @@
 <p>發表者：<%= image_tag @game.user.avatar %><%= @game.user.name %></p>
 <p>收藏數：<%= @game.favorites.size %></p>
 <p>回應數：<%= @game.replies.size %></p>
-<p>加入收藏</p>
+<p>加入收藏
+  <% if @game.is_favorited?(current_user) %>
+    <%= link_to 'Unfavorite', unfavorite_game_path(@game), method: :post %>
+  <% else %>
+    <%= link_to 'Favorite', favorite_game_path(@game), method: :post %>
+  <% end %>
+</p>
 <p>遊戲圖片:<%= image_tag @game.image %></p>
 <p>適玩情境：
   <% @game.situation_games.each do |situation_game| %>
