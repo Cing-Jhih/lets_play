@@ -117,6 +117,19 @@ before_action :authenticate_user!, only: [:new]
     flash[:alert] = "game was deleted"
   end
 
+  def favorite
+    @game = Game.find(params[:id])
+    @game.favorites.create!(user: current_user)
+    redirect_back(fallback_location: root_path)  # 導回上一頁
+  end
+
+  def unfavorite
+    @game = Game.find(params[:id])
+    favorites = Favorite.where(game: @game, user: current_user)
+    favorites.destroy_all
+    redirect_back(fallback_location: root_path)
+  end
+
 private
   def game_params
     params.require(:game).permit(:title, :image, :tool, :step, :user_id, :url)
