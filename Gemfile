@@ -37,15 +37,19 @@ gem 'rails', '~> 5.1.6'
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 
-gem 'bootstrap', '~> 4.1.3'
-gem 'bootstrap_form'
-gem 'bootstrap4-kaminari-views'
+gem 'bootstrap-sass', '~> 3.3.7'
+
 
 # for yml file deploy to heroku
 gem 'figaro'
 gem 'font-awesome-rails' 
 gem 'sass-rails', '~> 5.0'
 gem 'jquery-rails'
+
+gem 'jquery-ui-rails'
+gem 'fancybox2-rails'
+gem 'waypoints-rails'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes

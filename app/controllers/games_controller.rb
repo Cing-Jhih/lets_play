@@ -9,6 +9,10 @@ before_action :authenticate_user!, only: [:new]
     @situations = Situation.all
   end
 
+  def home
+    @home = []
+  end
+
   def search
   	@games = Game.ransack({:title_or_tool_or_step_cont => @q}).result(distinct: true)
   end
