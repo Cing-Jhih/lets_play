@@ -42,7 +42,7 @@ gem 'bootstrap-sass', '~> 3.3.7'
 
 # for yml file deploy to heroku
 gem 'figaro'
-gem 'font-awesome-rails' 
+gem 'font-awesome-rails', github: "bokmann/font-awesome-rails", branch: "master" 
 gem 'sass-rails', '~> 5.0'
 gem 'jquery-rails'
 
