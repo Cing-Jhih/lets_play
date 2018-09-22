@@ -26,7 +26,7 @@ jQuery(document).ready(function(){
 	}, 3000);
 
   /*======== 2. MENU SCROLL ========*/
-   $(window).load(function(){
+   $(window).on('load', function(){
     $('.body-wrapper').each(function(){
       var header_area = $('.header-wrapper');
       var main_area = header_area.children('.navbar');
