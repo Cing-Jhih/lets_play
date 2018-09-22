@@ -1,5 +1,75 @@
 <%= render partial: "shared/user_info", locals:{user:@user}  %>
 
+<section class="whiteSection full-width clearfix p-t-n">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="tabCommon">
+          <ul class="nav nav-tabs">
+            <li class="active"><%= link_to "收藏(#{@user.favorites_count})", user_path %></li>
+            <li><%= link_to "發表(#{@user.games_count})", games_user_path %></li>
+            <li><%= link_to "回應(#{@user.replies_count})", replies_user_path %></li>
+          </ul>
+          <div class="tab-content">
+            <div id="leftHome" class="tab-pane fade in active">
+              <div class="media">
+                <a class="media-left" href="#">
+                  <img class="media-object img-rounded" src="assets/img/home/about-school.png" alt="Image">
+                </a>
+                <div class="media-body">
+                  <h3 class="media-heading">Wellcome to kidz school</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in repre henderit in voluptate.</p>
+                  <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accu santium doloremque laudantium.</p>
+                  <a href="#" class="btn btn-primary">read more</a>
+                </div>
+              </div>
+            </div>
+            <div id="leftMenu1" class="tab-pane fade">
+              <div class="media">
+                <a class="media-left" href="#">
+                  <img class="media-object img-rounded" src="assets/img/home/about-school.png" alt="Image">
+                </a>
+                <div class="media-body">
+                  <h3 class="media-heading">Wellcome to kidz school</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in repre henderit in voluptate.</p>
+                  <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accu santium doloremque laudantium.</p>
+                  <a href="#" class="btn btn-primary">read more</a>
+                </div>
+              </div>
+            </div>
+            <div id="leftMenu2" class="tab-pane fade">
+              <div class="media">
+                <a class="media-left" href="#">
+                  <img class="media-object img-rounded" src="assets/img/home/about-school.png" alt="Image">
+                </a>
+                <div class="media-body">
+                  <h3 class="media-heading">Wellcome to kidz school</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in repre henderit in voluptate.</p>
+                  <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accu santium doloremque laudantium.</p>
+                  <a href="#" class="btn btn-primary">read more</a>
+                </div>
+              </div>
+            </div>
+            <div id="leftMenu3" class="tab-pane fade">
+              <div class="media">
+                <a class="media-left" href="#">
+                  <img class="media-object img-rounded" src="assets/img/home/about-school.png" alt="Image">
+                </a>
+                <div class="media-body">
+                  <h3 class="media-heading">Wellcome to kidz school</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in repre henderit in voluptate.</p>
+                  <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accu santium doloremque laudantium.</p>
+                  <a href="#" class="btn btn-primary">read more</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <p>收藏(<%= @user.favorites_count %>)</p>
 <p><%= link_to "發表", games_user_path %>(<%= @user.games_count %>)</p>
 <p><%= link_to "回應", replies_user_path %>(<%= @user.replies_count %>)</p>
