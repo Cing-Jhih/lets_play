@@ -5,8 +5,11 @@
 <p>收藏數：<%= @game.favorites.size %></p>
 <p>回應數：<%= @game.replies.size %></p>
 <p>加入收藏
-  <%= link_to 'Favorite', favorite_game_path(@game), method: :post %>
-  <%= link_to 'Unfavorite', unfavorite_game_path(@game), method: :post %>
+  <% if @game.is_favorited?(current_user) %>
+    <%= link_to 'Unfavorite', unfavorite_game_path(@game), method: :post %>
+  <% else %>
+    <%= link_to 'Favorite', favorite_game_path(@game), method: :post %>
+  <% end %>
 </p>
 <p>遊戲圖片:<%= image_tag @game.image %></p>
 <p>適玩情境：
