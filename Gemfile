@@ -47,8 +47,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'jquery-rails'
 
 gem 'jquery-ui-rails'
-gem 'fancybox2-rails'
-gem 'waypoints-rails'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
