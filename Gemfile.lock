@@ -99,7 +99,7 @@ GEM
     factory_bot_rails (4.11.1)
       factory_bot (~> 4.11.1)
       railties (>= 3.0.0)
-    fancybox-rails (0.3.1)
+    fancybox2-rails (0.2.7)
       railties (>= 3.1.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
@@ -328,7 +328,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   factory_bot_rails
-  fancybox-rails
+  fancybox2-rails
   ffaker
   figaro
   fog-aws

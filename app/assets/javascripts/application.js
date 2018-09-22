@@ -10,26 +10,27 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
-//= require turbolinks
+
 //= require jquery3
+//= require rails-ujs
 //= require bootstrap-sprockets
 //= require social-share-button
-//= require app
-//= require google-map
-//= require jquery-ui
 //= require fancybox
+//= require jquery-ui
 //= require jquery.syotimer
-//= require wow.min
 //= require jquery.counterup.min
-//= require isotope.min
-//= require isotope-triger
-//= require owl.carousel
 //= require jquery.themepunch.enablelog
 //= require jquery.themepunch.revolution
 //= require jquery.themepunch.revolution.min
 //= require jquery.themepunch.tools.min
 //= require jquery.selectbox-0.1.3.min
+//= require isotope.min
+//= require isotope-triger
 //= require SmoothScroll
 //= require velocity.min
+//= require wow.min
+//= require owl.carousel
+//= require google-map
 //= require waypoints.min
+//= require turbolinks
+//= require app
