@@ -12,7 +12,7 @@
   <% end %>
 </p>
 <p>適合年齡：
-   <% @age_games.each do |age_game| %>
+   <% game.age_games.each do |age_game| %>
     <%= link_to age_game.age.name, age_path(age_game.age) %>
   <% end %>
 </p>
