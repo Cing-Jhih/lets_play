@@ -15,7 +15,6 @@
 //= require rails-ujs
 //= require bootstrap-sprockets
 //= require social-share-button
-//= require fancybox
 //= require jquery-ui
 //= require jquery.syotimer
 //= require jquery.counterup.min
@@ -30,7 +29,5 @@
 //= require velocity.min
 //= require wow.min
 //= require owl.carousel
-//= require google-map
-//= require waypoints.min
 //= require turbolinks
 //= require app
