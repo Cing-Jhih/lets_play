@@ -5,6 +5,7 @@ class Game < ApplicationRecord
   has_many :age_games, dependent: :destroy
   has_many :situation_games, dependent: :destroy
   has_many :favorites
+  has_many :favorited_users, through: :favorites, source: :user
   has_many :replies
   has_and_belongs_to_many :tags
 
@@ -25,6 +26,10 @@ class Game < ApplicationRecord
       tag = Tag.find_or_create_by(name: hashtag.downcase.delete('#'))
       game.tags << tag
     end
+  end
+
+  def is_favorited?(user)
+    self.favorited_users.include?(user)
   end
 
 end
