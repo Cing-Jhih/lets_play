@@ -13,7 +13,7 @@
             <% end %>
             <div class="media-body">
               <h3 class="media-heading"><%= link_to game.title, game_path(game), class:"color-#{ game.situation_games.first.situation_id}"%></h3>
-              <p class="pull-right text-dark">by&nbsp;<%= render partial: "shared/link_user_avatar", locals:{user: game.user} %> </p>
+              <p class="pull-right">by&nbsp;<%= render partial: "shared/link_user_avatar", locals:{user: game.user} %> </p>
               <ul class="list-inline">
                 <li>
                   <i class="fa fa-child" aria-hidden="true"></i>
@@ -28,11 +28,11 @@
                   <% end %>
                 </li>
                 <li>
-                  <i class="fa fa-kiss-wink-heart" aria-hidden="true"></i>
+                  <i class="far fa-heart" aria-hidden="true"></i>
                     <%=  game.favorites_count %>
                 </li>
                 <li>
-                  <i class="fa fa-comment" aria-hidden="true"></i>
+                  <i class="far fa-comment" aria-hidden="true"></i>
                     <%=  game.replies_count %>
                 </li>
                 <li>

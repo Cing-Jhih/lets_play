@@ -7,7 +7,9 @@
       </div>
       <div class="caption border-color-<%= game.situation_games.first.situation_id %>">
         <h3 class="color-<%= game.situation_games.first.situation_id %>"><%= game.title %></h3>
-        <ul class="list-unstyled">
+       
+        <ul class="list-inline">
+        <li class="pull-right">by&nbsp;<%= game.user.name %></li>
           <li>
             <i class="fa fa-child" aria-hidden="true"></i>
             <% game.age_games.each do |age_game| %>
@@ -20,11 +22,23 @@
               <%= situation_game.situation.condition  %>
             <% end %>
           </li>
+          <li>
+            <i class="far fa-heart" aria-hidden="true"></i>
+              <%=  game.favorites_count %>
+          </li>
+          <li>
+            <i class="far fa-comment" aria-hidden="true"></i>
+              <%=  game.replies_count %>
+          </li>
+          <li>
+            <% game.tags.each do |tag| %>
+              <span class="label label-default"><%= link_to tag.name, "/games/hashtag/#{tag.name}" %></span>
+            <% end %>
+          </li>
+        </ul> 
+        <ul class="list-inline btn-yellow btnPart">
+          <li><%= render partial: "shared/favorite", locals:{game: game} %> </li>
         </ul>
-      <p><%= truncate(game.step, length: 80) %></p> 
-        <% game.tags.each do |tag| %>
-          <span class="label label-default"><%=  tag.name %></span>
-        <% end %> 
       </div>
     <% end %>
   </div>
