@@ -1,0 +1,45 @@
+<% if current_user %>
+                <li class="dropdown singleDrop color-5">
+                  <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-address-card bg-color-5" aria-hidden="true"></i> <span>會員專區</span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-left">
+                    <li><%= link_to '個資與收藏', user_path(current_user) %></li>
+                    <li><%= link_to '遊戲創作', games_user_path(current_user) %></li>
+                    <li><%= link_to '評論交流', replies_user_path(current_user) %></li>
+                  </ul>
+                </li>
+              <% end %>
+              <li class="dropdown singleDrop color-2">
+                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-theater-masks bg-color-2" aria-hidden="true"></i> <span>適合情境</span></a>
+                <ul class="dropdown-menu dropdown-menu-left">
+                  <% Situation.all.order(id: :asc).each do |situation| %>
+                    <li><%= link_to situation.condition, situation_path(situation) %></li>
+                  <% end %>  
+                </ul>
+              </li>
+              <li class=" dropdown megaDropMenu color-3">
+                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true" aria-expanded="false">
+                  <i class="fas fa-child bg-color-3" aria-hidden="true"></i>
+                  <span>適玩年齡</span>
+                </a>
+                <ul class="row dropdown-menu">
+                  <li class="col-sm-3 col-xs-12">
+                    <ul class="list-unstyled">
+                      <li>嬰幼兒</li>
+                      <% Age.first(6).each do |age| %>
+                        <li><%= link_to age.name, age_path(age) %></li>
+                      <% end %>  
+                    </ul>
+                  </li>
+                  <li class="col-sm-3 col-xs-12">
+                    <ul class="list-unstyled">
+                      <li>學童</li>
+                      <% Age.last(6).each do |age| %>
+                        <li><%= link_to age.name, age_path(age) %></li>
+                      <% end %> 
+                    </ul>
+                  </li>
+                </ul>
+              </li>

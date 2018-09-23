@@ -86,42 +86,40 @@
       <div class="top-info-bar bg-color-7 hidden-xs">
         <div class="container">
           <div class="row">
-            <div class="col-sm-7">
+            <div class="col-sm-8">
               <ul class="list-inline topList">
-                <!-- search bar -->
+                <li class="col-sm-8">
+                <!--search bar -->
+                <%= render partial: "shared/search_bar"%>
+                </li>
               </ul>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-4">
               <ul class="list-inline functionList">
                 <% if current_user %>  
                   <li class="nav-item">
                     <span class="navbar-text">
-                      Hi! <%= current_user.name %> 
+                      咍囉! <%= current_user.name %> 這次想玩什麼？
                       &nbsp;
                     </span>
                   </li>
                   <li>
-                  <%= link_to user_path(current_user) do %>
-                      <i class="fa fa-user-alt bg-color-5" ></i>Profile
-                    <% end %>                  
-                  </li>
-                  <li>
                     <%= link_to destroy_user_session_path, method: :delete do %>
-                      <i class="fas fa-sign-out-alt bg-color-6"></i> Logout
+                      <i class="fas fa-sign-out-alt bg-color-6"></i> 登出
                     <% end %>
                   </li>
                 <% else %>
                   <li>
-                    <span class="navbar-text">Hi! Guest&nbsp;</span>
+                    <span class="navbar-text">哈囉! 一起來玩嗎？&nbsp;</span>
                   </li>
                   <li class="nav-item">
                     <%= link_to new_user_registration_path do %>
-                      <i class="fas fa-user-plus  bg-color-5"></i> Sign Up
+                      <i class="fas fa-user-plus  bg-color-5"></i> 註冊
                     <% end %>  
                   </li>
                   <li class="nav-item">
                     <%= link_to new_user_session_path do %>
-                      <i class="fas fa-sign-in-alt bg-color-6"></i> Sign In
+                      <i class="fas fa-sign-in-alt bg-color-6"></i> 登入
                     <% end %>  
                   </li>
                 <% end %>  
@@ -142,263 +140,118 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index-v2.html"><img src="/assets/lets_play.png" alt="Kidz Store"></a>
+            <a class="navbar-brand" href="/games#index"><img src="/assets/lets_play.png" alt="Let's Play"></a>
+            
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
+          
           <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown singleDrop color-1  active ">
+              <li class="col-xs-12 visible-xs">
+              <!--search bar when xs-->
+              <%= render partial: "shared/search_bar"%>
+              <hr>
+            </li>
+              <% if current_user %>  
+                  <li class="visible-xs">
+                    <%= link_to destroy_user_session_path, method: :delete do %>
+                      <i class="fas fa-sign-out-alt bg-color-6"></i> 
+                      <span>登出</span>
+                    <% end %>
+                  </li>
+                <% else %>
+                  <li class="visible-xs">
+                    <%= link_to new_user_registration_path do %>
+                      <i class="fas fa-user-plus  bg-color-5"></i>
+                      <span>註冊</span>
+                    <% end %>  
+                  </li>
+                   <li class="visible-xs">
+                    <%= link_to new_user_session_path do %>
+                      <i class="fas fa-sign-in-alt bg-color-6"></i>
+                      <span>登入</span>
+                    <% end %>  
+                  </li>
+                <% end %>
+              <% if current_user %>
+                <li class="dropdown singleDrop color-5">
+                  <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-address-card bg-color-5" aria-hidden="true"></i> <span>會員專區</span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-left">
+                    <li><%= link_to '個資與收藏', user_path(current_user) %></li>
+                    <li><%= link_to '遊戲創作', games_user_path(current_user) %></li>
+                    <li><%= link_to '評論交流', replies_user_path(current_user) %></li>
+                    <li><%= link_to '分齡玩伴' %></li>
+                  </ul>
+                </li>
+              <% end %>
+              <li class="dropdown singleDrop color-4">
                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-home bg-color-1" aria-hidden="true"></i> <span>Home</span>
+                  <i class="fas fa-theater-masks bg-color-4" aria-hidden="true"></i>
+                  <span>適合情境</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-left">
-                  <li class=""><a href="index.html">Kidz School</a></li>
-                  <li class=" active "><a href="index-v2.html">Kidz Store</a></li>
-                  <li class=""><a href="index-v3.html">Kidz Daycare</a></li>
-                  <li><a href="index-v4.html">Kidz Fashion</a></li>
+                  <% Situation.all.order(id: :asc).each do |situation| %>
+                    <li><%= link_to situation.condition, situation_path(situation) %></li>
+                  <% end %>
                 </ul>
               </li>
               <li class="dropdown singleDrop color-3">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-list-ul bg-color-3" aria-hidden="true"></i> <span>pages</span></a>
+                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-child bg-color-3" aria-hidden="true"></i>
+                  <span>適玩年齡</span>
+                </a>
                 <ul class="dropdown-menu dropdown-menu-left">
-                  <li class=" "><a href="about_us.html">About</a></li>
-                  <li class="dropdown dropdown-submenu ">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Team<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li class=" "><a href="teachers.html">Teachers</a></li>
-                      <li class=" "><a href="teachers-details.html">Teacher Details</a></li>
-                    </ul>
-                  </li>
-                  <li class=" "><a href="testimonial.html">Testimonial</a></li>
-                  <li class="dropdown dropdown-submenu
-                     ||
-                     ||
-                     ">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Events <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li class=" "><a href="all-events.html">All Events</a></li>
-                      <li class=""><a href="single-event-left-sidebar.html">Single Event Left Sidebar</a></li>
-                      <li class=""><a href="single-event-right-sidebar.html">Single Event Right Sidebar</a></li>
-                    </ul>
-                  </li>
-                  <li class=""><a href="photo-gallery.html">Photo Gallery</a></li>
-                  <li class=""><a href="pricing-table.html">Pricing Table</a></li>
-                  <li class=""><a href="services.html">Services</a></li>
-                  <li class=""><a href="service-details.html">Services Details</a></li>
-                  <li class=""><a href="search-result.html">Search Results</a></li>
-                  <li class=""><a href="contact-us.html">Contact Us</a></li>
-                  <li class=""><a href="faq.html">FAQ</a></li>
-                  <li class=""><a href="sign-up-or-login.html">Sign Up / Login</a></li>
-                  <li class="" ><a href="404.html">Error 404</a></li>
-                  <li><a href="coming-soon.html">Coming Soon</a></li>
+                  <% Age.all.order(id: :asc).each do |age| %>
+                    <li><%= link_to age.name, age_path(age) %></li>
+                  <% end %>
+                </ul>
+              </li>
+              <li class="dropdown singleDrop color-1">
+                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-crown bg-color-1" aria-hidden="true"></i>
+                  <span>排行榜</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-left">
+                  <li><%= link_to '最新遊戲', latest_games_path %></li>
+                  <li><%= link_to '熱門遊戲', popular_games_path %></li>
+                  <li><%= link_to '遊戲大師' %></li>
                 </ul>
               </li>
               <li class=" dropdown megaDropMenu color-2">
                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true" aria-expanded="false">
-                  <i class="fa fa-file-text-o bg-color-2" aria-hidden="true"></i>
-                  <span>Courses</span>
+                  <i class="fas fa-hashtag bg-color-2" aria-hidden="true"></i>
+                  <span>熱門標簽</span>
                 </a>
                 <ul class="row dropdown-menu">
                   <li class="col-sm-3 col-xs-12">
                     <ul class="list-unstyled">
-                      <li>Courses Grid</li>
-                      <li class=""><a href="course-grid-full.html">Courses Grid Fullwidth</a></li>
-                      <li class=""><a href="course-grid-left-sidebar.html">Courses Grid Left Sidebar</a></li>
-                      <li class=""><a href="course-grid-right-sidebar.html">Courses Grid Right Sidebar</a></li>
+                      <li>感覺統合</li>
                     </ul>
                   </li>
                   <li class="col-sm-3 col-xs-12">
                     <ul class="list-unstyled">
-                      <li>Courses List</li>
-                      <li class=""><a href="course-list-fullwidth.html">Courses List Fullwidth</a></li>
-                      <li class=""><a href="course-list-left-sidebar.html">Courses List left Sidebar</a></li>
-                      <li class=""><a href="course-list-right-sidebar.html">Courses List Right Sidebar</a></li>
+                      <li>育教於樂</li>
                     </ul>
                   </li>
                   <li class="col-sm-3 col-xs-12">
                     <ul class="list-unstyled">
-                      <li>Single Course</li>
-                      <li class=""><a href="course-single.html">Single Course Fullwidth</a></li>
-                      <li class=""><a href="course-single-left-sidebar.html">Single Course left Sidebar</a></li>
-                      <li class=""><a href="course-single-right-sidebar.html">Single Course Right Sidebar</a></li>
+                      <li>親子手作</li>
                     </ul>
                   </li>
                   <li class="col-sm-3 col-xs-12">
                     <ul class="list-unstyled">
-                      <li>Checkout</li>
-                      <li class="" ><a href="checkout-step-1.html">Personal Info</a></li>
-                      <li class="" ><a href="checkout-step-2.html">Payment Info</a></li>
-                      <li class="" ><a href="checkout-step-3.html">Confirmation</a></li>
+                      <li>生活常規</li>
                     </ul>
                   </li>
-                </ul>
-              </li>
-              <li class="dropdown singleDrop color-4">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-pencil-square-o bg-color-4" aria-hidden="true"></i>
-                  <span>Store</span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li class="dropdown dropdown-submenu
-                     ||
-                     ||
-                     ">
-                    <a href="javascript:void(0)" class="dropdown-toggle " data-toggle="dropdown">Products<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li class=""><a href="product.html">Products Fullwidth</a></li>
-                      <li class=""><a href="product-left-sidebar.html">Products Left Sidebar</a></li>
-                      <li class=""><a href="product-right-sidebar.html">Products Right Sidebar</a></li>
-                    </ul>
-                  </li>
-                  <li class=""><a href="single-product.html">Single Product</a></li>
-                  <li class=""><a href="category.html">Product Categories</a></li>
-                  <li class=""><a href="cart-page.html">Cart</a></li>
-                  <li class="dropdown dropdown-submenu">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Checkout<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li class=" "><a href="checkout-step-1.html">Personal Info</a></li>
-                      <li class=" "><a href="checkout-step-2.html">Payment Info</a></li>
-                      <li class=" "><a href="checkout-step-3.html">Confirmation</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li class="dropdown singleDrop color-5 ">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-calendar bg-color-5" aria-hidden="true"></i>
-                  <span>Blog</span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li class="dropdown dropdown-submenu
-                     ||
-                    
-                    
-                  ">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Blog Grid<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li class=""><a href="blog-grid.html">Blog Grid Fullwidth</a></li>
-                      <li class=""><a href="blog-grid-left-sidebar.html">Blog Grid Left Sidebar</a></li>
-                      <li class=""><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown dropdown-submenu
-                     ||
-                     ||
-                     ">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Blog List<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li class="" ><a href="blog-list.html">Blog List Fullwidth</a></li>
-                      <li class=""><a href="blog-list-left-sidebar.html">Blog List Left Sidebar</a></li>
-                      <li class=""><a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown dropdown-submenu
-                     ||
-                     ||
-                     ">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Single Blog<i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li class=""><a href="single-blog.html">Single Blog Fullwidth</a></li>
-                      <li class=""><a href="single-blog-left-sidebar.html">Single Blog Left Sidebar</a></li>
-                      <li class=""><a href="single-blog-right-sidebar.html">Single Blog Right Sidebar</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li class="dropdown singleDrop color-6">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gg bg-color-6" aria-hidden="true"></i> <span>Components</span></a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li class=" "><a href="accordion-toggles.html">Accordions &amp; Toggles</a></li>
-                  <li class=""><a href="tabs-dropdown.html">Tabs &amp; Dropdowns</a></li>
-                  <li class=" "><a href="alert-label-badges.html">Alert-Label-badges</a></li>
-                  <li class=" "><a href="progress-bar.html">Progress Bar</a></li>
-                  <li class=" "><a href="buttons.html">Buttons</a></li>
-                  <li class=" "><a href="forms.html">Forms</a></li>
-                  <li class=" "><a href="list-panel.html">Listgroups Panel</a></li>
-                  <li class=" "><a href="tooltip-pagination.html">Tooltip Pagination</a></li>
-                  <li class=" "><a href="typography.html">Typography</a></li>
-                  <li class=" "><a href="responsive-embed.html">Responsive Embed</a></li>
                 </ul>
               </li>
             </ul>
           </div>
 
-          <div class="cart-dropdown">
-            <a href="#" class="bg-color-6 shop-cart">
-              <i class="fa fa-shopping-basket " aria-hidden="true"></i>
-              <span class="badge bg-color-1">3</span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right">
-              <li><i class="fa fa-shopping-basket " aria-hidden="true"></i>3 items in your cart</li>
-              <li>
-                <a href="single-product.html">
-                  <div class="media">
-                    <div class="media-left">
-                      <img src="/assets/home/cart/cart-img.png" alt="cart-Image">
-                    </div>
-                    <div class="media-body">
-                      <h4>Barbie Racing Car</h4>
-                      <div class="price">
-                        <span class="color-1">$50</span>
-                      </div>
-                      <span class="amount">Qnt: 1</span>
-                    </div>
-                  </div>
-                </a>
-                <span class="cancel"><i class="fa fa-close" aria-hidden="true"></i></span>
-              </li>
-              <li>
-                <a href="single-product.html">
-                  <div class="media">
-                    <div class="media-left">
-                      <img src="/assets/home/cart/cart-img.png" alt="cart-Image">
-                    </div>
-                    <div class="media-body">
-                      <h4>Barbie Racing Car</h4>
-                      <div class="price">
-                        <span class="color-1">$50</span>
-                      </div>
-                      <span class="amount">Qnt: 1</span>
-                    </div>
-                  </div>
-                </a>
-                <span class="cancel"><i class="fa fa-close" aria-hidden="true"></i></span>
-              </li>
-              <li>
-                <a href="single-product.html">
-                  <div class="media">
-                    <div class="media-left">
-                      <img src="/assets/home/cart/cart-img.png" alt="cart-Image">
-                    </div>
-                    <div class="media-body">
-                      <h4>Barbie Racing Car</h4>
-                      <div class="price">
-                        <span class="color-1">$50</span>
-                      </div>
-                      <span class="amount">Qnt: 1</span>
-                    </div>
-                  </div>
-                </a>
-                <span class="cancel"><i class="fa fa-close" aria-hidden="true"></i></span>
-              </li>
-              <li>
-                <span class="cart-total">Subtotal</span>
-                <span class="cart-price">$150</span>
-                <div class="cart-button">
-                  <button type="button" class="btn btn-primary" onclick="location.href='checkout-step-1.html';">Checkout</button>
-                  <button type="button" class="btn btn-primary" onclick="location.href='cart-page.html';">View Cart</button>
-                </div>
-              </li>
-            </ul>
-          </div>
+          
         </div>
       </nav>
     </header>
