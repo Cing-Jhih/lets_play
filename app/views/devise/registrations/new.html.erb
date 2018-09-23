@@ -1,48 +1,47 @@
-<body class="body-wrapper">
-  <section class="mainContent full-width clearfix">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 col-md-offset-4 col-sm-6 col-xs-12">
-          <div class="panel panel-default formPanel">
-            <div class="panel-heading bg-color-1 border-color-1">
-              <h3 class="panel-title">註冊帳號</h3>
-            </div>
-            <div class="panel-body">
-              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                <%= devise_error_messages! %>
-                <div class="form-group formField">
-                  <%= f.email_field :email, autofocus: true, placeholder:"Email", autocomplete: "email", class:"form-control" %>
-                </div>
-                
-                <div class="form-group formField">
-                  <% if @minimum_password_length %>
-                    <%= f.password_field :password, placeholder:"密碼 (最短需#{@minimum_password_length}個字)", autocomplete: "new-password", class:"form-control" %>
-                  <% else %>
-                    <%= f.password_field :password, placeholder:"密碼", autocomplete: "new-password", class:"form-control" %>
-                  <% end %>
-                </div>
+<section class="mainContent full-width clearfix">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 col-sm-6 col-xs-12">
+        <div class="panel panel-default formPanel">
+          <div class="panel-heading bg-color-1 border-color-1">
+            <h3 class="panel-title">註冊帳號</h3>
+          </div>
+          <div class="panel-body">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= devise_error_messages! %>
+              <div class="form-group formField">
+                <%= f.email_field :email, autofocus: true, placeholder:"Email", autocomplete: "email", class:"form-control" %>
+              </div>
+              
+              <div class="form-group formField">
+                <% if @minimum_password_length %>
+                  <%= f.password_field :password, placeholder:"密碼 (最短需#{@minimum_password_length}個字)", autocomplete: "new-password", class:"form-control" %>
+                <% else %>
+                  <%= f.password_field :password, placeholder:"密碼", autocomplete: "new-password", class:"form-control" %>
+                <% end %>
+              </div>
 
-                <div class="form-group formField">
-                  <%= f.password_field :password_confirmation, placeholder:"再次確認密碼", autocomplete: "new-password", class:"form-control" %>
-                </div>
-                
-                <div class="form-group formField">
-                  <%= f.label "孩子的生日:" %><br />
-                  <%= f.date_select :kid_birth, {order: [:year, :month, :day ], prompt: { year: '西元年', month: '月份', day: '日期'  }, start_year: Date.today.year, end_year: Date.today.year - 12, use_two_digit_numbers: true} %>
-                </div>
-                <p class="help-block">填寫孩子的生日，網站可以隨著孩子逐漸長大，推薦適合的遊戲喔！</p>
-                
-                <div class="form-group formField">
-                  <%= f.submit "註冊" ,class:"btn btn-primary btn-block bg-color-3 border-color-3"%>
-                </div>
-              <% end %>
-              <p class="help-block">
-                <%= render "devise/shared/links" %>
-              </p>
-            </div>
+              <div class="form-group formField">
+                <%= f.password_field :password_confirmation, placeholder:"再次確認密碼", autocomplete: "new-password", class:"form-control" %>
+              </div>
+              
+              <div class="form-group formField">
+                <%= f.label "孩子的生日:" %><br />
+                <%= f.date_select :kid_birth, {order: [:year, :month, :day ], prompt: { year: '西元年', month: '月份', day: '日期'  }, start_year: Date.today.year, end_year: Date.today.year - 12, use_two_digit_numbers: true} %>
+              </div>
+              <p class="help-block">填寫孩子的生日，網站可以隨著孩子逐漸長大，推薦適合的遊戲喔！</p>
+              
+              <div class="form-group formField">
+                <%= f.submit "註冊" ,class:"btn btn-primary btn-block bg-color-3 border-color-3"%>
+              </div>
+            <% end %>
+            <p class="help-block">
+              <%= render "devise/shared/links" %>
+            </p>
           </div>
         </div>
       </div>
     </div>
-  </section>
-</body>
+  </div>
+</section>
+
