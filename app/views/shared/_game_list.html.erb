@@ -1,11 +1,62 @@
-<% games.each do |game| %>
-  <%= image_tag game.image, size: "200" %>
-  <p><%= link_to game.title, game_path(game) %></p>
-  <p><%= truncate(game.step, length: 200) %></p>
-  <p>
-    <% game.tags.each do |tag| %>
-      <%= link_to tag.name, "/games/hashtag/#{tag.name}" %>
-    <% end %>
-  </p>
-  <hr>
-<% end %>
+
+<section class="mainContent full-width clearfix">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <% games.each do |game| %>
+          <div class="media courseList couresListPage">
+            <%= link_to game_path(game), class:"media-left border-color-#{game.situation_games.first.situation_id}" do %>
+              <%= image_tag game.image, class:"img-responsive" %>
+              <span class="sticker  bg-color-<%= game.situation_games.first.situation_id %>">
+                <%= game.age_games.first.age.name %>
+              </span>
+            <% end %>
+            <div class="media-body">
+              <h3 class="media-heading"><%= link_to game.title, game_path(game), class:"color-#{ game.situation_games.first.situation_id}"%></h3>
+              <p class="pull-right text-dark">by&nbsp;<%= render partial: "shared/link_user_avatar", locals:{user: game.user} %> </p>
+              <ul class="list-inline">
+                <li>
+                  <i class="fa fa-child" aria-hidden="true"></i>
+                  <% game.age_games.each do |age_game| %>
+                    <%=  age_game.age.name %>
+                  <% end %>
+                </li>
+                <li>
+                  <i class="fa fa-theater-masks" aria-hidden="true"></i>
+                  <% game.situation_games.each do |situation_game| %>
+                    <%= situation_game.situation.condition  %>
+                  <% end %>
+                </li>
+                <li>
+                  <i class="fa fa-kiss-wink-heart" aria-hidden="true"></i>
+                    <%=  game.favorites_count %>
+                </li>
+                <li>
+                  <i class="fa fa-comment" aria-hidden="true"></i>
+                    <%=  game.replies_count %>
+                </li>
+                <li>
+                  <% game.tags.each do |tag| %>
+                  <span class="label label-default"><%= link_to tag.name, "/games/hashtag/#{tag.name}" %></span>
+                <% end %>
+                </li>
+              </ul>  
+              <p>
+                <i class="fa fa-shapes" aria-hidden="true"></i>
+                <strong><%= game.tool %></strong>
+              </p>
+              <p><%= truncate(game.step, length: 300) %></p>
+              <br>
+              <ul class="list-inline btn-yellow btnPart">
+                <li><%= render partial: "shared/favorite", locals:{game: game} %> </li>
+              </ul>
+              <p><%= link_to '>>查看完整遊戲內容', game_path(game), class:"text-link pull-right" %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
+
