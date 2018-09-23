@@ -24,6 +24,7 @@
 //= require jquery.themepunch.tools.min
 //= require jquery.selectbox-0.1.3.min
 //= require isotope.min
+//= require jquery.fancybox.min
 //= require isotope-triger
 //= require SmoothScroll
 //= require velocity.min
