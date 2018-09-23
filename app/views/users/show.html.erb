@@ -12,55 +12,31 @@
           </ul>
           <div class="tab-content">
             <div id="leftHome" class="tab-pane fade in active">
+              <% @favorited_games.each do |game| %>
               <div class="media">
                 <a class="media-left" href="#">
-                  <img class="media-object img-rounded" src="assets/img/home/about-school.png" alt="Image">
+                  <%= image_tag game.image , class:"media-object img-rounded", alt:"Image",style:"padding:10px"%>
                 </a>
                 <div class="media-body">
-                  <h3 class="media-heading">Wellcome to kidz school</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in repre henderit in voluptate.</p>
-                  <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accu santium doloremque laudantium.</p>
-                  <a href="#" class="btn btn-primary">read more</a>
+                  <h3 class="media-heading"><%= game.title %></h3>
+                  <p>發表者：<%= game.user.name %></p>
+                  <p>收藏數：<%= game.favorites.size %></p>
+                  <p>回應數：<%= game.replies.size %></p>
+                  <p>適玩情境：
+                    <% game.situation_games.each do |situation_game| %>
+                      <%= situation_game.situation.condition %>
+                    <% end %>  
+                  </p>
+                  <p>適合年齡：
+                    <% game.age_games.each do |age_game| %>
+                      <%= age_game.age.name %>
+                    <% end %> 
+                  </p>
+                  <p>遊戲道具：<%= game.tool %></p>
+                  <p>遊戲方式：<%= game.step %></p>
+                  <hr>
                 </div>
-              </div>
-            </div>
-            <div id="leftMenu1" class="tab-pane fade">
-              <div class="media">
-                <a class="media-left" href="#">
-                  <img class="media-object img-rounded" src="assets/img/home/about-school.png" alt="Image">
-                </a>
-                <div class="media-body">
-                  <h3 class="media-heading">Wellcome to kidz school</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in repre henderit in voluptate.</p>
-                  <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accu santium doloremque laudantium.</p>
-                  <a href="#" class="btn btn-primary">read more</a>
-                </div>
-              </div>
-            </div>
-            <div id="leftMenu2" class="tab-pane fade">
-              <div class="media">
-                <a class="media-left" href="#">
-                  <img class="media-object img-rounded" src="assets/img/home/about-school.png" alt="Image">
-                </a>
-                <div class="media-body">
-                  <h3 class="media-heading">Wellcome to kidz school</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in repre henderit in voluptate.</p>
-                  <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accu santium doloremque laudantium.</p>
-                  <a href="#" class="btn btn-primary">read more</a>
-                </div>
-              </div>
-            </div>
-            <div id="leftMenu3" class="tab-pane fade">
-              <div class="media">
-                <a class="media-left" href="#">
-                  <img class="media-object img-rounded" src="assets/img/home/about-school.png" alt="Image">
-                </a>
-                <div class="media-body">
-                  <h3 class="media-heading">Wellcome to kidz school</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in repre henderit in voluptate.</p>
-                  <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accu santium doloremque laudantium.</p>
-                  <a href="#" class="btn btn-primary">read more</a>
-                </div>
+                <% end %> 
               </div>
             </div>
           </div>
@@ -69,34 +45,3 @@
     </div>
   </div>
 </section>
-
-<p>收藏(<%= @user.favorites_count %>)</p>
-<p><%= link_to "發表", games_user_path %>(<%= @user.games_count %>)</p>
-<p><%= link_to "回應", replies_user_path %>(<%= @user.replies_count %>)</p>
-<hr>
-
-
-<div>
-  <p>收藏的遊戲清單</p>
-  <% @favorited_games.each do |game| %>
-    <p>標題:<%= game.title %></p>
-    <p>發表者：<%= game.user.name %></p>
-    <p>收藏數：<%= game.favorites.size %></p>
-    <p>回應數：<%= game.replies.size %></p>
-    <p>遊戲圖片:<%= image_tag game.image %></p>
-    <p>適玩情境：
-      <% game.situation_games.each do |situation_game| %>
-        <%= situation_game.situation.condition %>
-      <% end %>  
-    </p>
-    <p>適合年齡：
-      <% game.age_games.each do |age_game| %>
-        <%= age_game.age.name %>
-      <% end %> 
-    </p>
-    <p>遊戲道具：<%= game.tool %></p>
-    <p>遊戲方式：<%= game.step %></p>
-    <hr>
-  <% end %>
-</div>
-
