@@ -1,49 +1,229 @@
-<h1>Index</h1>
-<%# set the anchor css 90px heigher than target(the anchor links the target on the top of the page, ignore padding-top setting  %>
-<div id="random">
-<%# select age and situation, rand a game  %>
-  <p>
-    <%= form_tag '/games/random', method: :get do %>
-      <%= collection_select(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}) %>
-      <%= collection_select(:situation_game, :situation_id, Situation.all, :id, :condition, {prompt:true}) %>
-      <%= submit_tag "Random" %>
-    <% end %>
-  </p>
-</div>  
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+ <!-- ====================================
+    ——— BANNER TWO
+    ===================================== -->
+    <section class="bannercontainer bannercontainerV2">
+      <div class="fullscreenbanner-container">
+        <div class="fullscreenbanner">
+          <ul>
+            <li data-transition="fade" data-slotamount="5" data-masterspeed="700"  data-title="Random a Game">
+              <div class="slider-caption container">
 
-<div id="index">
-  <%#search bar %>
-  <%= render partial: "shared/search_bar"%>
-  <br>
-  <%= link_to "發表遊戲", new_game_path, class: "btn btn-primary" %>
-  <br>
-  <%# latest game %>
-  <h1>Latest Games</h1>
-  <% @latest_games.each do |game| %>
-    <%= image_tag game.image, size: "200" %>
-    <p><%= link_to game.title, game_path(game) %></p>
-    <p><%= truncate(game.step, length: 200) %></p>
-    <p>
-      <% game.tags.each do |tag| %>
-        <%= link_to tag.name, "/games/hashtag/#{tag.name}" %>
-      <% end %>
-    </p>
-  <% end %>
+                <!-- LAYER NR. 1 -->
+                <div class="tp-caption rs-caption-1 sft text-center"
+                  data-hoffset="0"
+                  data-x="center"
+                  data-y="130"
+                  data-speed="1200"
+                  data-start="1600"
+                  data-easing="Back.easeInOut"
+                  data-endspeed="300"
+                  style="z-index: 5; color: #666666;">
+                  天天陪孩子<span>一起玩</span>
+                </div>
+                <!-- LAYER NR. 2 -->
+                <div class="tp-caption rs-caption-2 sft text-center"
+                  data-hoffset="0"
+                  data-x="center"
+                  data-y="245"
+                  data-speed="1800"
+                  data-start="2000"
+                  data-easing="Back.easeInOut"
+                  data-endspeed="300"
+                  data-endeasing="Power1.easeIn"
+                  data-captionhidden="off"
+                  style="z-index: 5;color: #666666;">
+                  <%# select age and situation, rand a game  %>
+                    <%= form_tag '/games/random', method: :get do %>
+                      <%= collection_select(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}, {:class => 'roundOne border-color-2'}) %>
+                      <%= collection_select(:situation_game, :situation_id, Situation.all, :id, :condition, {prompt:true}, {:class => 'dropGeneral roundOne border-color-2'}) %>
+                      <%= submit_tag "推薦遊戲", class:'btn btn-success' %>
+                    <% end %>
+                  請用下拉選單設定遊戲條件,或按麥克風啟動語音簡易推薦
+                </div>
 
-  <%# popular game %>
-  <h1>Popular Games</h1>
-  <% @popular_games.each do |game| %>
-    <%= image_tag game.image, size: "200" %>
-    <p><%= link_to game.title, game_path(game) %></p>
-    <p><%= truncate(game.step, length: 200) %></p>
-  <% end %>
+                <!-- LAYER NR. 3 -->
+                <div class="tp-caption rs-caption-3 sft text-center"
+                  data-hoffset="0"
+                  data-x="center"
+                  data-y="350"
+                  data-speed="2000"
+                  data-start="3000"
+                  data-easing="Power4.easeOut"
+                  data-endspeed="300"
+                  data-endeasing="Power1.easeIn"
+                  data-captionhidden="off"
+                  style="z-index: 5;">
+                  <button type="button" class="btn btn-xl btn-primary btn-pill"><i class="fas fa-microphone fa-2x"></i></button>
+                </div>
 
-  <%# game situations %>
-  <h1>遊戲分類</h1>
-  <ul>
-    <% @situations.each do |situation| %>
-      <li><%= link_to situation.condition, situation_path(situation) %></li>
-    <% end %>
-  </ul>
-</div>
+                <!-- LAYER NR. 4 -->
+                <div class="tp-caption tp-resizeme sfl stl"
+                  data-x="left"
+                  data-hoffset="-70"
+                  data-y="100"
+                  data-speed="500"
+                  data-easing="Power1.easeIn"
+                  data-endeasing="Power1.easeInOut"
+                  data-endspeed="200"
+                  style="z-index: 2;">
+                  <img src="/assets/home/sliderv4/caption-img5.png" alt="caption" width="580" height="491">
+                </div>
+
+                <!-- LAYER NR. 5 -->
+                <div class="tp-caption tp-resizeme sfr str"
+                  data-x="right"
+                  data-hoffset="100"
+                  data-y="100"
+                  data-speed="500"
+                  data-easing="Power1.easeIn"
+                  data-endeasing="Power1.easeInOut"
+                  data-endspeed="300"
+                  style="z-index: 2;">
+                  <img src="/assets/home/sliderv4/caption-img4.png" alt="caption" width="567" height="564">
+                </div>
+
+                <!-- LAYER NR. 6 -->
+                <div class="tp-caption tp-resizeme start"
+                  data-x="170"
+                  data-y="34"
+                  data-speed="3000"
+                  data-easing="Elastic.easeInOut"
+                  data-endspeed="300"
+                  style="z-index: 1;">
+                  <img src="/assets/home/sliderv4/caption8.png" alt="caption" width="71" height="82">
+                </div>
+
+                <!-- LAYER NR. 7 -->
+                <div class="tp-caption tp-resizeme sfl stl"
+                  data-x="left"
+                  data-hoffset="-90"
+                  data-y="100"
+                  data-speed="3000"
+                  data-easing="Elastic.easeInOut"
+                  data-endspeed="300"
+                  style="z-index: 1;">
+                  <img src="/assets/home/sliderv4/caption6.png" alt="caption" width="51" height="59">
+                </div>
+
+                <!-- LAYER NR. 8 -->
+                <div class="tp-caption tp-resizeme sfr str"
+                  data-x="right"
+                  data-hoffset="-270"
+                  data-y="34"
+                  data-speed="3000"
+                  data-easing="Elastic.easeInOut"
+                  data-endspeed="300"
+                  style="z-index: 1;">
+                  <img src="/assets/home/sliderv4/caption13.png" alt="caption" width="65" height="65">
+                </div>
+
+                <!-- LAYER NR. 9 -->
+                <div class="tp-caption tp-resizeme sfr str"
+                  data-x="right"
+                  data-hoffset="-70"
+                  data-y="100"
+                  data-speed="3000"
+                  data-easing="Elastic.easeInOut"
+                  data-endspeed="300"
+                  style="z-index: 1;">
+                  <img src="/assets/home/sliderv4/caption10.png" alt="caption" width="73" height="56">
+                </div>
+
+                <!-- LAYER NR. 10 -->
+                <div class="tp-caption tp-resizeme start"
+                  data-x="center"
+                  data-hoffset="-180"
+                  data-y="center"
+                  data-voffset="50"
+                  data-speed="3000"
+                  data-easing="Elastic.easeInOut"
+                  data-endspeed="300"
+                  style="z-index: 1;">
+                  <img src="/assets/home/sliderv4/caption9.png" alt="caption" width="77" height="50">
+                </div>
+
+                <!-- LAYER NR. 11 -->
+                <div class="tp-caption tp-resizeme start"
+                  data-x="center"
+                  data-y="center"
+                  data-voffset="100"
+                  data-speed="3000"
+                  data-easing="Elastic.easeInOut"
+                  data-endspeed="300"
+                  style="z-index: 1;">
+                  <img src="/assets/home/sliderv4/caption12.png" alt="caption" width="66" height="55">
+                </div>
+
+                <!-- LAYER NR. 12 -->
+                <div class="tp-caption tp-resizeme sfb stb"
+                  data-x="center"
+                  data-hoffset="180"
+                  data-y="center"
+                  data-voffset="50"
+                  data-speed="3000"
+                  data-easing="Elastic.easeInOut"
+                  data-endspeed="300"
+                  style="z-index: 1;">
+                  <img src="/assets/home/sliderv4/caption11.png" alt="caption" width="61" height="67">
+                </div>
+
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+ 	<!-- ====================================
+    ——— index game show
+    ===================================== -->
+    <section class="mainContent full-width clearfix coursesSection">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="sectionTitle text-center ">
+              <h2 class="wow fadeInUp">
+                <span class="shape shape-left bg-color-4"></span>
+                <span>熱門遊戲</span>
+                <span class="shape shape-right bg-color-4"></span>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <% @popular_games.each do |game| %>
+            <%= render partial: "shared/game_thumbnail", locals:{game: game}  %>
+          <% end %>      
+        </div>
+      </div>
+      <div class="btnArea wow fadeInUp">
+        <%= link_to '更多熱門遊戲', popular_games_path, class:"btn btn-primary" %>
+      </div>
+    </section>   
+
+    <section class="mainContent full-width clearfix coursesSection">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="sectionTitle text-center ">
+              <h2 class="wow fadeInUp">
+                <span class="shape shape-left bg-color-4"></span>
+                <span>最新遊戲</span>
+                <span class="shape shape-right bg-color-4"></span>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <% @latest_games.each do |game| %>
+            <%= render partial: "shared/game_thumbnail", locals:{game: game}  %>
+          <% end %>      
+        </div>
+      </div>
+      <div class="btnArea wow fadeInUp">
+        <%= link_to '更多新進遊戲', latest_games_path, class:"btn btn-primary" %>
+      </div>
+    </section>   
