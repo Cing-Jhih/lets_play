@@ -1,4 +1,93 @@
+<% content_for :page_js do %>
+  <script>
+  function toggleStopReading() {
+    window.speechSynthesis.cancel();
+  }
+
+  var speech = <%= @speech %>;
+  console.log(speech);
+
+  if (speech == 1) {
+    var title = '<%= @game.title %> 玩這個還是要換一個';
+    var msg1 = new SpeechSynthesisUtterance(title, ["zh-TW", 1, 1.5, 0.7]);
+    window.speechSynthesis.speak(msg1);
+    setTimeout(function() {
+      function speechRecognition() {
+        if (!("webkitSpeechRecognition" in window)) {
+          alert("本瀏覽器不支援語音辨識，請更換瀏覽器！(Chrome 25 版以上才支援語音辨識)");
+        } else {
+          window._recognition = new webkitSpeechRecognition();
+          window._recognition.continuous = true;
+          window._recognition.interimResults = true;
+          window._recognition.lang = "cmn-Hant-TW";
+
+          window._recognition.onstart = function() {
+            window._recognition.status = true;
+            console.log("Start recognize...");
+          };
+
+          window._recognition.onend = function() {
+            console.log("Stop recognize");
+            if (window._recognition.status) {
+              window._recognition.start();
+            }
+          };
+
+          window._recognition.onresult = function(event, result) {
+            result = {};
+            result.resultLength = event.results.length - 1;
+            result.resultTranscript = event.results[result.resultLength][0].transcript;
+            if (event.results[result.resultLength].isFinal === false) {
+              console.log(result.resultTranscript);
+              if (result.resultTranscript.indexOf('換' || '不要') !== -1) {
+                history.go(0);
+              }
+              if (result.resultTranscript.indexOf('玩') !== -1) {
+                window._recognition.status = false;
+                window._recognition.stop();
+                var step = '遊戲方式 <%= @game.step %> ';
+                var msg2 = new SpeechSynthesisUtterance(step, ["zh-TW", 1, 1.5, 0.7]);
+                window.speechSynthesis.speak(msg2);
+
+              }
+
+            } else if (event.results[result.resultLength].isFinal === true) {
+              console.log("final");
+            }
+          };
+          window._recognition.start();
+        }
+      }
+      speechRecognition();
+    }, 1000 * 6);
+  }
+  </script>
+  <% end %>
+
+<section>
+  <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="sectionTitle text-center ">
+              <h2 class="wow fadeInUp">
+                <span class="shape shape-left bg-color-4"></span>
+                  <button class="btn btn-danger btn-xl btn-pill" id="stop" onclick="toggleStopReading();" alt="停止朗讀">
+                    <i class="fas fa-power-off fa-2x"></i>
+                  </button>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href= #{url} >
+                    <button class="btn btn-success btn-xl btn-pill" alt="停止朗讀">
+                      <i class="fas fa-redo fa-2x"></i>
+                    </button>
+                  </a>
+                <span class="shape shape-right bg-color-4"></span>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+
+
 <%= render partial: "shared/game", locals:{game: @game}  %>
-<hr>
-<a href= #{url} >Random Again</a>
-<%# can't reload with existing params  %>
+
