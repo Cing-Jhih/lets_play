@@ -1,35 +1,54 @@
 <%= render partial: "shared/user_info", locals:{user:@user}  %>
 
-<p><%= link_to "收藏", user_path %>(<%= @user.favorites_count %>)</p>
-<p><%= link_to "發表", games_user_path %>(<%= @user.games_count %>)</p>
-<p>回應(<%= @user.replies_count %>)</p>
-<hr>
-
-<div>
-  <p>回應的遊戲清單</p>
-  <% @replied_games.each do |game| %>
-    <% if current_user %>
-      <% if @user.email == current_user.email %>
-        <%= link_to "看回應", game_path(game) %>
-      <% end %>
-    <% end %>
-    <p>標題:<%= game.title %></p>
-    <p>發表者：<%= game.user.name %></p>
-    <p>收藏數：<%= game.favorites.size %></p>
-    <p>回應數：<%= game.replies.size %></p>
-    <p>遊戲圖片:<%= image_tag game.image %></p>
-    <p>適玩情境：
-      <% game.situation_games.each do |situation_game| %>
-        <%= situation_game.situation.condition %>
-      <% end %>
-    </p>
-    <p>適合年齡：
-      <% game.age_games.each do |age_game| %>
-        <%= age_game.age.name %>
-      <% end %>
-    </p>
-    <p>遊戲道具：<%= game.tool %></p>
-    <p>遊戲方式：<%= game.step %></p>
-    <hr>
-  <% end %>
-</div>
+<section class="whiteSection full-width clearfix p-t-n">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="tabCommon">
+          <ul class="nav nav-tabs">
+            <li><%= link_to "收藏(#{@user.favorites_count})", user_path %></li>
+            <li><%= link_to "發表(#{@user.games_count})", games_user_path %></li>
+            <li class="active"><%= link_to "回應(#{@user.replies_count})", replies_user_path %></li>
+          </ul>
+          <div>
+          </div>
+          <div class="tab-content">
+            <div id="leftHome" class="tab-pane fade in active">
+              <% @replied_games.each do |game| %>
+              <div class="media">
+                <a class="media-left" href="#">
+                  <%= image_tag game.image , class:"media-object img-rounded", alt:"Image",style:"padding:10px"%>
+                </a>
+                <div class="media-body">
+                  <h3 class="media-heading"><%= game.title %></h3>
+                  <p>發表者：<%= game.user.name %></p>
+                  <p>收藏數：<%= game.favorites.size %></p>
+                  <p>回應數：<%= game.replies.size %></p>
+                  <p>適玩情境：
+                    <% game.situation_games.each do |situation_game| %>
+                      <%= situation_game.situation.condition %>
+                    <% end %>  
+                  </p>
+                  <p>適合年齡：
+                    <% game.age_games.each do |age_game| %>
+                      <%= age_game.age.name %>
+                    <% end %> 
+                  </p>
+                  <p>遊戲道具：<%= game.tool %></p>
+                  <p>遊戲方式：<%= game.step %></p>
+                  <% if current_user %>
+                    <% if @user.email == current_user.email %>
+                      <%= link_to "看回應", game_path(game), class:"btn btn-warning btn-pill" %>
+                    <% end %>
+                  <% end %>
+                  <hr>
+                </div>
+                <% end %> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
