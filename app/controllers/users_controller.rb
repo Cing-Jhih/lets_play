@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :games, :replies]
 
+  def index
+    @users = User.all
+  end
+
   def show
     @favorited_games = @user.favorited_games.order(created_at: :desc)
     if session[:fb_first_login]
