@@ -32,7 +32,13 @@
                   data-endeasing="Power1.easeIn"
                   data-captionhidden="off"
                   style="z-index: 5;color: #666666;">
-                  Kidz Template has all the features need to run an ecommerce website.
+                  <%# select age and situation, rand a game  %>
+                    <%= form_tag '/games/random', method: :get do %>
+                      <%= collection_select(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}, {:class => 'roundOne border-color-2'}) %>
+                      <%= collection_select(:situation_game, :situation_id, Situation.all, :id, :condition, {prompt:true}, {:class => 'dropGeneral roundOne border-color-2'}) %>
+                      <%= submit_tag "推薦遊戲", class:'btn btn-success' %>
+                    <% end %>
+                  請用下拉選單設定遊戲條件,或按麥克風啟動語音簡易推薦
                 </div>
 
                 <!-- LAYER NR. 3 -->
@@ -47,7 +53,7 @@
                   data-endeasing="Power1.easeIn"
                   data-captionhidden="off"
                   style="z-index: 5;">
-                  <a target="_blank" href="https://goo.gl/98HEu6" class="btn btn-primary">Buy Kidz</a>
+                  <button type="button" class="btn btn-xl btn-primary btn-pill"><i class="fas fa-microphone fa-2x"></i></button>
                 </div>
 
                 <!-- LAYER NR. 4 -->
