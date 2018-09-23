@@ -4,8 +4,8 @@ before_action :validates_search_key, only: [:search]
 before_action :authenticate_user!, only: [:new]
 
   def index
-    @latest_games = Game.all.order(created_at: :desc)
-    @popular_games = Game.all.order(favorites_count: :desc).limit(10)
+    @latest_games = Game.all.order(created_at: :desc).limit(4)
+    @popular_games = Game.all.order(favorites_count: :desc).limit(4)
     @situations = Situation.all
   end
 
