@@ -1,0 +1,5 @@
+<% if @game.is_favorited?(current_user) %>
+  <%= link_to 'Unfavorite', unfavorite_game_path(@game), method: :post %>
+<% else %>
+  <%= link_to 'Favorite', favorite_game_path(@game), method: :post %>
+<% end %>
