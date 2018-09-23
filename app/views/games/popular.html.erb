@@ -1,5 +1,10 @@
-<h1>Popular Game List</h1>
-
+<section class="pageTitleSection">
+  <div class="container">
+    <div class="pageTitleInfo">
+      <h2>熱門遊戲</h2>
+    </div>
+  </div>
+</section>
 <%= render partial: "shared/game_list", locals:{games:@games}  %>
 
 <%= link_to 'Back', :back %>

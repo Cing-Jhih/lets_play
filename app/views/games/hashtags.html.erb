@@ -1,4 +1,11 @@
-<h1>Hashtag: <%= @tag.name %> Game List</h1>
+<section class="pageTitleSection">
+  <div class="container">
+    <div class="pageTitleInfo">
+      <h2>含有標簽 <%= @tag.name %>的遊戲</h2>
+    </div>
+  </div>
+</section>
+
 
 <%= render partial: "shared/game_list", locals:{games:@games}  %>
 
