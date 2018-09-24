@@ -1,3 +1,176 @@
+ <% content_for :page_js do %>
+  <script>
+  function toggleSpeech() {
+    var msg = new SpeechSynthesisUtterance('請說 我們來玩 啟動語音推薦', ["zh-TW", 1, 1, 0.7]);
+    window.speechSynthesis.speak(msg);
+    setTimeout(function() {
+      function speechRecognition2() {
+        if (!("webkitSpeechRecognition" in window)) {
+          alert("本瀏覽器不支援語音辨識，請更換瀏覽器！(Chrome 25 版以上才支援語音辨識)");
+        } else {
+          window._recognition = new webkitSpeechRecognition();
+          window._recognition.continuous = true;
+          window._recognition.interimResults = true;
+          window._recognition.lang = "cmn-Hant-TW";
+
+          window._recognition.onstart = function() {
+            window._recognition.status = true;
+            console.log("Start recognize...");
+          };
+
+          window._recognition.onend = function() {
+            console.log("Stop recognize");
+            if (window._recognition.status) {
+              window._recognition.start();
+            }
+          };
+
+          window._recognition.onresult = function(event, result) {
+            result = {};
+            result.resultLength = event.results.length - 1;
+            result.resultTranscript = event.results[result.resultLength][0].transcript;
+            if (event.results[result.resultLength].isFinal === false) {
+              console.log(result.resultTranscript);
+              if (result.resultTranscript.indexOf("我們來玩") !== -1) {
+                var age = new SpeechSynthesisUtterance('好的寶貝請問你幾歲', ["zh-TW", 1, 1, 0.7]);
+                window.speechSynthesis.speak(age);
+
+                function speechRecognition() {
+                  if (!("webkitSpeechRecognition" in window)) {
+                    alert("本瀏覽器不支援語音辨識，請更換瀏覽器！(Chrome 25 版以上才支援語音辨識)");
+                  } else {
+                    window._recognition = new webkitSpeechRecognition();
+                    window._recognition.continuous = true;
+                    window._recognition.interimResults = true;
+                    window._recognition.lang = "cmn-Hant-TW";
+
+                    window._recognition.onstart = function() {
+                      window._recognition.status = true;
+                      console.log("Start recognize...");
+                    };
+
+                    window._recognition.onend = function() {
+                      console.log("Stop recognize");
+                      if (window._recognition.status) {
+                        window._recognition.start();
+                      }
+                    };
+
+                    window._recognition.onresult = function(event, result) {
+                      result = {};
+                      result.resultLength = event.results.length - 1;
+                      result.resultTranscript = event.results[result.resultLength][0].transcript;
+                      if (event.results[result.resultLength].isFinal === false) {
+                        console.log(result.resultTranscript);
+                        if (result.resultTranscript.indexOf("兩歲") !== -1) {
+                          window._recognition.status = false;
+                          window._recognition.stop();
+                          var year2 = new SpeechSynthesisUtterance('那要不要玩', ["zh-TW", 1, 1, 0.7]);
+                          window.speechSynthesis.speak(year2);
+                          console.log(event.results[result.resultLength]);
+                          window.location.href = "https://rand-by-speech.herokuapp.com/games/random?utf8=%E2%9C%93&age_game%5Bage_id%5D=3&situation_game%5Bsituation_id%5D=&speech%5D=1&commit=Random";
+                        }
+                        if (result.resultTranscript.indexOf("3歲") !== -1) {
+                          window._recognition.status = false;
+                          window._recognition.stop();
+                          var year3 = new SpeechSynthesisUtterance('那要不要玩', ["zh-TW", 1, 1, 0.7]);
+                          window.speechSynthesis.speak(year3);
+                          console.log(event.results[result.resultLength]);
+                          window.location.href = "https://rand-by-speech.herokuapp.com/games/random?utf8=%E2%9C%93&age_game%5Bage_id%5D=4&situation_game%5Bsituation_id%5D=&speech%5D=1&commit=Random";
+                        }
+                        if (result.resultTranscript.indexOf("4歲") !== -1) {
+                          window._recognition.status = false;
+                          window._recognition.stop();
+                          var year4 = new SpeechSynthesisUtterance('那要不要玩', ["zh-TW", 1, 1, 0.7]);
+                          window.speechSynthesis.speak(year4);
+                          console.log(event.results[result.resultLength]);
+                          window.location.href = "https://rand-by-speech.herokuapp.com/games/random?utf8=%E2%9C%93&age_game%5Bage_id%5D=5&situation_game%5Bsituation_id%5D=&speech%5D=1&commit=Random";
+                        }
+                        if (result.resultTranscript.indexOf("5歲") !== -1) {
+                          window._recognition.status = false;
+                          window._recognition.stop();
+                          var year5 = new SpeechSynthesisUtterance('那要不要玩', ["zh-TW", 1, 1, 0.7]);
+                          window.speechSynthesis.speak(year5);
+                          console.log(event.results[result.resultLength]);
+                          window.location.href = "https://rand-by-speech.herokuapp.com/games/random?utf8=%E2%9C%93&age_game%5Bage_id%5D=6&situation_game%5Bsituation_id%5D=&speech%5D=1&commit=Random";
+                        }
+                        if (result.resultTranscript.indexOf("6歲") !== -1) {
+                          window._recognition.status = false;
+                          window._recognition.stop();
+                          var year6 = new SpeechSynthesisUtterance('那要不要玩', ["zh-TW", 1, 1, 0.7]);
+                          window.speechSynthesis.speak(year6);
+                          console.log(event.results[result.resultLength]);
+                          window.location.href = "https://rand-by-speech.herokuapp.com/games/random?utf8=%E2%9C%93&age_game%5Bage_id%5D=7&situation_game%5Bsituation_id%5D=&speech%5D=1&commit=Random";
+                        }
+                        if (result.resultTranscript.indexOf("7歲") !== -1) {
+                          window._recognition.status = false;
+                          window._recognition.stop();
+                          var year7 = new SpeechSynthesisUtterance('那要不要玩', ["zh-TW", 1, 1, 0.7]);
+                          window.speechSynthesis.speak(year7);
+                          console.log(event.results[result.resultLength]);
+                          window.location.href = "https://rand-by-speech.herokuapp.com/games/random?utf8=%E2%9C%93&age_game%5Bage_id%5D=8&situation_game%5Bsituation_id%5D=&speech%5D=1&commit=Random";
+                        }
+                        if (result.resultTranscript.indexOf("8歲") !== -1) {
+                          window._recognition.status = false;
+                          window._recognition.stop();
+                          var year8 = new SpeechSynthesisUtterance('那要不要玩', ["zh-TW", 1, 1, 0.7]);
+                          window.speechSynthesis.speak(year8);
+                          console.log(event.results[result.resultLength]);
+                          window.location.href = "https://rand-by-speech.herokuapp.com/games/random?utf8=%E2%9C%93&age_game%5Bage_id%5D=9&situation_game%5Bsituation_id%5D=&speech%5D=1&commit=Random";
+                        }
+                        if (result.resultTranscript.indexOf("9歲" || "九歲") !== -1) {
+                          window._recognition.status = false;
+                          window._recognition.stop();
+                          var year9 = new SpeechSynthesisUtterance('那要不要玩', ["zh-TW", 1, 1, 0.7]);
+                          window.speechSynthesis.speak(year9);
+                          console.log(event.results[result.resultLength]);
+                          window.location.href = "https://rand-by-speech.herokuapp.com/games/random?utf8=%E2%9C%93&age_game%5Bage_id%5D=10&situation_game%5Bsituation_id%5D=&speech%5D=1&commit=Random";
+                        }
+                        if (result.resultTranscript.indexOf("10歲") !== -1) {
+                          window._recognition.status = false;
+                          window._recognition.stop();
+                          var year10 = new SpeechSynthesisUtterance('那要不要玩', ["zh-TW", 1, 1, 0.7]);
+                          window.speechSynthesis.speak(year10);
+                          console.log(event.results[result.resultLength]);
+                          window.location.href = "https://rand-by-speech.herokuapp.com/games/random?utf8=%E2%9C%93&age_game%5Bage_id%5D=11&situation_game%5Bsituation_id%5D=&speech%5D=1&commit=Random";
+                        }
+                        if (result.resultTranscript.indexOf("11歲") !== -1) {
+                          window._recognition.status = false;
+                          window._recognition.stop();
+                          var year11 = new SpeechSynthesisUtterance('那要不要玩', ["zh-TW", 1, 1, 0.7]);
+                          window.speechSynthesis.speak(year11);
+                          console.log(event.results[result.resultLength]);
+                          window.location.href = "https://rand-by-speech.herokuapp.com/games/random?utf8=%E2%9C%93&age_game%5Bage_id%5D=12&situation_game%5Bsituation_id%5D=&speech%5D=1&commit=Random";
+                        }
+                        if (result.resultTranscript.indexOf("12歲") !== -1) {
+                          window._recognition.status = false;
+                          window._recognition.stop();
+                          var year12 = new SpeechSynthesisUtterance('那要不要玩', ["zh-TW", 1, 1, 0.7]);
+                          window.speechSynthesis.speak(year12);
+                          console.log(event.results[result.resultLength]);
+                        }
+                      } else if (event.results[result.resultLength].isFinal === true) {
+                        console.log("final");
+                      }
+                    };
+                    window._recognition.start();
+                  }
+                }
+                speechRecognition();
+                console.log(event.results[result.resultLength]);
+              }
+            } else if (event.results[result.resultLength].isFinal === true) {
+              console.log("final");
+            }
+          };
+          window._recognition.start();
+        }
+      }
+      speechRecognition2();
+    }, 1000 * 4);
+  }
+  </script>
+  <% end %>
  <!-- ====================================
     ——— BANNER TWO
     ===================================== -->
@@ -53,7 +226,7 @@
                   data-endeasing="Power1.easeIn"
                   data-captionhidden="off"
                   style="z-index: 5;">
-                  <button type="button" class="btn btn-xl btn-primary btn-pill"><i class="fas fa-microphone fa-2x"></i></button>
+                  <button type="button" class="btn btn-xl btn-primary btn-pill" id="speech" onclick="toggleSpeech();"><i class="fas fa-microphone fa-2x"></i></button>
                 </div>
 
                 <!-- LAYER NR. 4 -->

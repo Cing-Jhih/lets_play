@@ -6,11 +6,6 @@ before_action :authenticate_user!, only: [:new]
   def index
     @latest_games = Game.all.order(created_at: :desc).limit(4)
     @popular_games = Game.all.order(favorites_count: :desc).limit(4)
-    @situations = Situation.all
-  end
-
-  def home
-    @home = []
   end
 
   def search
@@ -42,6 +37,7 @@ before_action :authenticate_user!, only: [:new]
   end
 
   def random
+    @speech = params[:speech] if params[:speech].present?
     @reply = Reply.new
     age_game_ids = [] # 存放所有符合選定年齡的game.id
     AgeGame.where(age_id: params[:age_game][:age_id]).find_each do |age_game|
@@ -71,7 +67,7 @@ before_action :authenticate_user!, only: [:new]
       redirect_to root_path
     end
 
-    url = '/games/random?utf8=%E2%9C%93&age_game%5Bage_id%5D=#{{params[:age_game][:age_id]}}&situation_game%5Bsituation_id%5D=#{params[:situation_game][:situation_id]}&commit=Random'
+    url = '/games/random?utf8=%E2%9C%93&age_game%5Bage_id%5D=#{{params[:age_game][:age_id]}}&situation_game%5Bsituation_id%5D=#{params[:situation_game][:situation_id]}&speech%5D=#{@speech}&commit=Random'
   end
 
   def new
