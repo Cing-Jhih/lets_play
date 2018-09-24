@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
-  resources :users, only: [:show, :edit, :update] do
+
+  resources :users, only: [:index, :show, :edit, :update] do
     member do
       get :games
       get :replies
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       get :popular
       get :latest
     end
-  
+
     # 收藏 / 取消收藏
     member do
       post :favorite
@@ -36,6 +36,8 @@ Rails.application.routes.draw do
 
   resources :ages, only: :show
 
+  resources :followships, only: [:create, :destroy]
+
   root "games#index"
   get '/games/hashtag/:name', to:'games#hashtags'
 
@@ -46,5 +48,5 @@ Rails.application.routes.draw do
     resources :ages, only: [:index, :edit, :update, :destroy]
     root "games#index"
   end
-  
+
 end

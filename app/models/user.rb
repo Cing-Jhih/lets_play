@@ -12,6 +12,10 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :replied_games, through: :replies, source: :game
   has_many :favorited_games, through: :favorites, source: :game
+  has_many :followships, dependent: :destroy
+  has_many :followings, through: :followships
+  has_many :inverse_followships, class_name: "Followship", foreign_key: "following_id"
+  has_many :followers, through: :inverse_followships, source: :user
 
   def self.from_omniauth(auth)
     # Case 1: Find existing user by facebook uid
@@ -50,6 +54,10 @@ class User < ApplicationRecord
       now = Time.now.utc.to_date
       now.year - self.kid_birth.year - ((now.month > self.kid_birth.month || (now.month == self.kid_birth.month && now.day >= self.kid_birth.day)) ? 0 : 1)
     end
+  end
+
+  def following?(user)
+    self.followings.include?(user)
   end
 
 end
