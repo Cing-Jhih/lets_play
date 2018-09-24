@@ -1,0 +1,31 @@
+<div class="col-md-3 col-sm-6 col-xs-12 block">
+  <div class="thumbnail thumbnailContent">
+    <%= link_to game_path(game) do %>
+      <%= image_tag game.image, class:"img-responsive" %>
+      <div class="sticker bg-color-<%= game.situation_games.first.situation_id %>">
+        <%= game.age_games.first.age.name  %>
+      </div>
+      <div class="caption border-color-<%= game.situation_games.first.situation_id %>">
+        <h3 class="color-<%= game.situation_games.first.situation_id %>"><%= game.title %></h3>
+        <ul class="list-unstyled">
+          <li>
+            <i class="fa fa-child" aria-hidden="true"></i>
+            <% game.age_games.each do |age_game| %>
+              <%=  age_game.age.name %>
+            <% end %>
+          </li>
+          <li>
+            <i class="fa fa-theater-masks" aria-hidden="true"></i>
+            <% game.situation_games.each do |situation_game| %>
+              <%= situation_game.situation.condition  %>
+            <% end %>
+          </li>
+        </ul>
+      <p><%= truncate(game.step, length: 80) %></p> 
+        <% game.tags.each do |tag| %>
+          <span class="label label-default"><%=  tag.name %></span>
+        <% end %> 
+      </div>
+    <% end %>
+  </div>
+</div>
