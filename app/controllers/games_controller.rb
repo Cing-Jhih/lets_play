@@ -45,7 +45,7 @@ before_action :authenticate_user!, only: [:new, :favorite]
     end
 
     situation_game_ids = [] # 存放所有符合選定情境的game.id
-    SituationGame.where("situation_id = ?", params[:situation_game][:situation_id]).find_each do |situation_game|
+    SituationGame.where(situation_id: params[:situation_game][:situation_id]).find_each do |situation_game|
       situation_game_ids << situation_game.game_id
     end
 
@@ -67,7 +67,7 @@ before_action :authenticate_user!, only: [:new, :favorite]
       redirect_to root_path
     end
 
-    url = '/games/random?utf8=%E2%9C%93&age_game%5Bage_id%5D=#{{params[:age_game][:age_id]}}&situation_game%5Bsituation_id%5D=#{params[:situation_game][:situation_id]}&speech%5D=#{@speech}&commit=Random'
+    url = '/games/random??utf8=✓&age_game%5Bage_id%5D=#{params[:age_game][:age_id]}&situation_game%5Bsituation_id%5D=#{params[:situation_game][:situation_id]}&speech%5D=#{@speech}&commit=推薦遊戲'
   end
 
   def new
