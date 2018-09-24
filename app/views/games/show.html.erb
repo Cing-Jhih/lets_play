@@ -1,66 +1,9 @@
-<<<<<<< HEAD
-<%= render partial: "shared/game", locals:{game: @game}  %>
-=======
-<%# game info %>
-<h1>Game#show</h1>
-<p>標題:<%= @game.title %></p>
-<p>發表者：<%= image_tag @game.user.avatar %><%= @game.user.name %></p>
-<p>收藏數：<%= @game.favorites.size %></p>
-<p>回應數：<%= @game.replies.size %></p>
-<p>加入收藏
-  <%= render partial: "shared/favorite", locals:{game: @game}  %>
-</p>
-<p>遊戲圖片:<%= image_tag @game.image %></p>
-<p>適玩情境：
-  <% @game.situation_games.each do |situation_game| %>
-    <%= situation_game.situation.condition %>
-  <% end %>
-</p>
-<p>適合年齡：
-   <% @age_games.each do |age_game| %>
-    <%= age_game.age.name %>
-  <% end %>
-</p>
-<p>遊戲道具：<%= @game.tool %></p>
-<p>遊戲方式：<%= render_with_hashtags(@game.step) %></p>
-<% if @game.url.present? %>
-  <p>youtube:</p>
-  <iframe width="420" height="315" src= '<%= @youtube_url %>' frameborder="0" allowfullscreen></iframe>
-<% end %>
-<hr>
-
-<%# social share button  %>
-<hr class="pd-des-container-bottom-line">
-<div class="product-show__social-share-button">
-  <%# FB： URL用相對路徑會噴錯ㄝ必須用全網址  %>
-  <%= social_share_button_tag(@game.title, :allow_sites => %w(facebook twitter email google_plus ), :image => @game.image, desc:@game.tool,:url => @url) %>
-</div>
-<hr>
-<p>--Replies--</p>
-<%# replies display %>
-<% @game.replies.each do |reply| %>
-  <p><%= reply.user.name %></p>
-  <p><%= reply.content %></p>
-  <% if current_user %>
-    <% if reply.user.email == current_user.email || current_user.role == "admin" %>
-        <%= link_to "刪除", game_reply_path(@game, reply), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-default" %>
-    <% end %>
-  <% end %>
-  <hr>
-<% end %>
-
-<%# New reply form %>
-<div class="container">
-  <div class="row">
-   <%= form_for [@game, @reply] do |f| %>
-    <div class="form-group">
-      <%= f.text_area :content, placeholder: "put your reply here", class: "form-control" %>
+<section class="pageTitleSection">
+  <div class="container">
+    <div class="pageTitleInfo">
+      <h2>Blog Details</h2>
     </div>
-    <div class="form-group">
-      <%= f.submit class: "btn btn-primary" %>
-      <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
-    </div>
-  <% end %>
   </div>
-</div>
->>>>>>> 75a2909aa07cd972beb0163e58763da7addc4178
+</section>
+
+<%= render partial: "shared/game", locals:{game: @game}  %>
