@@ -1,23 +1,5 @@
 <%= render partial: "shared/user_info", locals:{user:@user}  %>
 
-<div>
-  <p>自己去追蹤的人</p>
-  <% @followings.each do |user| %>
-    <%= image_tag user.avatar, size:100%>
-    <%= link_to user.name, user_path(user) %>
-    <%= render partial: "shared/follow", locals: {user: user} %>
-  <% end %>
-</div>
-
-<div>
-  <p>追蹤自己的人</p>
-  <% @followers.each do |user| %>
-    <%= image_tag user.avatar, size:100%>
-    <%= link_to user.name, user_path(user) %>
-    <%= render partial: "shared/follow", locals: {user: user} %>
-  <% end %>
-</div>
-
 <section class="whiteSection full-width clearfix p-t-n">
   <div class="container">
     <div class="row">
@@ -63,3 +45,22 @@
     </div>
   </div>
 </section>
+
+
+<div>
+  <p>自己去追蹤的人</p>
+  <% @followings.each do |user| %>
+    <%= image_tag user.avatar, size:100%>
+    <%= link_to user.name, user_path(user) %>
+    <%= render partial: "shared/follow", locals: {user: user} %>
+  <% end %>
+</div>
+
+<div>
+  <p>追蹤自己的人</p>
+  <% @followers.each do |user| %>
+    <%= image_tag user.avatar, size:100%>
+    <%= link_to user.name, user_path(user) %>
+    <%= render partial: "shared/follow", locals: {user: user} %>
+  <% end %>
+</div>
