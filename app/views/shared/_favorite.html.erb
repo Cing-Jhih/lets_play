@@ -1,13 +1,13 @@
 <% if game.is_favorited?(current_user) %>
   <%= link_to unfavorite_game_path(game), method: :post do %>
     <button type="button" class="btn btn-outline-primary btn-pill">
-      <i class="fas fa-heart" aria-hidden="true"><span>加入收藏</span></i>
+      <i class="fas fa-heart" aria-hidden="true"><span>移出收藏</span></i>
     </button>
   <% end %>  
 <% else %>
   <%= link_to favorite_game_path(game), method: :post do %>
     <button type="button" class="btn btn-danger btn-pill">
-      <i class="fas fa-heart" aria-hidden="true"><span>移出收藏</span></i>
+      <i class="fas fa-heart" aria-hidden="true"><span>加入收藏</span></i>
     </button>
   <% end %>  
 <% end %>
