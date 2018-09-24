@@ -3,7 +3,7 @@
 Age.destroy_all
 
 age_list = [
-  {old:0, name:"未滿1歲"},
+  {old:0, name:"0歲"},
   {old:1, name:"1歲"},
   {old:2, name:"2歲"},
   {old:3, name:"3歲"},
