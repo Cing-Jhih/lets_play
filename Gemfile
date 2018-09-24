@@ -47,8 +47,8 @@ gem 'font-awesome-sass','~> 5.3.1'
 
 gem 'sass-rails', '~> 5.0'
 gem 'jquery-rails'
-
 gem 'jquery-ui-rails'
+
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -94,6 +94,10 @@ end
 group :production do
     gem 'pg', '~> 0.18'
     gem "fog-aws"
+end
+
+group :assets do
+  gem 'jquery-ui-rails', :git => 'https//github.com/joliss/jquery-ui-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
