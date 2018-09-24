@@ -15,7 +15,7 @@
 //= require rails-ujs
 //= require bootstrap-sprockets
 //= require social-share-button
-//= require jquery-ui
+//= require jquery-ui-rails
 //= require jquery.syotimer
 //= require jquery.counterup.min
 //= require jquery.themepunch.enablelog
