@@ -22,7 +22,7 @@ before_action :authenticate_user!, only: [:new]
     @age_games = @game.age_games.all.order(age_id: :asc)
     @reply = Reply.new
     @youtube_url = YouTubeRails.youtube_embed_url_only(@game.url) # transform youtube share url to embed url
-    @url = 'https://rand-by-speech.herokuapp.com/games/'+@game.id.to_s
+    @url = 'https://kidgamebata.herokuapp.com/'+@game.id.to_s
 
   end
 
