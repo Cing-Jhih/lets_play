@@ -1,4 +1,5 @@
 class FollowshipsController < ApplicationController
+  before_action :authenticate_user!, only: [:create]
 
   def create
     @followship = current_user.followships.build(following_id: params[:following_id])
