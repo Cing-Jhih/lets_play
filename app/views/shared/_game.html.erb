@@ -5,9 +5,11 @@
           <div class="col-xs-12 block">
             <div class="thumbnail thumbnailContent">
               <%= image_tag game.image, class:"img-responsive" %>
-              <div class="sticker-round bg-color-<%= game.situation_games.first.situation_id %>">
-                <%= game.age_games.first.age.name %>
-              </div>
+               <% if current_user && game.suitable_age?(current_user) %>
+                <div class="sticker-round bg-color-1">
+                  適齡
+                </div>
+              <% end %>
               <div class="caption border-color-1 singleBlog">
                 <h3 class="color-<%= game.situation_games.first.situation_id %>"><%= game.title %></h3>
                 <p class="pull-rignt"><%= time_tag game.created_at %></p>
