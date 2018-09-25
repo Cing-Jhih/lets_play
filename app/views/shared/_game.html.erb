@@ -29,10 +29,10 @@
                         <%=  game.replies_count %>
                     </li>
                     <li>
-                      <%= '<i class="far fa-hashtag" aria-hidden="true"></i>'if game.tags.present? %>
-                      <% game.tags.each do |tag| %>
-                      <span class="label label-default"><%= link_to tag.name, "/games/hashtag/#{tag.name}" %></span>
-                    <% end %>
+                      <% if game.tags.present? %><i class="fas fa-hashtag" aria-hidden="true"></i> <% end %>
+                        <% game.tags.each do |tag| %>
+                        <button class="btn btn-sm btn-outline-info"><%= link_to tag.name, "/games/hashtag/#{tag.name}" %></span></button>
+                      <% end %>
                     </li>
                   </ul> 
                   <li>

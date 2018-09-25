@@ -4,12 +4,18 @@
     <div class="row">
       <div class="col-xs-12">
         <% games.each do |game| %>
-          <div class="media courseList couresListPage">
-            <%= link_to game_path(game), class:"media-left border-color-#{game.situation_games.first.situation_id}" do %>
-              <%= image_tag game.image, class:"img-responsive" %>
-              <span class="sticker  bg-color-<%= game.situation_games.first.situation_id %>">
-                <%= game.age_games.first.age.name %>
-              </span>
+          <div class="media courseList couresListPage" >
+            <%= link_to game_path(game), class:"media-left border-color-1" do %>
+              <% if game.url.present? && game.image.blank? %>
+                <%= image_tag YouTubeRails.extract_video_image("#{@game.url}"), class:"img-responsive" %>
+              <% else %>
+                <%= image_tag game.image, class:"img-responsive" %>
+              <% end %>
+              <% if current_user && game.suitable_age?(current_user) %>  
+                <span class="sticker bg-color-2">
+                  適齡
+                </span>
+              <% end %>
             <% end %>
             <div class="media-body">
               <h3 class="media-heading"><%= link_to game.title, game_path(game), class:"color-#{ game.situation_games.first.situation_id}"%></h3>
@@ -36,9 +42,10 @@
                     <%=  game.replies_count %>
                 </li>
                 <li>
-                  <% game.tags.each do |tag| %>
-                  <span class="label label-default"><%= link_to tag.name, "/games/hashtag/#{tag.name}" %></span>
-                <% end %>
+                  <% if game.tags.present? %><i class="fas fa-hashtag" aria-hidden="true"></i> <% end %>
+                    <% game.tags.each do |tag| %>
+                    <button class="btn btn-sm btn-outline-info"><%= link_to tag.name, "/games/hashtag/#{tag.name}" %></span></button>
+                  <% end %>
                 </li>
               </ul>  
               <p>

@@ -1,7 +1,11 @@
 <div class="col-md-3 col-sm-6 col-xs-12 block">
   <div class="thumbnail thumbnailContent">
     <%= link_to game_path(game) do %>
-      <%= image_tag game.image, class:"img-responsive" %>
+      <% if game.url.present? && game.image.blank? %>
+        <%= image_tag YouTubeRails.extract_video_image("#{@game.url}"), class:"img-responsive" %>
+      <% else %>
+        <%= image_tag game.image, class:"img-responsive" %>
+      <% end %>  
       <div class="sticker bg-color-<%= game.situation_games.first.situation_id %>">
         <%= game.age_games.first.age.name  %>
       </div>
@@ -31,8 +35,9 @@
               <%=  game.replies_count %>
           </li>
           <li>
-            <% game.tags.each do |tag| %>
-              <span class="label label-default"><%= link_to tag.name, "/games/hashtag/#{tag.name}" %></span>
+            <% if game.tags.present? %><i class="fas fa-hashtag" aria-hidden="true"></i> <% end %>
+              <% game.tags.each do |tag| %>
+              <button class="btn btn-sm btn-outline-info"><%= link_to tag.name, "/games/hashtag/#{tag.name}" %></span></button>
             <% end %>
           </li>
         </ul> 
