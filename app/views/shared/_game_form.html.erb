@@ -1,54 +1,71 @@
-<%= form_with(model: game, local: true) do |form| %>
-  <% if game.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(game.errors.count, "error") %> prohibited this user from being saved:</h2>
+<section class="mainContent full-width clearfix">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10 col-xs-12">
+          <%= form_with(model: game, local: true) do |form| %>
+            <% if game.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(game.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% game.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-  <div>
-    <p>
-      適合年齡：<%= collection_check_boxes(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}) %><br />
-    </p>
-    
-    <p>
-      適玩情境：<%= collection_check_boxes(:situation_game, :situation_id, Situation.all, :id, :condition) %><br/>
-    </p>
-    
-  </div>
-  <div class="field">
-    <%= form.label :image %>
-    <%= image_tag game.image, size: 300 %>
-    <%= form.file_field :image %>
-  </div>
+                <ul>
+                <% game.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
 
-  <div class="field">
-    <%= form.label :url %>
-    <%= form.text_field :url, placeholder: 'https://youtu.be/HP-MbfHFUqs(YouTube分享連結格式)' %>
+
+
+        <div class="homeContactContent">
+            <div class="form-group">
+              <%= form.label "遊戲標題" %>
+              <%= form.text_field :title, class: "form-control border-color-1" %>
+            </div><br>
+            <div class="form-group">
+              <p>適合年齡：</p>
+              <%= collection_check_boxes(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}) do|b| %>
+              <%= b.label class:"btn btn-warning btn-xl btn-pill" do %>
+                  <%= b.check_box + b.text  %>
+                <% end %>
+              <% end %>
+            </div><br>
+            <div class="form-group">  
+             <p> 適玩情境：</p>
+              <%= collection_check_boxes(:situation_game, :situation_id, Situation.all, :id, :condition) do |b|  %>
+                <%= b.label class:"btn btn-success btn-xl btn-pill" do %>
+                  <%= b.check_box + b.text  %>
+                <% end %>
+              <% end %>
+            </div><br>
+            <div class="form-group ">
+              <%= image_tag game.image, size: 2.0 %>
+              <%= form.file_field :image %>
+            </div>
+
+            <div class="form-group">
+              <%= form.label "YouTube分享連結" %>
+              <%= form.text_field :url, class: "form-control border-color-1", placeholder: 'https://youtu.be/HP-MbfHFUqs(YouTube分享連結格式)' %>
+            </div>
+
+            <div class="form-group">
+              <%= form.label "遊戲道具" %><br />
+              <%= form.text_field :tool, class: "form-control border-color-1" %>
+            </div>
+
+            <div class="form-group">
+              <%= form.label "遊戲方法" %><br />
+              <%= form.text_area :step, class: "form-control border-color-1" %>
+            </div>
+
+            <div class="form-gruop pull-right">
+              <%= form.submit "發表遊戲", class: "btn btn-primary" %>
+              <%= link_to "清除內容", games_path, class: "btn btn-outline-primary" %>
+            </div>   
+
+          <% end %>
+        </div>
+      </div>
+    </div>  
   </div>
-
-  <div class="field">
-    <%= form.label :tool %><br />
-    <%= form.text_area :tool %>
-  </div>
-
-  <div class="field">
-    <%= form.label :step %><br />
-    <%= form.text_area :step %>
-  </div>
-
-  <div class="form-gruop">
-    <%= form.submit "Submit", class: "btn btn-primary" %>
-    <%= link_to "Cancel", games_path, class: "btn btn-default" %>
-  </div>   
-
-<% end %>
+</div>        
