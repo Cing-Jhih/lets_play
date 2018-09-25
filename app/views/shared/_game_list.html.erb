@@ -6,8 +6,12 @@
         <% games.each do |game| %>
           <div class="media courseList couresListPage" >
             <%= link_to game_path(game), class:"media-left border-color-1" do %>
-              <%= image_tag game.image, class:"img-responsive" %>
-              <% if current_user && game.suitable_age?(current_user)  %>  
+              <% if game.url.present? && game.image.blank? %>
+                <%= image_tag YouTubeRails.extract_video_image("#{game.url}"), class:"img-responsive" %>
+              <% else %>
+                <%= image_tag game.image, class:"img-responsive" %>
+              <% end %>
+              <% if current_user && game.suitable_age?(current_user) %>  
                 <span class="sticker bg-color-2">
                   適齡
                 </span>
@@ -38,9 +42,10 @@
                     <%=  game.replies_count %>
                 </li>
                 <li>
-                  <% game.tags.each do |tag| %>
-                  <span class="label label-default"><%= link_to tag.name, "/games/hashtag/#{tag.name}" %></span>
-                <% end %>
+                  <% if game.tags.present? %><i class="fas fa-hashtag" aria-hidden="true"></i> <% end %>
+                    <% game.tags.each do |tag| %>
+                    <button class="btn btn-sm btn-outline-info"><%= link_to tag.name, "/games/hashtag/#{tag.name}" %></span></button>
+                  <% end %>
                 </li>
               </ul>  
               <p>
