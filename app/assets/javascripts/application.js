@@ -31,4 +31,3 @@
 //= require wow.min
 //= require owl.carousel
 //= require turbolinks
-//= require app
