@@ -23,7 +23,7 @@ jQuery(document).ready(function(){
   'use strict';
   setTimeout(function(){
 		$('body').addClass('loaded');
-	}, 3000);
+	}, 1000);
 
   /*======== 2. MENU SCROLL ========*/
    $(window).on('load', function(){

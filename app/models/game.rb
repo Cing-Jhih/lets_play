@@ -8,6 +8,7 @@ class Game < ApplicationRecord
   has_many :favorited_users, through: :favorites, source: :user
   has_many :replies
   has_and_belongs_to_many :tags
+  has_many :suitable_ages, through: :age_games, source: :age
 
   after_create do
     game = Game.find_by(id: self.id)
@@ -30,6 +31,10 @@ class Game < ApplicationRecord
 
   def is_favorited?(user)
     self.favorited_users.include?(user)
+  end
+
+  def suitable_age?(user)
+    self.suitable_ages.where(old: user.kid_age).present?
   end
 
 end

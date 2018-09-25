@@ -6,9 +6,11 @@
       <% else %>
         <%= image_tag game.image, class:"img-responsive" %>
       <% end %>  
-      <div class="sticker bg-color-<%= game.situation_games.first.situation_id %>">
-        <%= game.age_games.first.age.name  %>
-      </div>
+       <% if current_user && game.suitable_age?(current_user) %>
+        <div class="sticker bg-color-2">
+          適齡
+        </div>
+      <% end %>
       <div class="caption border-color-<%= game.situation_games.first.situation_id %>">
         <h3 class="color-<%= game.situation_games.first.situation_id %>"><%= game.title %></h3>
        
