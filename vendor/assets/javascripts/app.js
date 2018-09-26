@@ -1,5 +1,5 @@
 /* ======== index ========
-1. PREELOADER
+1. PREELOADER - Removed
 2. MENU SCROLL
 3. SELECT BOX
 4. MENU DROPDOWN ON HOVER
@@ -21,9 +21,6 @@ jQuery(document).ready(function(){
 
   /*======== 1. PREELOADER ========*/
   'use strict';
-  setTimeout(function(){
-		$('body').addClass('loaded');
-	}, 1000);
 
   /*======== 2. MENU SCROLL ========*/
    $(window).on('load', function(){
