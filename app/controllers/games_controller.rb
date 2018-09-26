@@ -21,8 +21,11 @@ before_action :authenticate_user!, only: [:new, :favorite]
     @game = Game.find(params[:id])
     @age_games = @game.age_games.all.order(age_id: :asc)
     @reply = Reply.new
-    @youtube_url = YouTubeRails.youtube_embed_url_only(@game.url) # transform youtube share url to embed url
-    @url = 'https://rand-by-speech.herokuapp.com/games/'+@game.id.to_s
+
+    # transform youtube share url to embed url
+    # ssl lets iframe tag can work on https site like heroku
+    @youtube_url = YouTubeRails.youtube_embed_url_only(@game.url, ssl: true) 
+    @url = 'https://kidgamebata.herokuapp.com/games/'+@game.id.to_s
 
   end
 
