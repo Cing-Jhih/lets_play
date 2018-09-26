@@ -6,8 +6,10 @@ class ApplicationController < ActionController::Base
   private
 
   def store_location
-    # store last url as long as it isn't a /users path
-    session[:previous_url] = request.env['HTTP_REFERER'] unless request.env['HTTP_REFERER'] =~ /\/users\/sign/
+    if request.env['HTTP_REFERER']
+      # store last url as long as it isn't a /users path
+      session[:previous_url] = request.env['HTTP_REFERER'] unless request.env['HTTP_REFERER'] =~ /(\/users\/sign)|(facebook)/
+    end
   end
 
   def after_sign_in_path_for(resource)
