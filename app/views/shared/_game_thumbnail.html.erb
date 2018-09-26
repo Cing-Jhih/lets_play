@@ -2,7 +2,7 @@
   <div class="thumbnail thumbnailContent">
     <%= link_to game_path(game) do %>
       <% if game.url.present? && game.image.blank? %>
-        <%= image_tag YouTubeRails.extract_video_image("#{game.url}"), class:"img-responsive" %>
+        <%= image_tag YouTubeRails.extract_video_image("#{game.url}", 'high'), class:"img-responsive" %>
       <% else %>
         <%= image_tag game.image, class:"img-responsive" %>
       <% end %>  

@@ -44,7 +44,7 @@ namespace :dev  do
         tool:  tools.first(rand(0..8)).join,
         step: FFaker::Lorem::sentence(113),
         remote_image_url: FFaker::Image::url,
-        url: FFaker::Youtube::share_url,
+        url: 'http://'+FFaker::Youtube::share_url,
         user_id: User.all.sample.id
         )
       AgeGame.create!(

@@ -7,7 +7,7 @@
           <div class="media courseList couresListPage" >
             <%= link_to game_path(game), class:"media-left border-color-1" do %>
               <% if game.url.present? && game.image.blank? %>
-                <%= image_tag YouTubeRails.extract_video_image("#{game.url}"), class:"img-responsive" %>
+                <%= image_tag YouTubeRails.extract_video_image("#{game.url}", 'high'), class:"img-responsive" %>
               <% else %>
                 <%= image_tag game.image, class:"img-responsive" %>
               <% end %>
