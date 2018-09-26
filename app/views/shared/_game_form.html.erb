@@ -22,8 +22,20 @@
               <%= form.label "遊戲標題" %>
               <%= form.text_field :title, class: "form-control border-color-3" %>
             </div><br>
+           
+              <div class="priceRange">
+                <div class="price-slider-inner">
+                  <span class="amount-wrapper">
+                    適合年齡：
+                    <input type="text" id="price-amount-1" readonly>
+                    <strong>-</strong>
+                    <input type="text" id="price-amount-2" readonly>
+                  </span>
+                  <div id="price-range"></div>
+                </div>
+              </div>
+              
             <div class="form-group">
-              <p>適合年齡：</p>
               <%= collection_check_boxes(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}) do|b| %>
               <%= b.label class:"btn btn-warning btn-xl btn-pill" do %>
                   <%= b.check_box + b.text  %>
@@ -69,3 +81,22 @@
     </div>  
   </div>
 </div>
+<script>
+  /*======== 11.PRICE SLIDER RANGER  ========*/
+  var minimum = 0;
+  var maximum = 12;
+
+  $( '#price-range' ).slider({
+    range: true,
+    min: minimum,
+    max: maximum,
+    values: [ minimum, maximum ],
+    slide: function( event, ui ) {
+      $( '#price-amount-1' ).val(  ui.values[ 0 ]+"years old" );
+      $( '#price-amount-2' ).val(  ui.values[ 1 ] +"years old");
+    }
+  });
+
+  $( '#price-amount-1' ).val(  $( '#price-range'+"years old" ).slider( 'values', 0 ));
+  $( '#price-amount-2' ).val(  $( '#price-range'+"years old" ).slider( 'values', 1 ));
+</script>

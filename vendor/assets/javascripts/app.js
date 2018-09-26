@@ -238,8 +238,8 @@ $('.cart-dropdown a').on('click',function() {
   });
 
   /*======== 11.PRICE SLIDER RANGER  ========*/
-  var minimum = 20;
-  var maximum = 300;
+  var minimum = 0;
+  var maximum = 12;
 
   $( '#price-range' ).slider({
     range: true,
@@ -247,13 +247,13 @@ $('.cart-dropdown a').on('click',function() {
     max: maximum,
     values: [ minimum, maximum ],
     slide: function( event, ui ) {
-      $( '#price-amount-1' ).val( '$' + ui.values[ 0 ] );
-      $( '#price-amount-2' ).val( '$' + ui.values[ 1 ] );
+      $( '#price-amount-1' ).val(  ui.values[ 0 ] );
+      $( '#price-amount-2' ).val(  ui.values[ 1 ] );
     }
   });
 
-  $( '#price-amount-1' ).val( '$' + $( '#price-range' ).slider( 'values', 0 ));
-  $( '#price-amount-2' ).val( '$' + $( '#price-range' ).slider( 'values', 1 ));
+  $( '#price-amount-1' ).val( $( '#price-range' ).slider( 'values', 0 ));
+  $( '#price-amount-2' ).val( $( '#price-range' ).slider( 'values', 1 ));
 
   /*======== 12. ACCORDION OR COLLAPSE ICON CHANGE ========*/
   var allIcons = $('#faqAccordion .panel-heading i.fa');
