@@ -30,8 +30,8 @@
                 <% end %>
               </div><br>
            <%= collection_check_boxes(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}) do|b| %>
-              <%= b.label class:"btn btn-warning btn-xl btn-pill" do %>
-                  <%= b.check_box + b.text  %>
+              <% b.label do %>
+                  <% b.check_box + b.text  %>
                 <% end %>
               <% end %>
             <div class="form-group col-sm-8 col-xs-12">

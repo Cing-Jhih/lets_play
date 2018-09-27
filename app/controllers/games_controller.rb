@@ -149,10 +149,11 @@ private
   end
 
   def create_relationship
-    unless params[:age_game][:age_id] == ""
-      age_ids = params[:age_game][:age_id]
+      age_ids = [] # 存放所有符合選定年齡的game.id
+      Age.where(old: (@game.min_age .. @game.max_age)).find_each do |age|
+      age_ids << age.id
       @game.age_games.destroy_all
-      (age_ids.length - 1).times do
+      age_ids.length.times do
         AgeGame.create!(
           age_id: age_ids.pop,
           game_id: @game.id,
