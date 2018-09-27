@@ -40,7 +40,7 @@
               <% end %>
             <% end %>
             <div class="media-body">
-              <h3 class="media-heading"><%= link_to game.title, game_path(game), class:"color-#{ game.situation_games.first.situation_id}"%></h3>
+              <h3 class="media-heading"><%= link_to game.title, game_path(game), class: game.situation_games.present? ? "color-#{ game.situation_games.first.situation_id}" : "color-1"%></h3>
               <p class="pull-right">by&nbsp;<%= render partial: "shared/link_user_avatar", locals:{user: game.user} %> </p>
               <ul class="list-inline">
                 <li>

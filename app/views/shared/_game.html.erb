@@ -12,7 +12,7 @@
               </div>
             <% end %>
             <div class="caption border-color-1 singleBlog">
-              <h3 class="color-<%= game.situation_games.first.situation_id %>">
+              <h3 class="color-<%= game.situation_games.first.situation_id ||= 1 %>">
                 <%= game.title %>
               </h3>
           <% else %>
