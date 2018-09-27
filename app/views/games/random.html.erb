@@ -3,6 +3,19 @@
   function toggleStopReading() {
     window.speechSynthesis.cancel();
   }
+  
+  function toggleReadStep() {
+    var readStep = '遊戲方式  <%= @game.step %>';
+    var msg4 = new SpeechSynthesisUtterance(readStep, ["zh-TW", 1, 1.5, 0.7]);
+    window.speechSynthesis.speak(msg4);
+  }
+  
+  function toggleReadAgain() {
+    var again = "<%= @game.title %>";
+    var msg3 = new SpeechSynthesisUtterance(again, ["zh-TW", 1, 1.5, 0.7]);
+    window.speechSynthesis.speak(msg3);
+  }
+
 
   var speech = <%= @speech %>;
   console.log(speech);
@@ -39,7 +52,7 @@
             result.resultTranscript = event.results[result.resultLength][0].transcript;
             if (event.results[result.resultLength].isFinal === false) {
               console.log(result.resultTranscript);
-              if (result.resultTranscript.indexOf('換' || '不要') !== -1) {
+              if (result.resultTranscript.indexOf('換') !== -1) {
                 history.go(0);
               }
               if (result.resultTranscript.indexOf('玩') !== -1) {
@@ -74,22 +87,32 @@
 <section>
   <div class="container">
         <div class="row">
+        <br><br>
           <div class="col-xs-12">
-            <div class="sectionTitle text-center ">
-              <h2 class="wow fadeInUp">
-                <span class="shape shape-left bg-color-4"></span>
-                  <button class="btn btn-danger btn-xl btn-pill" id="stop" onclick="toggleStopReading();" alt="停止朗讀">
-                    <i class="fas fa-power-off fa-2x"></i>
-                  </button>
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <a href= #{url} >
-                    <button class="btn btn-success btn-xl btn-pill" alt="重新推薦">
-                      <i class="fas fa-redo fa-2x"></i>
+          <!-- speech interactive buttons -->
+              <div class="sectionTitle text-center ">
+                <h2 class="wow fadeInUp">
+                  <span class="shape shape-left bg-color-4"></span>
+                    <button class="btn btn-info btn-xl btn-pill" id="again" onclick="toggleReadAgain();">
+                      <i class="fas fa-volume-up fa-2x"></i>
                     </button>
-                  </a>
-                <span class="shape shape-right bg-color-4"></span>
-              </h2>
-            </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-warning btn-xl btn-pill" id="step" onclick="toggleReadStep();" >
+                      <i class="fas fa-list-ol fa-2x"></i>
+                    </button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-danger btn-xl btn-pill" id="stop" onclick="toggleStopReading();" >
+                      <i class="fas fa-comment-slash fa-2x"></i>
+                    </button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href= #{url} >
+                      <button class="btn btn-success btn-xl btn-pill" alt="重新推薦">
+                        <i class="fas fa-redo fa-2x"></i>
+                      </button>
+                    </a>
+                  <span class="shape shape-right bg-color-4"></span>
+                </h2>
+              </div>
           </div>
         </div>
       </div>
