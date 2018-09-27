@@ -241,19 +241,19 @@ $('.cart-dropdown a').on('click',function() {
   var minimum = 0;
   var maximum = 12;
 
-  $( '#price-range' ).slider({
+  $( '#age-range' ).slider({
     range: true,
     min: minimum,
     max: maximum,
-    values: [ minimum, maximum ],
+    values: [ 3, 8 ],
     slide: function( event, ui ) {
-      $( '#price-amount-1' ).val(  ui.values[ 0 ] );
-      $( '#price-amount-2' ).val(  ui.values[ 1 ] );
+      $( '#min_age' ).val(  ui.values[ 0 ] );
+      $( '#max_age' ).val(  ui.values[ 1 ] );
     }
   });
 
-  $( '#price-amount-1' ).val( $( '#price-range' ).slider( 'values', 0 ));
-  $( '#price-amount-2' ).val( $( '#price-range' ).slider( 'values', 1 ));
+  $( '#game_min_age' ).val( $( '#age-range' ).slider( 'values', 0 ));
+  $( '#game_max_age' ).val( $( '#age-range' ).slider( 'values', 1 ));
 
   /*======== 12. ACCORDION OR COLLAPSE ICON CHANGE ========*/
   var allIcons = $('#faqAccordion .panel-heading i.fa');

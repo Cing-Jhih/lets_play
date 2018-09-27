@@ -80,6 +80,7 @@ before_action :authenticate_user!, only: [:new, :favorite]
   def create
     @game = Game.new(game_params)
     @game.user = current_user
+    
 
     if @game.save
        create_relationship
