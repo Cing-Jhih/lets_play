@@ -23,8 +23,24 @@
               <%= form.text_field :title, class: "form-control border-color-3" %>
             </div><br>
            
+              
+              <br><br>
+              
+              
+            <div class="form-group">
+              <%= collection_check_boxes(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}) do|b| %>
+              <%= b.label class:"btn btn-warning btn-xl btn-pill" do %>
+                  <%= b.check_box + b.text  %>
+                <% end %>
+              <% end %>
+            </div><br>
+            <div class="form-group">
+              <div class="col-sm-8 col-xs-12">
               <div class="priceRange">
                 <div class="price-slider-inner">
+                  <%= form.hidden_field :min_age %>
+                  <strong>-</strong>
+                  <%= form.hidden_field :max_age  %>
                   <span class="amount-wrapper">
                     適合年齡：
                     <input type="text" id="price-amount-1" readonly>
@@ -34,14 +50,10 @@
                   <div id="price-range"></div>
                 </div>
               </div>
+            </div> <br>
+
               
-            <div class="form-group">
-              <%= collection_check_boxes(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}) do|b| %>
-              <%= b.label class:"btn btn-warning btn-xl btn-pill" do %>
-                  <%= b.check_box + b.text  %>
-                <% end %>
-              <% end %>
-            </div><br>
+
             <div class="form-group">  
              <p> 適玩情境：</p>
               <%= collection_check_boxes(:situation_game, :situation_id, Situation.all, :id, :condition) do |b|  %>
@@ -83,20 +95,18 @@
 </div>
 <script>
   /*======== 11.PRICE SLIDER RANGER  ========*/
-  var minimum = 0;
-  var maximum = 12;
-
-  $( '#price-range' ).slider({
-    range: true,
-    min: minimum,
-    max: maximum,
-    values: [ minimum, maximum ],
-    slide: function( event, ui ) {
-      $( '#price-amount-1' ).val(  ui.values[ 0 ]+"years old" );
-      $( '#price-amount-2' ).val(  ui.values[ 1 ] +"years old");
-    }
-  });
-
-  $( '#price-amount-1' ).val(  $( '#price-range'+"years old" ).slider( 'values', 0 ));
-  $( '#price-amount-2' ).val(  $( '#price-range'+"years old" ).slider( 'values', 1 ));
+  $(document).ready(function() {
+    var slider = $("#price-range").slider({
+        range: true,
+        min: 0,
+        max: 12,
+        values: [ 3, 8] ,
+        slide: function(event, ui) {
+            $("#form_min_age").val(ui.values[0]);
+            $("#form_max_age").val(ui.values[1]);
+        }
+    });
+    $("#form_min_age").val(slider.slider("values")[0]);
+    $("#form_max_age").val(slider.slider("values")[1]);
+});
 </script>

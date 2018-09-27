@@ -136,7 +136,7 @@ before_action :authenticate_user!, only: [:new, :favorite]
 
 private
   def game_params
-    params.require(:game).permit(:title, :image, :tool, :step, :user_id, :url)
+    params.require(:game).permit(:title, :image, :tool, :step, :user_id, :url, :min_age, :max_age)
   end
 
   def set_game
