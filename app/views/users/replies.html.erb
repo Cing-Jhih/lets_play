@@ -10,45 +10,10 @@
             <li><%= link_to "發表(#{@user.games_count})", games_user_path %></li>
             <li class="active"><%= link_to "回應(#{@user.replies_count})", replies_user_path %></li>
           </ul>
-          <div>
-          </div>
-          <div class="tab-content">
-            <div id="leftHome" class="tab-pane fade in active">
-              <% @replied_games.each do |game| %>
-              <div class="media">
-                <a class="media-left" href="#">
-                  <%= image_tag game.image , class:"media-object img-rounded", alt:"Image",style:"padding:10px"%>
-                </a>
-                <div class="media-body">
-                  <h3 class="media-heading"><%= game.title %></h3>
-                  <p>發表者：<%= game.user.name %></p>
-                  <p>收藏數：<%= game.favorites.size %></p>
-                  <p>回應數：<%= game.replies.size %></p>
-                  <p>適玩情境：
-                    <% game.situation_games.each do |situation_game| %>
-                      <%= situation_game.situation.condition %>
-                    <% end %>  
-                  </p>
-                  <p>適合年齡：
-                    <% game.age_games.each do |age_game| %>
-                      <%= age_game.age.name %>
-                    <% end %> 
-                  </p>
-                  <p>遊戲道具：<%= game.tool %></p>
-                  <p>遊戲方式：<%= game.step %></p>
-                  <% if current_user %>
-                    <% if @user.email == current_user.email %>
-                      <%= link_to "看回應", game_path(game), class:"btn btn-warning btn-pill" %>
-                    <% end %>
-                  <% end %>
-                  <hr>
-                </div>
-                <% end %> 
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<%= render partial: "shared/game_list", locals:{games: @replied_games} %>

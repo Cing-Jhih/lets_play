@@ -10,50 +10,85 @@
             <li class="active"><%= link_to "發表(#{@user.games_count})", games_user_path %></li>
             <li><%= link_to "回應(#{@user.replies_count})", replies_user_path %></li>
           </ul>
-          <div>
-          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mainContent full-width clearfix">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
           <% if current_user %>
             <% if @user.email == current_user.email %>
               <%= link_to "發表新遊戲", new_game_path(current_user), class: "btn btn-warning btn-pill" %>
             <% end %>
           <% end %>
-          <div class="tab-content">
-            <div id="leftHome" class="tab-pane fade in active">
-              <% @posted_games.each do |game| %>
-              <div class="media">
-                <a class="media-left" href="#">
-                  <%= image_tag game.image , class:"media-object img-rounded", alt:"Image",style:"padding:10px"%>
-                </a>
-                <div class="media-body">
-                  <h3 class="media-heading"><%= game.title %></h3>
-                  <p>發表者：<%= game.user.name %></p>
-                  <p>收藏數：<%= game.favorites.size %></p>
-                  <p>回應數：<%= game.replies.size %></p>
-                  <p>適玩情境：
-                    <% game.situation_games.each do |situation_game| %>
-                      <%= situation_game.situation.condition %>
-                    <% end %>  
-                  </p>
-                  <p>適合年齡：
-                    <% game.age_games.each do |age_game| %>
-                      <%= age_game.age.name %>
-                    <% end %> 
-                  </p>
-                  <p>遊戲道具：<%= game.tool %></p>
-                  <p>遊戲方式：<%= game.step %></p>
-                  <% if current_user %>
+        <% @posted_games.each do |game| %>
+          <div class="media courseList couresListPage" >
+            <%= link_to game_path(game), class:"media-left border-color-1" do %>
+              <% if game.url.present? && game.image.blank? %>
+                <%= image_tag YouTubeRails.extract_video_image("#{game.url}", 'high'), class:"img-responsive" %>
+              <% else %>
+                <%= image_tag game.image, class:"img-responsive" %>
+              <% end %>
+              <% if current_user && game.suitable_age?(current_user) %>  
+                <span class="sticker bg-color-2">
+                  適齡
+                </span>
+              <% end %>
+            <% end %>
+            <div class="media-body">
+              <h3 class="media-heading"><%= link_to game.title, game_path(game), class:"color-#{ game.situation_games.first.situation_id}"%></h3>
+              <p class="pull-right">by&nbsp;<%= render partial: "shared/link_user_avatar", locals:{user: game.user} %> </p>
+              <ul class="list-inline">
+                <li>
+                  <i class="fa fa-child" aria-hidden="true"></i>
+                  <% game.age_games.each do |age_game| %>
+                    <%=  age_game.age.name %>
+                  <% end %>
+                </li>
+                <li>
+                  <i class="fa fa-theater-masks" aria-hidden="true"></i>
+                  <% game.situation_games.each do |situation_game| %>
+                    <%= situation_game.situation.condition  %>
+                  <% end %>
+                </li>
+                <li>
+                  <i class="far fa-heart" aria-hidden="true"></i>
+                    <%=  game.favorites_count %>
+                </li>
+                <li>
+                  <i class="far fa-comment" aria-hidden="true"></i>
+                    <%=  game.replies_count %>
+                </li>
+                <li>
+                  <% if game.tags.present? %><i class="fas fa-hashtag" aria-hidden="true"></i> <% end %>
+                    <% game.tags.each do |tag| %>
+                    <button class="btn btn-sm btn-outline-info"><%= link_to tag.name, "/games/hashtag/#{tag.name}" %></span></button>
+                  <% end %>
+                </li>
+              </ul>  
+              <p>
+                <i class="fa fa-shapes" aria-hidden="true"></i>
+                <strong><%= game.tool %></strong>
+              </p>
+              <p><%= truncate(game.step, length: 300) %></p>
+              <br>
+              <ul class="list-inline btn-yellow btnPart">
+                <li><%= render partial: "shared/favorite", locals:{game: game} %> </li>
+                <% if current_user %>
                     <% if @user.email == current_user.email %>
-                      <%= link_to "編輯遊戲", edit_game_path(game), class: "btn btn-sm btn-success not-rounded" %>
-                      <%= link_to "刪除遊戲", game_path(game), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-sm btn-primary" %>
+                      <%= link_to "編輯遊戲", edit_game_path(game), class: "btn btn-sm btn-success" %>
+                      <%= link_to "刪除遊戲", game_path(game), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-sm btn-outline-primary" %>
                     <% end %>
                   <% end %>
-                  <hr>
-                </div>
-                <% end %> 
-              </div>
+              </ul>
+              <p><%= link_to '>>查看完整遊戲內容', game_path(game), class:"text-link pull-right" %></p>
             </div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>

@@ -21,7 +21,7 @@
         <div class="teachersInfo">
           <% if user.kid_age.blank? %>
             <h3>？歲孩子的玩伴</h3>
-            <%= "(未填寫孩子的生日,記得到Edit Profile填寫小孩的生日)" if user == current_user %>
+            <%= "(未填寫孩子的生日,記得到編輯個人檔案中填寫孩子的生日！)" if user == current_user %>
           <% else %>
             <h3><%= user.kid_age %>歲孩子的玩伴</h3>
           <% end %>
