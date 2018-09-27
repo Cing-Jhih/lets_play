@@ -109,11 +109,11 @@
         <div class="row">
         <br><br>
           <div class="col-xs-12">
-          <!-- speech interactive buttons -->
-            <% if @speech %>
-              <div class="sectionTitle text-center ">
-                <h2 class="wow fadeInUp">
-                  <span class="shape shape-left bg-color-4"></span>
+            <div class="sectionTitle text-center ">
+              <h2 class="wow fadeInUp">
+                <span class="shape shape-left bg-color-4"></span>
+                <!-- speech interactive buttons -->
+                  <% if @speech %>
                     <button class="btn btn-info btn-xl btn-pill" id="again" onclick="toggleReadAgain();">
                       <i class="fas fa-volume-up fa-2x"></i>
                     </button>
@@ -126,15 +126,15 @@
                       <i class="fas fa-comment-slash fa-2x"></i>
                     </button>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href= #{url} >
-                      <button class="btn btn-success btn-xl btn-pill" id="reload">
-                        <i class="fas fa-redo fa-2x"></i>
-                      </button>
-                    </a>
-                  <span class="shape shape-right bg-color-4"></span>
-                </h2>
-              </div>
-            <% end %>  
+                  <% end %>
+                  <a href= #{url} >
+                    <button class="btn btn-success btn-xl btn-pill" id="reload">
+                      <i class="fas fa-redo fa-2x"></i>
+                    </button>
+                  </a>
+                <span class="shape shape-right bg-color-4"></span>
+              </h2>
+            </div>
           </div>
         </div>
       </div>
