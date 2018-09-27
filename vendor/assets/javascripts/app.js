@@ -247,9 +247,10 @@ $('.cart-dropdown a').on('click',function() {
     max: maximum,
     values: [3, 8],
     slide: function( event, ui ) {
-      $( '#min_age' ).val(  ui.values[ 0 ] );
-      $( '#max_age' ).val(  ui.values[ 1 ] );
-
+      $('#game_min_age').val(ui.values[0]);
+      $('#game_max_age').val(ui.values[1]);
+      $('#min_age').val(ui.values[0]);
+      $('#max_age').val(ui.values[1]);
     }
   });
 
