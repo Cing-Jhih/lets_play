@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get :replies
       get :favorites
     end
+    resources :messages, only: [:create, :destroy]
   end
 
   root "games#index"

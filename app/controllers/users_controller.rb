@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @favorited_games = @user.favorited_games.order(created_at: :desc)
     @followings = @user.followings.all
     @followers = @user.followers.all
+    @message = Message.new
     if session[:fb_first_login]
       session[:fb_first_login] = nil
       redirect_to session[:previous_url]
