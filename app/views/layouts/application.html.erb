@@ -192,7 +192,6 @@
                 <ul class="dropdown-menu dropdown-menu-left">
                   <li><%= link_to '最新遊戲', latest_games_path %></li>
                   <li><%= link_to '熱門遊戲', popular_games_path %></li>
-                  <li><%= link_to '遊戲大師' %></li>
                 </ul>
               </li>
               <li class=" dropdown megaDropMenu color-2">
@@ -204,25 +203,35 @@
                   <li class="col-sm-3 col-xs-12">
                     <ul class="list-unstyled">
                       <li>感覺統合</li>
-                      <li class=""><a href="/games/hashtag/專注力">專注力</a></li>
-                        
-                        
+                      <li class=""><a href="/games/hashtag/大肢體">大肢體</a></li>
+                      <li class=""><a href="/games/hashtag/小肌肉">小肌肉</a></li>
+                      <li class=""><a href="/games/hashtag/五感體驗">五感體驗</a></li>
+                      <li class=""><a href="/games/hashtag/音樂律動">音樂律動</a></li>  
                     </ul>
                   </li>
                   <li class="col-sm-3 col-xs-12">
                     <ul class="list-unstyled">
                       <li>育教於樂</li>
+                      <li class=""><a href="/games/hashtag/情緒EQ">情緒EQ</a></li>
+                      <li class=""><a href="/games/hashtag/科學邏輯">科學邏輯</a></li>
+                      <li class=""><a href="/games/hashtag/語言表答">語言表答</a></li>
+                      <li class=""><a href="/games/hashtag/生活常規">生活常規</a></li>
+                      <li class=""><a href="/games/hashtag/做家事">做家事</a></li>
                     </ul>
                   </li>
                   <li class="col-sm-3 col-xs-12">
                     <ul class="list-unstyled">
                       <li>親子手作</li>
+                      <li class=""><a href="/games/hashtag/料理">料理</a></li>
+                      <li class=""><a href="/games/hashtag/玩具">玩具</a></li>
+                      <li class=""><a href="/games/hashtag/美術">美術</a></li>
                     </ul>
                   </li>
                   <li class="col-sm-3 col-xs-12">
                     <ul class="list-unstyled">
                       <li>搜尋標簽</li>
                       <li class=""><%= link_to '所有標簽', tag_all_path %></li>
+                      <li></li>
                       <li class="">
                         <%= form_tag'/games/hashtag/:name', method: :get  do %>
                           <%= text_field_tag :search, params[:search], placeholder: "請輸入...", class: "form-control" %>

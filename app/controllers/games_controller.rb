@@ -22,7 +22,7 @@ before_action :authenticate_user!, only: [:new, :favorite]
           flash[:alert] = "Sorry! #{params[:search]} was not found. Here are all hashtags"
           redirect_to tag_all_path
        end
-    else  
+    else
       @tag = Tag.find_by(name: params[:name])
       @games = @tag.games.all.order(favorites_count: :asc)
     end
@@ -41,7 +41,6 @@ before_action :authenticate_user!, only: [:new, :favorite]
     # ssl lets iframe tag can work on https site like heroku
     @youtube_url = YouTubeRails.youtube_embed_url_only(@game.url, ssl: true) 
     @url = 'https://kidgamebata.herokuapp.com/games/'+@game.id.to_s
-
   end
 
   def popular
@@ -95,7 +94,6 @@ before_action :authenticate_user!, only: [:new, :favorite]
   def create
     @game = Game.new(game_params)
     @game.user = current_user
-    
 
     if @game.save
        create_relationship
