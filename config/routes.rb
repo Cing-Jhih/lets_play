@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     end
   end
 
+  root "games#index"
+  get '/games/tag_all' => 'games#tag_all', as: :tag_all
+  get '/games/hashtag/:name', to:'games#hashtag', as: :hashtag
+
   resources :games do
     # 隨機推薦遊戲、關鍵字搜尋遊戲
     collection do
@@ -38,8 +42,7 @@ Rails.application.routes.draw do
 
   resources :followships, only: [:create, :destroy]
 
-  root "games#index"
-  get '/games/hashtag/:name', to:'games#hashtags'
+
 
   namespace :admin do
     resources :games, only: [:index, :edit, :update, :destroy]

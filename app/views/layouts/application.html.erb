@@ -116,7 +116,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/games"><%= image_tag "logo.png", alt: "Let's Play", size: 0.15 %></a>
+            <a class="navbar-brand" href="/games"><%= image_tag "logo.png", alt: "Let's Play"%></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -204,6 +204,9 @@
                   <li class="col-sm-3 col-xs-12">
                     <ul class="list-unstyled">
                       <li>感覺統合</li>
+                      <li class=""><a href="/games/hashtag/專注力">專注力</a></li>
+                        
+                        
                     </ul>
                   </li>
                   <li class="col-sm-3 col-xs-12">
@@ -218,7 +221,14 @@
                   </li>
                   <li class="col-sm-3 col-xs-12">
                     <ul class="list-unstyled">
-                      <li>生活常規</li>
+                      <li>搜尋標簽</li>
+                      <li class=""><%= link_to '所有標簽', tag_all_path %></li>
+                      <li class="">
+                        <%= form_tag'/games/hashtag/:name', method: :get  do %>
+                          <%= text_field_tag :search, params[:search], placeholder: "請輸入...", class: "form-control" %>
+                          <%= submit_tag "Search", class: "btn btn-success pull-right" %>
+                        <% end %>
+                      </li>
                     </ul>
                   </li>
                 </ul>

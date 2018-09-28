@@ -12,9 +12,24 @@ before_action :authenticate_user!, only: [:new, :favorite]
   	@games = Game.ransack({:title_or_tool_or_step_cont => @q}).result(distinct: true)
   end
 
-  def hashtags
-    @tag = Tag.find_by(name: params[:name])
-    @games = @tag.games
+  def hashtag
+    if params[:search]
+      tag = Tag.find_by(name: params[:search])
+        if tag
+          redirect_to "/games/hashtag/#{tag.name}"
+          params[:name] = params[:search]
+        else
+          flash[:alert] = "Sorry! #{params[:search]} was not found. Here are all hashtags"
+          redirect_to tag_all_path
+       end
+    else  
+      @tag = Tag.find_by(name: params[:name])
+      @games = @tag.games.all.order(favorites_count: :asc)
+    end
+  end
+
+  def tag_all
+    @tags = Tag.all
   end
 
   def show
