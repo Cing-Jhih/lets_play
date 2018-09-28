@@ -11,8 +11,8 @@
           適齡
         </div>
       <% end %>
-      <div class="caption border-color-<%= game.situation_games.present? ? color-game.situation_games.first.situation_id : color-1 %>">
-        <h3 class="color-<%= game.situation_games.present? ? color-game.situation_games.first.situation_id : color-1 %>"><%= game.title %></h3>
+      <div class="caption border-color-<%= game.situation_games.present? ? game.situation_games.first.situation_id : 1 %>">
+        <h3 class="color-<%= game.situation_games.present? ? game.situation_games.first.situation_id : 1 %>"><%= game.title %></h3>
        
         <ul class="list-inline">
         <li class="pull-right">by&nbsp;<%= game.user.name %></li>
