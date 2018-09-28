@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   end
 
   root "games#index"
-  get '/games/tag_all' => 'games#tag_all', as: :tag_all
   get '/games/hashtag/:name', to:'games#hashtag', as: :hashtag
 
   resources :games do

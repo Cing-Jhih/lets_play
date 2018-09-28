@@ -216,7 +216,6 @@
                       <li class=""><a href="/games/hashtag/科學邏輯">科學邏輯</a></li>
                       <li class=""><a href="/games/hashtag/語言表答">語言表答</a></li>
                       <li class=""><a href="/games/hashtag/生活常規">生活常規</a></li>
-                      <li class=""><a href="/games/hashtag/做家事">做家事</a></li>
                     </ul>
                   </li>
                   <li class="col-sm-3 col-xs-12">
@@ -229,15 +228,11 @@
                   </li>
                   <li class="col-sm-3 col-xs-12">
                     <ul class="list-unstyled">
-                      <li>搜尋標簽</li>
-                      <li class=""><%= link_to '所有標簽', tag_all_path %></li>
-                      <li></li>
-                      <li class="">
-                        <%= form_tag'/games/hashtag/:name', method: :get  do %>
-                          <%= text_field_tag :search, params[:search], placeholder: "請輸入...", class: "form-control" %>
-                          <%= submit_tag "Search", class: "btn btn-success pull-right" %>
-                        <% end %>
-                      </li>
+                      <li>生活常規</li>
+                      <li class=""><a href="/games/hashtag/做家事">做家事</a></li>
+                      <li class=""><a href="/games/hashtag/自理">自理</a></li>
+                      <li class=""><a href="/games/hashtag/安全"></a>安全</li>
+                      <li class=""><a href="/games/hashtag/人際禮儀"></a>人際禮儀</li>
                     </ul>
                   </li>
                 </ul>

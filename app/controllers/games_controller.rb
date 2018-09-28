@@ -28,10 +28,6 @@ before_action :authenticate_user!, only: [:new, :favorite]
     end
   end
 
-  def tag_all
-    @tags = Tag.all
-  end
-
   def show
     @game = Game.find(params[:id])
     @age_games = @game.age_games.all.order(age_id: :asc)
