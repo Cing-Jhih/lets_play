@@ -16,6 +16,10 @@ class User < ApplicationRecord
   has_many :followings, through: :followships
   has_many :inverse_followships, class_name: "Followship", foreign_key: "following_id"
   has_many :followers, through: :inverse_followships, source: :user
+  has_many :messages, dependent: :destroy
+  has_many :receivers, through: :messages
+  has_many :inverse_messages, class_name: "Message", foreign_key: "receiver_id"
+  has_many :senders, through: :inverse_messages, source: :user
 
   def self.from_omniauth(auth)
     # Case 1: Find existing user by facebook uid
