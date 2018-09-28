@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180923030816) do
+ActiveRecord::Schema.define(version: 20180926215638) do
 
   create_table "age_games", force: :cascade do |t|
     t.integer "game_id"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 20180923030816) do
     t.datetime "updated_at", null: false
     t.integer "favorites_count", default: 0
     t.integer "replies_count", default: 0
+    t.integer "min_age", limit: 12
+    t.integer "max_age", limit: 12
   end
 
   create_table "games_tags", id: false, force: :cascade do |t|

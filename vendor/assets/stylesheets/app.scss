@@ -6941,8 +6941,8 @@ footer .color-bar {
   border: none !important;
 }
 
-.priceRange .progress .progress-bar,
-.priceRange .progress .bulet,
+.ageRange .progress .progress-bar,
+.ageRange .progress .bulet,
 .courseList .media-body .list-inline.btnPart.btn-green > li a.btn-primary:hover {
   background-color: #b5d56a !important;
   border: none !important;
@@ -7432,7 +7432,7 @@ footer .color-bar {
   float: left;
 }
 
-.priceRange .progress {
+.ageRange .progress {
   margin: 20px 0 25px 0;
   height: 4px;
   background-color: #252525;
@@ -7440,11 +7440,11 @@ footer .color-bar {
   overflow: visible;
 }
 
-.priceRange .progress .progress-bar {
+.ageRange .progress .progress-bar {
   background-color: #b5d56a !important;
 }
 
-.priceRange .progress .bulet {
+.ageRange .progress .bulet {
   width: 16px;
   height: 16px;
   background-color: #b5d56a !important;
@@ -7455,35 +7455,35 @@ footer .color-bar {
   position: absolute;
 }
 
-.priceRange .progress .bulet.next {
+.ageRange .progress .bulet.next {
   left: 60px;
 }
 
-.priceRange .priceLabel {
+.ageRange .priceLabel {
   float: right;
   line-height: 30px;
   color: #202020;
 }
 
 @media (min-width: 480px) {
-  .priceRange .priceLabel {
+  .ageRange .priceLabel {
     font-size: 14px;
   }
 }
 
 @media (min-width: 768px) {
-  .priceRange .priceLabel {
+  .ageRange .priceLabel {
     font-size: 5px;
   }
 }
 
 @media (min-width: 992px) {
-  .priceRange .priceLabel {
+  .ageRange .priceLabel {
     font-size: 14px;
   }
 }
 
-.priceRange {
+.ageRange {
   position: relative;
   display: inline-block;
   width: 100%;
@@ -7491,30 +7491,29 @@ footer .color-bar {
   margin-top: 20px;
 }
 
-.priceRange .price-slider-inner {
+.ageRange .price-slider-inner {
   display: block;
   margin: 15px 0 25px 0;
 }
 
-.priceRange .price-slider-inner .amount-wrapper {
+.ageRange .price-slider-inner .amount-wrapper {
   position: absolute;
-  bottom: 14px;
-  right: 0;
-  font-size: 14px;
-  width: 120px;
+  left: 20;
+  font-size: 16px;
+  width: 200px;
 }
 
-.priceRange .price-slider-inner .amount-wrapper input {
+.ageRange .price-slider-inner .amount-wrapper input {
   background-color: transparent;
   border: 0;
   width: 28%;
-  font-size: 14px;
+  font-size: 16px;
   color: #666666;
   font-weight: 400;
-  text-align: right;
+  text-align: left;
 }
 
-.priceRange .price-slider-inner .ui-widget-content {
+.ageRange .price-slider-inner .ui-widget-content {
   background: none;
   border: 0;
   background-color: #eeeeee;
@@ -7525,13 +7524,13 @@ footer .color-bar {
   margin: 0 5px 0 9px;
 }
 
-.priceRange .price-slider-inner .ui-widget-content .ui-slider-range {
+.ageRange .price-slider-inner .ui-widget-content .ui-slider-range {
   background-color: #b5d56a;
   border: none;
   border-radius: 0;
 }
 
-.priceRange .price-slider-inner .ui-widget-content .ui-slider-handle {
+.ageRange .price-slider-inner .ui-widget-content .ui-slider-handle {
   border-radius: 50%;
   border-radius: 3px;
   background: none;
@@ -7543,7 +7542,7 @@ footer .color-bar {
   outline: none;
 }
 
-.priceRange .btn-primary {
+.ageRange .btn-primary {
   border: none !important;
 }
 

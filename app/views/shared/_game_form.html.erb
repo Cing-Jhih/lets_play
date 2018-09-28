@@ -15,29 +15,38 @@
               </div>
             <% end %>
 
-
-
         <div class="homeContactContent">
             <div class="form-group">
               <%= form.label "遊戲標題" %>
               <%= form.text_field :title, class: "form-control border-color-3" %>
             </div><br>
+
             <div class="form-group">
-              <p>適合年齡：</p>
-              <%= collection_check_boxes(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}) do|b| %>
-              <%= b.label class:"btn btn-warning btn-xl btn-pill" do %>
-                  <%= b.check_box + b.text  %>
+              <%= form.label "適玩情境" %> <br>
+                <%= collection_check_boxes(:situation_game, :situation_id, Situation.all, :id, :condition) do |b|  %>
+                  <%= b.label class:"btn btn-info btn-xl btn-pill" do %>
+                    <%= b.check_box + b.text  %>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </div><br>
-            <div class="form-group">  
-             <p> 適玩情境：</p>
-              <%= collection_check_boxes(:situation_game, :situation_id, Situation.all, :id, :condition) do |b|  %>
-                <%= b.label class:"btn btn-success btn-xl btn-pill" do %>
-                  <%= b.check_box + b.text  %>
-                <% end %>
-              <% end %>
-            </div><br>
+              </div><br>
+           
+            <div class="form-group col-sm-8 col-xs-12">
+              <div class="ageRange">
+                <div class="price-slider-inner">
+                  <%= form.label "適合年齡：" %>
+                  <%= form.hidden_field :min_age, id:"min_age" %>
+                  <%= form.hidden_field :max_age, id:"max_age" %>
+                  <span class="amount-wrapper">
+                    <input type="text" id="game_min_age" readonly>
+                    <strong>至</strong>
+                    <input type="text" id="game_max_age" readonly>
+                    <strong>歲</strong>
+                  </span>
+                  <div id="age-range"></div>
+                </div>  
+              </div>
+            </div> <br>
+              
             <div class="form-group ">
               <%= image_tag game.image, size: 2.0 %>
               <%= form.file_field :image %>
@@ -50,7 +59,7 @@
 
             <div class="form-group">
               <%= form.label "遊戲道具" %><br />
-              <%= form.text_field :tool, class: "form-control border-color-4" %>
+              <%= form.text_field :tool, class: "form-control border-color-1" %>
             </div>
 
             <div class="form-group">

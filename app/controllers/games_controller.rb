@@ -80,6 +80,7 @@ before_action :authenticate_user!, only: [:new, :favorite]
   def create
     @game = Game.new(game_params)
     @game.user = current_user
+    
 
     if @game.save
        create_relationship
@@ -136,7 +137,7 @@ before_action :authenticate_user!, only: [:new, :favorite]
 
 private
   def game_params
-    params.require(:game).permit(:title, :image, :tool, :step, :user_id, :url)
+    params.require(:game).permit(:title, :image, :tool, :step, :user_id, :url, :min_age, :max_age)
   end
 
   def set_game
@@ -148,10 +149,11 @@ private
   end
 
   def create_relationship
-    unless params[:age_game][:age_id] == ""
-      age_ids = params[:age_game][:age_id]
+      age_ids = [] # 存放所有符合選定年齡的game.id
+      Age.where(old: (@game.min_age .. @game.max_age)).find_each do |age|
+      age_ids << age.id
       @game.age_games.destroy_all
-      (age_ids.length - 1).times do
+      age_ids.length.times do
         AgeGame.create!(
           age_id: age_ids.pop,
           game_id: @game.id,
