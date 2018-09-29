@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20180926215638) do
     t.datetime "updated_at", null: false
     t.integer "favorites_count", default: 0
     t.integer "replies_count", default: 0
-    t.integer "min_age", limit: 12
-    t.integer "max_age", limit: 12
+    t.integer "min_age"
+    t.integer "max_age"
   end
 
   create_table "games_tags", id: false, force: :cascade do |t|
