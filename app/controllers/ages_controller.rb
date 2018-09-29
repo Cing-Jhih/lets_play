@@ -1,8 +1,8 @@
 class AgesController < ApplicationController
   def show
     @age = Age.find(params[:id])
-    @age_games = @age.age_games.all  
-    games_ids = []  
+    @age_games = @age.age_games.all
+    games_ids = []
     @age_games.find_each do |age_game|
       games_ids << age_game.game_id
     end
@@ -16,7 +16,7 @@ class AgesController < ApplicationController
         games_ids << suitable_game.id
       end
     end
-    games_ids.uniq  
+    games_ids.uniq
     @games = Game.where(id: games_ids).all.order(favorites_count: :asc)
    end
   
@@ -28,7 +28,7 @@ class AgesController < ApplicationController
         games_ids << suitable_game.id
       end
     end
-    games_ids.uniq  
+    games_ids.uniq
     @games = Game.where(id: games_ids).all.order(favorites_count: :asc)
   end
 
@@ -39,7 +39,7 @@ class AgesController < ApplicationController
         games_ids << suitable_game.id
       end
     end
-    games_ids.uniq  
+    games_ids.uniq
     @games = Game.where(id: games_ids).all.order(favorites_count: :asc)
   end
 
@@ -50,7 +50,7 @@ class AgesController < ApplicationController
         games_ids << suitable_game.id
       end
     end
-    games_ids.uniq  
+    games_ids.uniq
     @games = Game.where(id: games_ids).all.order(favorites_count: :asc)
   end
 
@@ -61,7 +61,7 @@ class AgesController < ApplicationController
         games_ids << suitable_game.id
       end
     end
-    games_ids.uniq  
+    games_ids.uniq
     @games = Game.where(id: games_ids).all.order(favorites_count: :asc)
   end
 end
