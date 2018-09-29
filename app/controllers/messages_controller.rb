@@ -10,6 +10,14 @@ class MessagesController < ApplicationController
     redirect_to user_path(@receiver)
   end
 
+  def destroy
+    @message = Message.find(params[:id])
+    if @message.receiver == current_user
+      @message.destroy
+      redirect_to user_path(current_user)
+    end
+  end
+
 private
   def message_params
     params.require(:message).permit(:content)
