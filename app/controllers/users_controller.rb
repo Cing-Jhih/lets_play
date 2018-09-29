@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @followings = @user.followings.all
     @followers = @user.followers.all
     @message = Message.new
+    @msg_received = Message.where(receiver_id: @user.id)
     if session[:fb_first_login]
       session[:fb_first_login] = nil
       redirect_to session[:previous_url]
