@@ -33,7 +33,16 @@ Rails.application.routes.draw do
   end
 
   resources :situations, only: :show
-  resources :ages, only: :show
+  resources :ages do
+    collection do
+      get :baby
+      get :kidergarten
+      get :junior
+      get :middle
+      get :senior
+    end
+  end
+      
   resources :followships, only: [:create, :destroy]
 
   namespace :admin do

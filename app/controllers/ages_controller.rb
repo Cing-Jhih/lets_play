@@ -8,5 +8,24 @@ class AgesController < ApplicationController
     end  
     @games = Game.where(id: games_ids).all.order(created_at: :desc)
   end
-  
+
+  def baby
+    
+  end
+
+  def kidergarten
+    
+  end
+
+  def junior
+    
+  end
+
+  def middle
+    
+  end
+
+  def senior
+    
+  end
 end
