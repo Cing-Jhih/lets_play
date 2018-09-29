@@ -63,6 +63,8 @@
                     </div>
                   <% end %>
                 <% end %>
+              <% else %>
+                <div class="professionDetails">需先完成<%= link_to "登入", user_session_path %>, 才能發送悄悄話</p>
               <% end %>
             </div>
           </div>
