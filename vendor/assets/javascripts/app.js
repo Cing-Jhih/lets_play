@@ -245,7 +245,7 @@ $('.cart-dropdown a').on('click',function() {
     range: true,
     min: minimum,
     max: maximum,
-    values: [3, 8],
+    values: [$('#min_age').val(), $('#max_age').val()],
     slide: function( event, ui ) {
       $('#game_min_age').val(ui.values[0]);
       $('#game_max_age').val(ui.values[1]);

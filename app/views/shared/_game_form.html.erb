@@ -23,7 +23,7 @@
 
             <div class="form-group">
               <%= form.label "適玩情境" %> <br>
-                <%= collection_check_boxes(:situation_game, :situation_id, Situation.all, :id, :condition) do |b|  %>
+                <%= collection_check_boxes(:situation_game, :situation_id, Situation.all, :id, :condition, {checked: @game_situations}) do |b|  %>
                   <%= b.label class:"btn btn-info btn-xl btn-pill" do %>
                     <%= b.check_box + b.text  %>
                   <% end %>
