@@ -333,8 +333,238 @@ AgeGame.create!(
      situation_id: Situation.find_by(condition: "室內").id
    )
 
+   Game.create!(
+           user_id:7,
+           title:"身體變魔術", remote_image_url:"",
+           url:"",
+           tool:"無",
+           step:"大人的身體是極佳的遊戲工具，「身體變魔術」就是個不需任何物品或玩具輔助，就能逗得孩子哈哈笑的身體遊戲。大人可以把自己想像成驚奇箱中的彈跳小丑，用幽默逗趣的方式，把身體部位與各種聲音結合在一起。
+           1.把寶寶抱在身前，與他面對面。
+           2.透過五官與聲音的配對組合，吸引寶寶注意。如拉臉頰時發出「ㄅㄚˇㄅㄨ」聲、捏鼻子時發出扣扣聲、拉左耳時吐舌頭、拉右耳時抬起左手。
+           3.一開始可以自己先演給寶寶看。等孩子慢慢領略聲音與動作之間的關聯性後，讓寶寶碰你的五官，你來發出各種不同聲音。
+
+           #認知, #社會, #身體動作
+      ",
+         )
+         AgeGame.create!(
+           game_id: Game.last.id,
+           age_id: Age.find_by(old: 1 ).id
+         )
+         AgeGame.create!(
+           game_id: Game.last.id,
+           age_id: Age.find_by(old: 2 ).id
+         )
+         SituationGame.create!(
+           game_id: Game.last.id,
+           situation_id: Situation.find_by(condition: "無道具").id
+         )
+         SituationGame.create!(
+           game_id: Game.last.id,
+           situation_id: Situation.find_by(condition: "戶外").id
+         )
+         SituationGame.create!(
+           game_id: Game.last.id,
+           situation_id: Situation.find_by(condition: "室內").id
+         )
+         SituationGame.create!(
+           game_id: Game.last.id,
+           situation_id: Situation.find_by(condition: "餐廳").id
+         )
+         SituationGame.create!(
+           game_id: Game.last.id,
+           situation_id: Situation.find_by(condition: "交通中").id
+         )
+
+   Game.create!(
+         user_id:9,
+         title:"童話小劇場", remote_image_url:"",
+         url:"",
+         tool:"毯子或床單；寶寶最喜歡最熟悉的童話故事書；所選角色需要的戲服、佈景或面具",
+         step:"1.這將需要一個比較長的準備過程，你可以讓孩子一起參與製作戲服，並讓孩子瞭解自己扮演角色所要說的臺詞；
+               2.在房間中間攤開毯子，作為舞臺，並佈置好佈景；
+               3.為你自己和孩子穿上戲服；
+               4.一起演出這個故事；
+               5.你們還可以在親朋好友和孩子的小朋友面前表演這齣戲，它可以成為你們家的保留節目哦！
+               注意事項：孩子有時會說出和劇情不符的臺詞，要鼓勵並配合他突發的奇想哦！
+
+         #戲劇, #身體動作
+    ",
+       )
+       AgeGame.create!(
+         game_id: Game.last.id,
+         age_id: Age.find_by(old: 3 ).id
+       )
+       AgeGame.create!(
+         game_id: Game.last.id,
+         age_id: Age.find_by(old: 4 ).id
+       )
+       AgeGame.create!(
+         game_id: Game.last.id,
+         age_id: Age.find_by(old: 5 ).id
+       )
+       AgeGame.create!(
+         game_id: Game.last.id,
+         age_id: Age.find_by(old: 6 ).id
+       )
+       SituationGame.create!(
+         game_id: Game.last.id,
+         situation_id: Situation.find_by(condition: "室內").id
+       )
+
+   Game.create!(
+             user_id:21,
+             title:"找寶藏", remote_image_url:"",
+             url:"",
+             tool:"為孩子準備一件神秘禮物，如他喜歡吃的糖果或喜愛的玩具，作為寶貝；一些卡片（可以是空白的名片卡）；一個裝卡片的小包包。",
+             step:"1.先把神秘寶貝藏起來；
+                   2.製作卡片，可以文字配合圖片，如畫一張衣櫃，再寫上「衣櫃」及其拼音。再分別把卡片藏好；
+                   3.替孩子背上小包包，然後給他第一張「衣櫃」卡片，小朋友就可以到衣櫃那邊找另一張指示卡片了；
+                   4.依此類推直到孩子找到寶藏。
+                   注意事項：把卡片和寶貝藏在孩子容易找到的地方，同時要確定房間裏沒有讓孩子碰撞或受傷的地方。
+
+             #數學邏輯, #身體動作
+        ",
+           )
+           AgeGame.create!(
+             game_id: Game.last.id,
+             age_id: Age.find_by(old: 4 ).id
+           )
+           AgeGame.create!(
+             game_id: Game.last.id,
+             age_id: Age.find_by(old: 5 ).id
+           )
+           AgeGame.create!(
+             game_id: Game.last.id,
+             age_id: Age.find_by(old: 6 ).id
+           )
+           SituationGame.create!(
+             game_id: Game.last.id,
+             situation_id: Situation.find_by(condition: "室內").id
+           )
+
+   Game.create!(
+             user_id:15,
+             title:"買東西嘍！", remote_image_url:"",
+             url:"",
+             tool:"假的錢（可以是錢幣樣式的，也可以是自己做的紙錢）；賣的東西的標價單（自製）；小玩具",
+             step:"1.先簡單介紹一下錢的面值；
+                   2.媽媽和孩子一個扮演老闆，一個扮演顧客；
+                   3.老闆在要「賣」的小玩具前放上標價單；
+                   4.顧客來買東西，「交易」開始了。
+                   注意事項：孩子年紀還小，所以，「交易」最好在10元以內。
+
+             #數學邏輯, #角色扮演, #社會化
+         ",
+           )
+           AgeGame.create!(
+             game_id: Game.last.id,
+             age_id: Age.find_by(old: 6 ).id
+           )
+           AgeGame.create!(
+             game_id: Game.last.id,
+             age_id: Age.find_by(old: 7 ).id
+           )
+           AgeGame.create!(
+             game_id: Game.last.id,
+             age_id: Age.find_by(old: 8 ).id
+           )
+           SituationGame.create!(
+             game_id: Game.last.id,
+             situation_id: Situation.find_by(condition: "室內").id
+           )
+
+   Game.create!(
+             user_id:21,
+             title:"自己做樂器", remote_image_url:"",
+             url:"",
+             tool:"各種罐子；小豆子；小石子；7個矮玻璃杯；鍋蓋；小鈴鐺；鬆緊帶等",
+             step:"1.在空罐中加入小豆子；
+                   2.在另一個罐子中加入小石子，讓孩子比較一下，兩個罐子發出的聲音有什?不同；
+                   3.在7 個矮玻璃杯中加入水，比例是1：2：3：4：5：6：7，用不銹鋼湯匙敲就會有不同的音調傳出；
+                   4.2個鍋蓋可以當成銅鑼；
+                   5.鬆緊帶系上小鈴鐺，套在孩子的手上就是手鐲鈴了。
+                   6.好了，現在可以舉辦一個小小的家庭音樂會了。
+                   注意事項：一定要注意安全，確保罐子的開口不尖利，以免傷到孩子。
+
+             #DIY, #音樂, #律動, #身體知覺
+         ",
+           )
+           AgeGame.create!(
+             game_id: Game.last.id,
+             age_id: Age.find_by(old: 6 ).id
+           )
+           AgeGame.create!(
+             game_id: Game.last.id,
+             age_id: Age.find_by(old: 7 ).id
+           )
+           AgeGame.create!(
+             game_id: Game.last.id,
+             age_id: Age.find_by(old: 8 ).id
+           )
+           AgeGame.create!(
+             game_id: Game.last.id,
+             age_id: Age.find_by(old: 9 ).id
+           )
+           AgeGame.create!(
+             game_id: Game.last.id,
+             age_id: Age.find_by(old: 10 ).id
+           )
+           SituationGame.create!(
+             game_id: Game.last.id,
+             situation_id: Situation.find_by(condition: "室內").id
+           )
+
+   Game.create!(
+             user_id:17,
+             title:"扔沙包", remote_image_url:"",
+             url:"",
+             tool:"一塊小布片；一小堆細沙",
+             step:"1.把布片三面縫合，裝入細沙，再把最後一面縫合，做成一個沙包；
+                   2.爸爸媽媽面對面約隔4-5米，孩子站在當中；
+                   3.爸爸媽媽負責扔沙包，孩子閃躲，若被扔中了就換人；
+                   4.或者和孩子站成一排，每人用腳夾住一個沙包，向前甩出去，接著跑去，用腳抓起自己的沙包再向前甩出去；
+                   5.誰先到達終點，誰就獲得了勝利。
+                   注意事項：爸爸媽媽扔沙包的時候請注意出手輕一些，孩子用腳甩沙包的時候，也當心他被絆倒。
+
+             #運動, #親子同樂
+         ",
+           )
+           AgeGame.create!(
+             game_id: Game.last.id,
+             age_id: Age.find_by(old: 6 ).id
+           )
+           AgeGame.create!(
+             game_id: Game.last.id,
+             age_id: Age.find_by(old: 7 ).id
+           )
+           AgeGame.create!(
+             game_id: Game.last.id,
+             age_id: Age.find_by(old: 8 ).id
+           )
+           AgeGame.create!(
+             game_id: Game.last.id,
+             age_id: Age.find_by(old: 9 ).id
+           )
+           AgeGame.create!(
+             game_id: Game.last.id,
+             age_id: Age.find_by(old: 10 ).id
+           )
+           AgeGame.create!(
+             game_id: Game.last.id,
+             age_id: Age.find_by(old: 11 ).id
+           )
+           AgeGame.create!(
+             game_id: Game.last.id,
+             age_id: Age.find_by(old: 12 ).id
+           )
+           SituationGame.create!(
+             game_id: Game.last.id,
+             situation_id: Situation.find_by(condition: "戶外").id
+           )
+
+
 
    puts "seed game created"
- 
+
  end
 end
