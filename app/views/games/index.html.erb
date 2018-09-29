@@ -192,7 +192,7 @@
                   data-easing="Back.easeInOut"
                   data-endspeed="300"
                   style="z-index: 5; color: #666666;">
-                  天天陪孩子<span>一起玩</span>
+                  今天想陪孩子<span>玩什麼？</span>
                 </div>
                 <!-- LAYER NR. 2 -->
                 <div class="tp-caption rs-caption-2 sft text-center"
@@ -208,8 +208,8 @@
                   style="z-index: 5;color: #666666;">
                   <%# select age and situation, rand a game  %>
                     <%= form_tag '/games/random', method: :get do %>
-                      <%= collection_select(:age_game, :age_id, Age.all, :id, :name,  {prompt:true}, {:class => 'roundOne border-color-2'}) %>
-                      <%= collection_select(:situation_game, :situation_id, Situation.all, :id, :condition, {prompt:true}, {:class => 'dropGeneral roundOne border-color-2'}) %>
+                      <%= collection_select(:age_game, :age_id, Age.all, :id, :name,  {prompt:"選擇孩子年齡"}, {:class => 'roundOne border-color-2'}) %>
+                      <%= collection_select(:situation_game, :situation_id, Situation.all, :id, :condition, {prompt:"選擇遊戲情境"}, {:class => 'dropGeneral roundOne border-color-2'}) %>
                       <%= submit_tag "推薦遊戲", class:'btn btn-success' %>
                     <% end %>
                   請用下拉選單設定遊戲條件,或按麥克風啟動語音簡易推薦

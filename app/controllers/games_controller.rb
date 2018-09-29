@@ -12,9 +12,20 @@ before_action :authenticate_user!, only: [:new, :favorite]
   	@games = Game.ransack({:title_or_tool_or_step_cont => @q}).result(distinct: true)
   end
 
-  def hashtags
-    @tag = Tag.find_by(name: params[:name])
-    @games = @tag.games
+  def hashtag
+    if params[:search]
+      tag = Tag.find_by(name: params[:search])
+        if tag
+          redirect_to "/games/hashtag/#{tag.name}"
+          params[:name] = params[:search]
+        else
+          flash[:alert] = "Sorry! #{params[:search]} was not found. Here are all hashtags"
+          redirect_to tag_all_path
+       end
+    else
+      @tag = Tag.find_by(name: params[:name])
+      @games = @tag.games.all.order(favorites_count: :asc)
+    end
   end
 
   def show
@@ -26,7 +37,6 @@ before_action :authenticate_user!, only: [:new, :favorite]
     # ssl lets iframe tag can work on https site like heroku
     @youtube_url = YouTubeRails.youtube_embed_url_only(@game.url, ssl: true) 
     @url = 'https://kidgamebata.herokuapp.com/games/'+@game.id.to_s
-
   end
 
   def popular
@@ -80,7 +90,6 @@ before_action :authenticate_user!, only: [:new, :favorite]
   def create
     @game = Game.new(game_params)
     @game.user = current_user
-    
 
     if @game.save
        create_relationship
