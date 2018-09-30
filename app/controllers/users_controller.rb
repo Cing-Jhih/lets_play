@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :games, :replies]
+  before_action :set_user, only: [:show, :edit, :update, :games, :replies, :messages]
 
   def index
     @users = User.all
@@ -10,7 +10,6 @@ class UsersController < ApplicationController
     @followings = @user.followings.all
     @followers = @user.followers.all
     @message = Message.new
-    @msg_received = Message.where(receiver_id: @user.id)
     if session[:fb_first_login]
       session[:fb_first_login] = nil
       redirect_to session[:previous_url]
@@ -48,6 +47,11 @@ class UsersController < ApplicationController
   end
 
   def messages
+    unless @user == current_user
+      flash[:alert] = "非本人不能看悄悄話喔!"
+      redirect_to user_path
+    end
+    @msg_received = Message.where(receiver_id: @user.id)
   end
     
 

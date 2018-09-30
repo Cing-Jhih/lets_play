@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     if @message.receiver == current_user
       @message.destroy
-      redirect_to user_path(current_user)
+      redirect_to messages_user_path(current_user)
     end
   end
 
