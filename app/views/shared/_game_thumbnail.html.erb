@@ -5,7 +5,7 @@
         <%= image_tag YouTubeRails.extract_video_image("#{game.url}", 'high'), class:"img-responsive" %>
       <% else %>
         <%= image_tag game.image, class:"img-responsive" %>
-      <% end %>  
+      <% end %>
        <% if current_user && game.suitable_age?(current_user) %>
         <div class="sticker bg-color-2">
           適齡
@@ -13,9 +13,9 @@
       <% end %>
       <div class="caption border-color-<%= game.situation_games.present? ? game.situation_games.first.situation_id : 1 %>">
         <h3 class="color-<%= game.situation_games.present? ? game.situation_games.first.situation_id : 1 %>"><%= game.title %></h3>
-       
+
         <ul class="list-inline">
-        <li class="pull-right">by&nbsp;<%= game.user.name %></li>
+        <li class="pull-right">發表者&nbsp;<%= game.user.name %></li>
           <li>
             <i class="fa fa-child" aria-hidden="true"></i>
             <% game.age_games.each do |age_game| %>
@@ -42,7 +42,7 @@
               <button class="btn btn-sm btn-outline-info"><%= link_to tag.name, "/games/hashtag/#{tag.name}" %></span></button>
             <% end %>
           </li>
-        </ul> 
+        </ul>
         <ul class="list-inline btn-yellow btnPart">
           <li><%= render partial: "shared/favorite", locals:{game: game} %> </li>
         </ul>

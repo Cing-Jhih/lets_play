@@ -11,7 +11,7 @@
               <% else %>
                 <%= image_tag game.image, class:"img-responsive" %>
               <% end %>
-              <% if current_user && game.suitable_age?(current_user) %>  
+              <% if current_user && game.suitable_age?(current_user) %>
                 <span class="sticker bg-color-2">
                   適齡
                 </span>
@@ -19,7 +19,7 @@
             <% end %>
             <div class="media-body">
               <h3 class="media-heading"><%= link_to game.title, game_path(game), class: game.situation_games.present? ? "color-#{ game.situation_games.first.situation_id }" : "color-1"%></h3>
-              <p class="pull-right">by&nbsp;<%= render partial: "shared/link_user_avatar", locals:{user: game.user} %> </p>
+              <p class="pull-right">發表者&nbsp;<%= render partial: "shared/link_user_avatar", locals:{user: game.user} %> </p>
               <ul class="list-inline">
                 <li>
                   <i class="fa fa-child" aria-hidden="true"></i>
@@ -47,7 +47,7 @@
                     <button class="btn btn-sm btn-outline-info"><%= link_to tag.name, "/games/hashtag/#{tag.name}" %></span></button>
                   <% end %>
                 </li>
-              </ul>  
+              </ul>
               <p>
                 <i class="fa fa-shapes" aria-hidden="true"></i>
                 <strong><%= game.tool %></strong>
@@ -65,5 +65,3 @@
     </div>
   </div>
 </section>
-
-

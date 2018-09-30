@@ -4,12 +4,12 @@
       <h2>
         <% if @games.blank? %>
           沒有符合資料！<br>
-          <%= link_to("Index", games_path, class: "btn btn-sm btn-success") %>
+          <%= link_to("首頁", games_path, class: "btn btn-sm btn-success") %>
         <% else %>
           <strong>
           找到 <%= @games.count %>篇符合 "<%= @q %>" 的遊戲單
           </strong>
-        <% end %>  
+        <% end %>
       </h2>
     </div>
   </div>

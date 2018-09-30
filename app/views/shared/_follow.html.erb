@@ -1,11 +1,11 @@
 <% if current_user %>
   <% if user != current_user %>
     <% if current_user.following?(user)%>
-      <%= link_to 'Unfollow', followship_path(user), method: :delete, class:"btn btn-danger btn-pill" %>
+      <%= link_to '取消追蹤', followship_path(user), method: :delete, class:"btn btn-danger btn-pill" %>
     <% else %>
-      <%= link_to 'Follow', followships_path(following_id: user), method: :post, class:"btn btn-outline-primary btn-pill"  %>
+      <%= link_to '追蹤', followships_path(following_id: user), method: :post, class:"btn btn-outline-primary btn-pill"  %>
     <% end %>
   <% end %>
 <% else %>
-  <%= link_to 'Follow', followships_path(following_id: user), method: :post, class:"btn btn-outline-primary btn-pill" %>
+  <%= link_to '追蹤', followships_path(following_id: user), method: :post, class:"btn btn-outline-primary btn-pill" %>
 <% end %>

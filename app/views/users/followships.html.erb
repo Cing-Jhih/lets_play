@@ -1,6 +1,6 @@
 <!-- 顯示我關注的人的清單 -->
      <div>
-       <h2>我關注的人</h2>
+       <h2>跟著做</h2>
        <% @followings.each do |user| %>
          <%= image_tag user.avatar, width: "80px", class: "rounded img-circle"%>
          <h5><%= link_to user.name, user_path(user) %></h5>
@@ -8,7 +8,7 @@
      </div>
      <!-- 顯示關注我的人的清單 -->
      <div>
-       <h2>關注我的人</h2>
+       <h2>粉絲</h2>
        <% @followers.each do |user| %>
          <%= image_tag user.avatar, width: "80px", class: "rounded img-circle"%>
          <h5><%= link_to user.name, user_path(user) %></h5>

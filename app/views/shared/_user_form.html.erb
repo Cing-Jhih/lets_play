@@ -5,7 +5,7 @@
         <%= form_with(model: user, local: true) do |form| %>
           <% if user.errors.any? %>
             <div id="error_explanation">
-              <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+              <h2><%= pluralize(user.errors.count, "error") %> 禁止使用者被儲存:</h2>
 
               <ul>
               <% user.errors.full_messages.each do |message| %>
@@ -14,7 +14,7 @@
               </ul>
             </div>
           <% end %>
-          
+
           <div class="homeContactContent">
             <div class="form-group">
               <%= image_tag current_user.avatar, size: 110 %>
@@ -40,9 +40,9 @@
               <%= form.submit "儲存更新", class: "btn btn-primary" %>
               <%= link_to "取消變更", user_path(@user), class: "btn btn-outline-primary" %>
             </div>
-          </div>   
+          </div>
         <% end %>
       </div>
-    </div>  
+    </div>
   </div>
 </div>

@@ -34,13 +34,13 @@
                 <i>(需要你輸入現在的密碼，來確認您的修改)</i>
                 <%= f.password_field :current_password, placeholder:"現在的密碼", autocomplete: "current-password", class:"form-control" %>
               </div>
-              
+
               <div class="form-group formField">
                 <%= f.submit "儲存修改" ,class:"btn btn-primary btn-block bg-color-3 border-color-3"%>
               </div>
             <% end %>
             <p class="help-block">
-              <%= link_to "Back", :back %>
+              <%= link_to "返回", :back %>
             </p>
           </div>
         </div>
