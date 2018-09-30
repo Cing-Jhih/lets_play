@@ -23,7 +23,7 @@
 
             <div class="form-group">
               <%= form.label "適玩情境" %> <br>
-                <%= collection_check_boxes(:situation_game, :situation_id, Situation.all, :id, :condition) do |b|  %>
+                <%= collection_check_boxes(:situation_game, :situation_id, Situation.all, :id, :condition, {checked: @game_situations}) do |b|  %>
                   <%= b.label class:"btn btn-info btn-xl btn-pill" do %>
                     <%= b.check_box + b.text  %>
                   <% end %>
@@ -54,22 +54,27 @@
 
             <div class="form-group">
               <%= form.label "YouTube分享連結" %>
-              <%= form.text_field :url, class: "form-control border-color-2", placeholder: 'https://youtu.be/HP-MbfHFUqs(YouTube分享連結格式)' %>
+              <%= form.text_field :url, class: "form-control border-color-2", placeholder: "請貼入YouTube分享連結（格式： https://youtu.be/HP-MbfHFUqs)" %>
             </div>
 
             <div class="form-group">
               <%= form.label "遊戲道具" %><br />
-              <%= form.text_field :tool, class: "form-control border-color-1" %>
+              <%= form.text_field :tool, class: "form-control border-color-1", placeholder: "紙盒3～8個，透明膠帶一卷，剪刀一把" %>
             </div>
 
             <div class="form-group">
               <%= form.label "遊戲方法" %><br />
-              <%= form.text_area :step, class: "form-control border-color-5" %>
+              <span class="color-5">請依序列出遊戲方式，並且在文中或文末，將要顯示成標簽的關鍵字前面加上＃字符，用空格與後者分開即可</span>
+              <%= form.text_area :step, class: "form-control border-color-5", 
+              placeholder: "步驟1：.....  
+步驟2：.....  
+步驟3：..... 
+#標籤關鍵字1 #標籤關鍵字2 #標籤關鍵字3"  %>
             </div>
 
             <div class="form-gruop pull-right">
               <%= form.submit "發表遊戲", class: "btn btn-primary" %>
-              <%= link_to "清除內容", games_path, class: "btn btn-outline-primary" %>
+              <%= link_to "清除內容", games_path, class: "btn btn-outline-primary"%>
             </div>   
 
           <% end %>

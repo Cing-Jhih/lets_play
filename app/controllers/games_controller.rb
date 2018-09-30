@@ -151,6 +151,8 @@ private
 
   def set_game
     @game = Game.find(params[:id])
+    @situation_games = @game.situation_games.all.order(situation_id: :asc)
+    @game_situations = @situation_games.pluck(:situation_id)
   end
 
   def validates_search_key

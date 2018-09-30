@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :games, :replies, :messages]
+  before_action :set_user, only: [:show, :edit, :update, :games, :replies, :followships, :messages]
 
   def index
     @users = User.all
@@ -46,6 +46,7 @@ class UsersController < ApplicationController
     @replied_games = @user.replied_games.uniq
   end
 
+
   def messages
     unless @user == current_user
       flash[:alert] = "非本人不能看悄悄話!"
@@ -55,6 +56,12 @@ class UsersController < ApplicationController
     @msg_sent = Message.where(user_id: @user.id)
   end
     
+
+  def followships
+    @followings = @user.followings.all
+    @followers = @user.followers.all
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
