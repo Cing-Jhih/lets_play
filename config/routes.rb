@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get :games
       get :replies
       get :favorites
+      get :messages
     end
     resources :messages, only: [:create, :destroy]
   end
