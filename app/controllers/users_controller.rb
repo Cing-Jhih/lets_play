@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :games, :replies, :followships]
+  before_action :set_user, only: [:show, :edit, :update, :games, :replies, :followships, :messages]
 
   def index
     @users = User.all
@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @favorited_games = @user.favorited_games.order(created_at: :desc)
     @followings = @user.followings.all
     @followers = @user.followers.all
+    @message = Message.new
     if session[:fb_first_login]
       session[:fb_first_login] = nil
       redirect_to session[:previous_url]
@@ -45,10 +46,22 @@ class UsersController < ApplicationController
     @replied_games = @user.replied_games.uniq
   end
 
+
+  def messages
+    unless @user == current_user
+      flash[:alert] = "非本人不能看悄悄話!"
+      redirect_to user_path
+    end
+    @msg_received = Message.where(receiver_id: @user.id)
+    @msg_sent = Message.where(user_id: @user.id)
+  end
+    
+
   def followships
     @followings = @user.followings.all
     @followers = @user.followers.all
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,0 +1,77 @@
+<section class="mainContent full-width clearfix">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="blogComments">
+          <h3 class="color-2">我收到的悄悄話</h3>
+          <div class="homeContactContent">
+            <div class="row">
+              <% if current_user %>
+                <% if @user.email == current_user.email %>
+                  <ul class="media-list commentsList">
+                    <% @msg_received.each do |message| %>
+                      <li class="media">
+                        <div class="media-left">
+                          <% if message.user.avatar? %>
+                            <%= image_tag message.user.avatar, width: "30px", class: "rounded img-circle"%>
+                          <% else %>
+                            <i class="fa fa-user-edit" aria-hidden="true"></i>
+                          <% end %>
+                        </div>
+                        <div class="media-body">
+                          <h4 class="media-heading">來自<%= link_to message.user.name, user_path(message.user) %></h4>
+                          <p><%= time_ago_in_words(message.created_at) %> ago</p>
+                          <p><%= message.content %></p>
+                        </div>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mainContent full-width clearfix">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="blogComments">
+          <h3 class="color-2">我發送的悄悄話</h3>
+          <div class="homeContactContent">
+            <div class="row">
+              <% if current_user %>
+                <% if @user.email == current_user.email %>
+                  <ul class="media-list commentsList">
+                    <% @msg_sent.each do |message| %>
+                      <li class="media">
+                        <div class="media-left">
+                          <% if message.receiver.avatar? %>
+                            <%= image_tag message.receiver.avatar, width: "30px", class: "rounded img-circle"%>
+                          <% else %>
+                            <i class="fa fa-user-edit" aria-hidden="true"></i>
+                          <% end %>
+                        </div>
+                        <div class="media-body">
+                          <h4 class="media-heading">發送給<%= link_to message.receiver.name, user_path(message.receiver) %></h4>
+                          <p><%= time_ago_in_words(message.created_at) %> ago</p>
+                          <p><%= message.content %></p>
+                        </div>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= link_to 'Back', :back %>

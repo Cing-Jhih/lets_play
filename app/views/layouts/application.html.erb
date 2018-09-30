@@ -249,6 +249,28 @@
   ——— Call controller-action
   ===================================== -->
 
+  <% if flash[:notice] %>
+    <div class="container">
+      <div class="row">
+        <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <%= notice %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+ 
+    <% if flash[:alert] %>
+    <div class="container">
+      <div class="row">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <%= alert %>
+        </div>
+      </div>
+    </div>
+    <% end %> 
+
   <%= yield %>
   <%= yield :page_js %>
 
@@ -301,6 +323,7 @@
     <div class="scrolling">
       <a href="#pageTop" class="backToTop hidden-xs" id="backToTop"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
     </div>
+    
   <%= javascript_include_tag 'app' %>
 </body>
 
