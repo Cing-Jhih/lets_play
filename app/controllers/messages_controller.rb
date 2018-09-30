@@ -7,6 +7,7 @@ class MessagesController < ApplicationController
     @message.receiver = @receiver
     @message.user = current_user
     @message.save!
+    flash[:notice] = "成功送出悄悄話！"
     redirect_to user_path(@receiver)
   end
 
