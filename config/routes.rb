@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get :games
       get :replies
       get :favorites
+      get :followships
     end
   end
 
@@ -42,7 +43,7 @@ Rails.application.routes.draw do
       get :senior
     end
   end
-      
+
   resources :followships, only: [:create, :destroy]
 
   namespace :admin do
