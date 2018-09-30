@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :games, :replies]
+  before_action :set_user, only: [:show, :edit, :update, :games, :replies, :followships]
 
   def index
     @users = User.all
@@ -43,6 +43,11 @@ class UsersController < ApplicationController
 
   def replies
     @replied_games = @user.replied_games.uniq
+  end
+
+  def followships
+    @followings = @user.followings.all
+    @followers = @user.followers.all
   end
 
   private
