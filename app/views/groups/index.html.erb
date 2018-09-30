@@ -1,0 +1,26 @@
+分齡玩伴
+<p>嬰兒(0~2歲)的玩伴</p>
+<% @user_baby.each do |user| %>
+  <%= link_to user.name, user_path(user) unless user.kid_age.blank? %>
+<% end %>
+
+<p>幼兒(3~5歲)的玩伴</p>
+<% @user_kidergarten.each do |user| %>
+  <%= link_to user.name, user_path(user) %>
+<% end %>
+
+<p>低年級(6~7歲)</p>
+<% @user_junior.each do |user| %>
+  <%= link_to user.name, user_path(user) %>
+<% end %>
+
+<p>中年級(8~9歲)</p>
+<% @user_middle.each do |user| %>
+  <%= link_to user.name, user_path(user) %>
+<% end %>
+
+<p>高年級(10~12歲)</p>
+<% @user_senior.each do |user| %>
+  <%= link_to user.name, user_path(user) %>
+<% end %>
+
