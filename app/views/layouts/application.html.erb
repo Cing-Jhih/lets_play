@@ -179,9 +179,11 @@
                   <span>適玩年齡</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-left">
-                  <% Age.all.order(id: :asc).each do |age| %>
-                    <li><%= link_to age.name, age_path(age) %></li>
-                  <% end %>
+                  <li><%= link_to '嬰兒 (0~2歲)', baby_ages_path %></li>
+                  <li><%= link_to '幼兒 (3~5歲)', kidergarten_ages_path %></li>
+                  <li><%= link_to '低年級(6~7歲)', junior_ages_path %></li>
+                  <li><%= link_to '中年級(8~9歲)', middle_ages_path %></li>
+                  <li><%= link_to '高年級(10~12歲)', senior_ages_path %></li>
                 </ul>
               </li>
               <li class="dropdown singleDrop color-1">
@@ -231,8 +233,8 @@
                       <li>生活常規</li>
                       <li class=""><a href="/games/hashtag/做家事">做家事</a></li>
                       <li class=""><a href="/games/hashtag/自理">自理</a></li>
-                      <li class=""><a href="/games/hashtag/安全"></a>安全</li>
-                      <li class=""><a href="/games/hashtag/人際禮儀"></a>人際禮儀</li>
+                      <li class=""><a href="/games/hashtag/安全">安全</a></li>
+                      <li class=""><a href="/games/hashtag/人際禮儀">人際禮儀</a></li>
                     </ul>
                   </li>
                 </ul>
