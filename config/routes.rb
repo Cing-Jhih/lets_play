@@ -10,6 +10,16 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :groups, only: [:index] do 
+    collection do
+      get :baby
+      get :kidergarten
+      get :junior
+      get :middle
+      get :senior
+    end
+  end
+
   root "games#index"
   get '/games/hashtag/:name', to:'games#hashtag', as: :hashtag
 
