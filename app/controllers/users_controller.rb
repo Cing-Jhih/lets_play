@@ -48,10 +48,11 @@ class UsersController < ApplicationController
 
   def messages
     unless @user == current_user
-      flash[:alert] = "非本人不能看悄悄話喔!"
+      flash[:alert] = "非本人不能看悄悄話!"
       redirect_to user_path
     end
     @msg_received = Message.where(receiver_id: @user.id)
+    @msg_sent = Message.where(user_id: @user.id)
   end
     
 
