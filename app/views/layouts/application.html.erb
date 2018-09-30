@@ -158,7 +158,7 @@
                     <li><%= link_to '個資與收藏', user_path(current_user) %></li>
                     <li><%= link_to '遊戲創作', games_user_path(current_user) %></li>
                     <li><%= link_to '評論交流', replies_user_path(current_user) %></li>
-                    <li><%= link_to '分齡玩伴', groups_path %></li>
+                    <li><%= link_to '分齡玩伴', groups_user_path(current_user) %></li>
                   </ul>
                 </li>
               <% end %>

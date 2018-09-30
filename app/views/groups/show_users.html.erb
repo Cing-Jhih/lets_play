@@ -1,0 +1,18 @@
+分齡玩伴
+<div class="tabCommon">
+  <ul class="nav nav-tabs">
+    <% @groups.each { |key, value| %>
+    <li id=<%=key%>><%= link_to value[:display], groups_path(key) %><li>
+    <% } %>
+  </ul>
+</div>
+
+<p> <%= @group_attr.values.first[:display] %> </p>
+<% @group_users.each do |user| %>
+  <%= link_to user.name, user_path(user) %>
+<% end %>
+
+<script>
+  $('li').removeClass('active')
+  $('#<%=@group_attr.keys.first.to_s%>').addClass('active')
+</script>

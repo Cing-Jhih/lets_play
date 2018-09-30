@@ -1,9 +1,48 @@
 class GroupsController < ApplicationController
+  GROUPS = {
+    baby: {
+      display: '嬰兒',
+      range: { min: 0, max: 3}
+    },
+    kindergarten: {
+      display: '幼兒',
+      range: { min: 3, max: 6}
+    },
+    junior: {
+      display: '低年級',
+      range: { min: 6, max: 8}
+    },
+    middle: {
+      display: '中年級',
+      range: { min: 8, max: 10}
+    },
+    senior: {
+      display: '高年級',
+      range: { min: 10, max: 13}
+    },
+  }
+
   def index
-    @user_baby = User.all.select { |user| age = user.kid_age.to_i; age >= 0 && age < 3 }
-    @user_kidergarten = User.all.select { |user| age = user.kid_age.to_i; age >= 3 && age < 6 }
-    @user_junior = User.all.select { |user| age = user.kid_age.to_i; age >= 6 && age < 8 }
-    @user_middle = User.all.select { |user| age = user.kid_age.to_i; age >= 8 && age < 10 }
-    @user_senior = User.all.select { |user| age = user.kid_age.to_i; age >= 10 && age < 13 }
+    redirect_to groups_path(which_group(kid_age: current_user.kid_age))
+  end
+
+  def show_users
+    @groups = GROUPS
+    @group_attr = GROUPS.select {|key, value| params[:level].include?(key.to_s) }
+    @group_users =
+      User.all.select { |user|
+        age = user.kid_age
+        age == nil ? false : (age.to_i >= @group_attr.values.first[:range][:min] && age.to_i < @group_attr.values.first[:range][:max])
+      }
+  end
+
+  private
+
+  def which_group (kid_age:)
+    return "baby" unless kid_age
+    kid_age = kid_age.to_i
+    GROUPS.each { |key, value|
+      return key if kid_age >= value[:range][:min] && kid_age < value[:range][:max]
+    }
   end
 end
