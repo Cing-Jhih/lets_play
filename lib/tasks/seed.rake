@@ -1,5 +1,8 @@
 namespace :seed do
  task games: :environment do
+    Game.destroy_all
+    AgeGame.destroy_all
+    SituationGame.destroy_all
     Game.create!(
       user_id:3,
       title:"一起來說說", remote_image_url:"https://cw1.tw/CP/images/article/P1398133247012.png",
