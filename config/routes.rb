@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     resources :messages, only: [:create, :destroy]
   end
 
+  get '/users/:id/group', to: 'groups#index', as: 'groups_user'
+  get '/groups/:level', to: 'groups#show_users', as: 'groups'
+
   root "games#index"
   get '/games/hashtag/:name', to:'games#hashtag', as: :hashtag
 

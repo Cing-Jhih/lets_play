@@ -1,0 +1,28 @@
+<section class="pageTitleSection">
+  <div class="container">
+    <div class="pageTitleInfo">
+      <h2>分齡玩伴</h2>
+    </div>
+  </div>
+</section>
+
+<section class="whiteSection full-width clearfix p-t-n">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="tabCommon">
+          <ul class="nav nav-tabs">
+            <% @groups.each { |key, value| %>
+            <li class=<%= (key == @group_attr.keys.first) ? 'active' : nil %>><%= link_to value[:display], groups_path(key) %><li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<% @group_users.each do |user| %>
+  <%= link_to user.name, user_path(user) %>
+<% end %>
