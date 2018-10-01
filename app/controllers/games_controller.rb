@@ -36,7 +36,7 @@ before_action :authenticate_user!, only: [:new, :favorite]
     # transform youtube share url to embed url
     # ssl lets iframe tag can work on https site like heroku
     @youtube_url = YouTubeRails.youtube_embed_url_only(@game.url, ssl: true) 
-    @url = 'https://kidgamebata.herokuapp.com/games/'+@game.id.to_s
+    @url = 'https://www.ac-letsplay.site/games/'+@game.id.to_s
   end
 
   def popular
