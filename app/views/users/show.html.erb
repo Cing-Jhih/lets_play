@@ -4,30 +4,35 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <div class="blogComments">
-          <h3 class="color-2">悄悄話</h3>
-          <div class="homeContactContent">
-            <div class="row">
-              <% if current_user %>
-                <%= form_for [@receiver, @message], :url => user_messages_path(@user) do |f| %>
-                  <div class="col-xs-12">
-                    <div class="form-group">
-                      <%= f.text_area :content, placeholder: "寫些悄悄話吧！", class: "form-control border-color-4" %>
+        <% if current_user %>
+          <% if current_user != @user %>
+            <div class="blogComments">
+              <h3 class="color-2">悄悄話</h3>
+              <div class="homeContactContent">
+                <div class="row">
+                  <%= form_for [@receiver, @message], :url => user_messages_path(@user) do |f| %>
+                    <div class="col-xs-12">
+                      <div class="form-group">
+                        <%= f.text_area :content, placeholder: "寫些悄悄話吧！", class: "form-control border-color-4" %>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-xs-12">
-                    <div class="form-group pull-right">
-                      <%= f.submit '送出', class: "btn btn-primary" %>&nbsp;&nbsp;
-                      <%= f.button "清除", type: :reset, class: "btn btn-outline-primary" %>
+                    <div class="col-xs-12">
+                      <div class="form-group pull-right">
+                        <%= f.submit '送出', class: "btn btn-primary" %>&nbsp;&nbsp;
+                        <%= f.button "清除", type: :reset, class: "btn btn-outline-primary" %>
+                      </div>
                     </div>
-                  </div>
-                <% end %>
-              <% else %>
-                <div class="professionDetails">需先完成<%= link_to "登入", user_session_path %>, 才能發送悄悄話</p>
-              <% end %>
+                  <% end %>
+                </div>
+              </div>
             </div>
+          <% end %>
+        <% else %>
+          <div class="blogComments">
+            <h3 class="color-2">悄悄話</h3>
+            <div class="professionDetails">需先完成<%= link_to "登入", user_session_path %>, 才能發送悄悄話</div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
