@@ -75,10 +75,16 @@
                 <% if current_user %>  
                   <li class="nav-item">
                     <span class="navbar-text">
-                      咍囉! <%= current_user.name %> 這次想玩什麼？
-                      &nbsp;
+                      咍囉! <%= current_user.name %> 
                     </span>
                   </li>
+                  <% if current_user.notifications.present? %>
+                    <li class="nav-item">
+                      <%= link_to messages_user_path(current_user) do %>
+                      你有<%= current_user.notifications.size %>則新訊息
+                      <% end %>
+                    </li>
+                  <% end %>
                   <li>
                     <%= link_to destroy_user_session_path, method: :delete do %>
                       <i class="fas fa-sign-out-alt bg-color-6"></i> 登出

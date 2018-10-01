@@ -54,6 +54,7 @@ class UsersController < ApplicationController
     end
     @msg_received = Message.where(receiver_id: @user.id)
     @msg_sent = Message.where(user_id: @user.id)
+    Notification.all.where(user_id: @user.id).destroy_all
   end
     
 

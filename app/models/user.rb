@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_many :receivers, through: :messages
   has_many :inverse_messages, class_name: "Message", foreign_key: "receiver_id"
   has_many :senders, through: :inverse_messages, source: :user
+  has_many :notifications
 
   def self.from_omniauth(auth)
     # Case 1: Find existing user by facebook uid
