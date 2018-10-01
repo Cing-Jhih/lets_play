@@ -17,6 +17,17 @@ class Game < ApplicationRecord
       tag = Tag.find_or_create_by(name: hashtag.downcase.delete('#'))
       game.tags << tag
     end
+    age_ids = [] # 存放所有符合選定年齡的game.id
+    Age.where(old: (self.min_age .. self.max_age)).find_each do |age|
+      age_ids << age.id
+      self.age_games.destroy_all
+      age_ids.length.times do
+        AgeGame.create!(
+          age_id: age_ids.pop,
+          game_id: self.id,
+          )
+      end
+    end  
   end
 
   before_update do
