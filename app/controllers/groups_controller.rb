@@ -1,23 +1,23 @@
 class GroupsController < ApplicationController
   GROUPS = {
     baby: {
-      display: '嬰兒',
+      display: '嬰兒(0~2歲)',
       range: { min: 0, max: 3}
     },
     kindergarten: {
-      display: '幼兒',
+      display: '幼兒(3~5歲)',
       range: { min: 3, max: 6}
     },
     junior: {
-      display: '低年級',
+      display: '低年級(6~7歲)',
       range: { min: 6, max: 8}
     },
     middle: {
-      display: '中年級',
+      display: '中年級(8~9歲)',
       range: { min: 8, max: 10}
     },
     senior: {
-      display: '高年級',
+      display: '高年級(10~12歲)',
       range: { min: 10, max: 13}
     },
   }
