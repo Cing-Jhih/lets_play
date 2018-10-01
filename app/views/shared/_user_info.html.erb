@@ -10,6 +10,7 @@
             <% if user.email == current_user.email %>
               <%= link_to '編輯個人檔案', edit_user_path(current_user) , class: "btn btn-sm btn-outline-info not-rounded" %>
               <%= link_to '修改密碼', edit_user_registration_path(current_user), class: "btn btn-sm btn-outline-info not-rounded" %>
+              <%= link_to '我的悄悄話', messages_user_path(current_user), class: "btn btn-sm btn-outline-info not-rounded" %>
             <% end %>
           <% end %>
         </div>

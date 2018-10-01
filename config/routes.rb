@@ -7,8 +7,10 @@ Rails.application.routes.draw do
       get :games
       get :replies
       get :favorites
+      get :messages
       get :followships
     end
+    resources :messages, only: [:create, :destroy]
   end
 
   root "games#index"

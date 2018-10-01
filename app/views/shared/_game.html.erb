@@ -120,18 +120,22 @@
             <h3 class="color-2">回應</h3>
             <div class="homeContactContent">
               <div class="row">
-                <%= form_for [game, @reply] do |f| %>
-                  <div class="col-xs-12">
-                    <div class="form-group">
-                      <%= f.text_area :content, placeholder: "在這裡回應", class: "form-control border-color-4" %>
+                <% if current_user %>
+                  <%= form_for [game, @reply] do |f| %>
+                    <div class="col-xs-12">
+                      <div class="form-group">
+                        <%= f.text_area :content, placeholder: "在這裡回應", class: "form-control border-color-4" %>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-xs-12">
-                    <div class="form-group pull-right">
-                      <%= f.submit '送出回應', class: "btn btn-primary" %>&nbsp;&nbsp;
-                        <%= f.button "清除回應", type: :reset, class: "btn btn-outline-primary" %>
+                    <div class="col-xs-12">
+                      <div class="form-group pull-right">
+                        <%= f.submit '送出回應', class: "btn btn-primary" %>&nbsp;&nbsp;
+                          <%= f.button "清除回應", type: :reset, class: "btn btn-outline-primary" %>
+                      </div>
                     </div>
-                  </div>
+                  <% end %>
+                <% else %>
+                  <div class="professionDetails">需先完成<%= link_to "登入", user_session_path %>, 才能留言</p>
                 <% end %>
               </div>
             </div>
