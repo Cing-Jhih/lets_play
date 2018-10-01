@@ -33,11 +33,11 @@
               發表者：<%= link_to game.user.name, user_path(game.user) %>
             </li>
             <li>
-              <i class="far fa-heart fa-lg" aria-hidden="true"></i> 
+              <i class="far fa-heart fa-lg" aria-hidden="true"></i>
               收藏數：<%=  game.favorites_count %>
             </li>
             <li>
-              <i class="far fa-comment fa-lg" aria-hidden="true"></i> 
+              <i class="far fa-comment fa-lg" aria-hidden="true"></i>
               回應數：<%=  game.replies_count %>
             </li>
           </ul>
@@ -90,7 +90,7 @@
           </div>
           <!-- Game.replies display -->
           <div class="blogComments">
-            <h3><%= game.replies_count %> Comments</h3>
+            <h3><%= game.replies_count %>評論</h3>
             <ul class="media-list commentsList">
               <% game.replies.each do |reply| %>
                 <li class="media">
@@ -107,7 +107,7 @@
                     <p><%= reply.content %></p>
                     <% if current_user %>
                       <% if reply.user.email == current_user.email || current_user.role == "admin" %>
-                        <%= link_to "刪除", game_reply_path(game, reply), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-primary pull-right" %>
+                        <%= link_to "刪除", game_reply_path(game, reply), method: :delete, data: { confirm: "你確定嗎?"}, class: "btn btn-primary pull-right" %>
                       <% end %>
                     <% end %>
                   </div>
@@ -117,20 +117,20 @@
           </div>
           <%# New reply form %>
           <div class="blogComments">
-            <h3 class="color-2">Leave A Reply</h3>
+            <h3 class="color-2">回應</h3>
             <div class="homeContactContent">
               <div class="row">
                 <% if current_user %>
                   <%= form_for [game, @reply] do |f| %>
                     <div class="col-xs-12">
                       <div class="form-group">
-                        <%= f.text_area :content, placeholder: "put your reply here", class: "form-control border-color-4" %>
+                        <%= f.text_area :content, placeholder: "在這裡回應", class: "form-control border-color-4" %>
                       </div>
                     </div>
                     <div class="col-xs-12">
                       <div class="form-group pull-right">
-                        <%= f.submit '送出留言', class: "btn btn-primary" %>&nbsp;&nbsp;
-                          <%= f.button "清除留言", type: :reset, class: "btn btn-outline-primary" %>
+                        <%= f.submit '送出回應', class: "btn btn-primary" %>&nbsp;&nbsp;
+                          <%= f.button "清除回應", type: :reset, class: "btn btn-outline-primary" %>
                       </div>
                     </div>
                   <% end %>
