@@ -22,7 +22,5 @@
   </div>
 </section>
 
+<%= render partial: "shared/user_intro_list", locals:{ users: @group_users}  %>
 
-<% @group_users.each do |user| %>
-  <%= link_to user.name, user_path(user) %>
-<% end %>

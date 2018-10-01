@@ -1,16 +1,41 @@
 <!-- 顯示我關注的人的清單 -->
-     <div>
-       <h2>跟著做</h2>
-       <% @followings.each do |user| %>
-         <%= image_tag user.avatar, width: "80px", class: "rounded img-circle"%>
-         <h5><%= link_to user.name, user_path(user) %></h5>
-       <% end %>
-     </div>
-     <!-- 顯示關注我的人的清單 -->
-     <div>
-       <h2>粉絲</h2>
-       <% @followers.each do |user| %>
-         <%= image_tag user.avatar, width: "80px", class: "rounded img-circle"%>
-         <h5><%= link_to user.name, user_path(user) %></h5>
-       <% end %>
-     </div>
+<% if @followings.present? %>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="sectionTitle text-center ">
+            <h2 class="wow fadeInUp">
+              <span class="shape shape-left bg-color-4"></span>
+              <!-- speech interactive buttons -->
+                <span>跟著做</span>
+              <span class="shape shape-right bg-color-4"></span>
+            </h2>
+            <%= render partial: "shared/user_intro_list", locals:{ users: @followings}  %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<!-- 顯示關注我的人的清單 -->
+<% if @followers.present? %>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="sectionTitle text-center ">
+            <h2 class="wow fadeInUp">
+              <span class="shape shape-left bg-color-4"></span>
+              <!-- speech interactive buttons -->
+                <span>粉絲</span>
+              <span class="shape shape-right bg-color-4"></span>
+            </h2>
+            <%= render partial: "shared/user_intro_list", locals:{ users: @followers}  %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
