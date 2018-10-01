@@ -1,5 +1,5 @@
 # Let's PLAY 親子遊戲分享平台
-
+提案影片 https://youtu.be/Yx10EbCkJa0 <br>
 <h3>Deploy Site:</h3>
 https://kidgamebata.herokuapp.com  Heroku(功能完整但速度較慢)<br>
 https://www.ac-letsplay.site/      GCP(測試中) <br>
