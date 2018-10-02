@@ -30,7 +30,7 @@ class GroupsController < ApplicationController
     @groups = GROUPS
     @group_attr = GROUPS.select {|key, value| params[:level].include?(key.to_s) }
     @group_users =
-      User.all.select { |user|
+      User.order(kid_birth: :desc).select { |user|
         age = user.kid_age
         age == nil ? false : (age.to_i >= @group_attr.values.first[:range][:min] && age.to_i < @group_attr.values.first[:range][:max])
       }
