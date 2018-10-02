@@ -4,14 +4,15 @@ namespace :seed do
   AgeGame.destroy_all
   SituationGame.destroy_all
     Game.create!(
-      user_id:3,
+      user_id:User.all.sample.id,
       title:"一起來說說", remote_image_url:"https://cw1.tw/CP/images/article/P1398133247012.png",
       url:"",
       tool:"",
       min_age:0,
       max_age:1,
       step:"1. 在嬰兒出現牙牙學語時，成人可適時加入寶寶咿啞咿啞的行列，模仿寶寶發出的聲音；並觀察當成人說話後，寶寶是否會接續著發出聲音，類似輪流對話的方式。
-            2. 在嬰兒發出近似「爸」、「媽」、「哥」、「包」等單音時，大人也可擴充孩子的詞語，說出疊字或簡單詞彙，如「爸爸」、「媽媽」、「哥哥」、「麵包」等，讓寶寶進一步#模仿，並學習正確的聲音與嘴型。
+            2. 在嬰兒發出近似「爸」、「媽」、「哥」、「包」等單音時，大人也可擴充孩子的詞語，說出疊字或簡單詞彙，如「爸爸」、「媽媽」、「哥哥」、「麵包」等，
+            讓寶寶進一步#模仿，並學習正確的聲音與嘴型。
             3. 大人也可唸一些簡單的#手指謠，如〈大姆哥〉或〈三輪車〉，在念謠中讓寶寶體會語言的聲韻趣味。",
             )
       SituationGame.create!(
@@ -20,7 +21,7 @@ namespace :seed do
         )
 
     Game.create!(
-      user_id:4,
+      user_id:User.all.sample.id,
       title:"毛巾運球", remote_image_url:"",
       url:"https://youtu.be/lvpQUWwfHxk",
       tool:"大浴巾，小球",
@@ -38,7 +39,7 @@ namespace :seed do
         )
 
     Game.create!(
-      user_id:2,
+      user_id:User.all.sample.id,
       title:"九宮格空間概念訓練", remote_image_url:"",
       url:"https://youtu.be/YXnEf_G5E24",
       tool:"透明文件夾, 白紙，彩色點點貼，奇異筆",
@@ -64,7 +65,7 @@ namespace :seed do
         )
 
     Game.create!(
-      user_id:5,
+      user_id:User.all.sample.id,
       title:"中秋親子遊戲~棒打柚子帽",
       remote_image_url:"",
       url:"https://youtu.be/Rnd2GwxUBRM",
@@ -81,7 +82,7 @@ namespace :seed do
         )
 
     Game.create!(
-      user_id:7,
+      user_id:User.all.sample.id,
       title:"沙水好朋友",
       remote_image_url:"",
       url:"",
@@ -102,7 +103,7 @@ namespace :seed do
         )
 
     Game.create!(
-      user_id:1,
+      user_id:User.all.sample.id,
       title:"拿（夾、捏）你千遍，也不厭倦",
       remote_image_url:"",
       url:"",
@@ -123,7 +124,7 @@ namespace :seed do
         )
 
     Game.create!(
-      user_id:1,
+      user_id:User.all.sample.id,
       title:"開動物派對，一起吃飯囉！",
       remote_image_url:"",
       url:"",
@@ -141,7 +142,7 @@ namespace :seed do
         )
 
     Game.create!(
-      user_id:14,
+      user_id:User.all.sample.id,
       title:"0-6個月大親子互動遊戲", remote_image_url:"",
       url:"https://youtu.be/k0jjTwU_Sh8",
       tool:"視覺閃卡，棉花，毛巾",
@@ -156,7 +157,7 @@ namespace :seed do
         )
 
     Game.create!(
-      user_id:21,
+      user_id:User.all.sample.id,
       title:"DIY拼圖積木，提升腦力",
       remote_image_url:"",
       url:"https://youtu.be/_2nRiK9kdYc",
@@ -172,7 +173,7 @@ namespace :seed do
         )
 
     Game.create!(
-      user_id:11,
+      user_id:User.all.sample.id,
       title:"菇仔學習有計–玩遊戲學專心", remote_image_url:"",
       url:"",
       tool:"羽毛",
@@ -190,7 +191,7 @@ namespace :seed do
         )
 
     Game.create!(
-      user_id:9,
+      user_id:User.all.sample.id,
       title:"在車上消耗小孩電力的親子遊戲",
       remote_image_url:"",
       url:"https://youtu.be/g7nkhIQ8ceA",
@@ -207,7 +208,7 @@ namespace :seed do
         )
 
     Game.create!(
-      user_id:1,
+      user_id:User.all.sample.id,
       title:"兒童遊戲-抓雪花", remote_image_url:"",
       url:"",
       tool:"小紙片",
@@ -223,7 +224,7 @@ namespace :seed do
         )
 
     Game.create!(
-      user_id:7,
+      user_id:User.all.sample.id,
       title:"身體變魔術", remote_image_url:"",
       url:"",
       tool:"無",
@@ -258,16 +259,16 @@ namespace :seed do
         )
 
     Game.create!(
-      user_id:9,
+      user_id:User.all.sample.id,
       title:"童話小劇場", remote_image_url:"",
       url:"",
       min_age:3,
       max_age:5,
-      tool:"毯子或床單；寶寶最喜歡最熟悉的童話故事書；所選角色需要的戲服、佈景或面具",
-      step:"1.這將需要一個比較長的準備過程，你可以讓孩子一起參與製作戲服，並讓孩子瞭解自己扮演角色所要說的臺詞；
-            2.在房間中間攤開毯子，作為舞臺，並佈置好佈景；
-            3.為你自己和孩子穿上戲服；
-            4.一起演出這個故事；
+      tool:"毯子或床單；寶寶最喜歡最熟悉的童話故事書,所選角色需要的戲服、佈景或面具",
+      step:"1.這將需要一個比較長的準備過程，你可以讓孩子一起參與製作戲服，並讓孩子瞭解自己扮演角色所要說的臺詞,
+            2.在房間中間攤開毯子，作為舞臺，並佈置好佈景,
+            3.為你自己和孩子穿上戲服,
+            4.一起演出這個故事,
             5.你們還可以在親朋好友和孩子的小朋友面前表演這齣戲，它可以成為你們家的保留節目哦！
             注意事項：孩子有時會說出和劇情不符的臺詞，要鼓勵並配合他突發的奇想哦！
             #戲劇, #身體動作
@@ -279,15 +280,15 @@ namespace :seed do
         )
 
     Game.create!(
-      user_id:21,
+      user_id:User.all.sample.id,
       title:"找寶藏", remote_image_url:"",
       url:"",
       min_age:4,
       max_age:6,
-      tool:"為孩子準備一件神秘禮物，如他喜歡吃的糖果或喜愛的玩具，作為寶貝；一些卡片（可以是空白的名片卡）；一個裝卡片的小包包。",
-      step:"1.先把神秘寶貝藏起來；
-            2.製作卡片，可以文字配合圖片，如畫一張衣櫃，再寫上「衣櫃」及其拼音。再分別把卡片藏好；
-            3.替孩子背上小包包，然後給他第一張「衣櫃」卡片，小朋友就可以到衣櫃那邊找另一張指示卡片了；
+      tool:"為孩子準備一件神秘禮物，如他喜歡吃的糖果或喜愛的玩具，作為寶貝,一些卡片（可以是空白的名片卡）,一個裝卡片的小包包。",
+      step:"1.先把神秘寶貝藏起來,
+            2.製作卡片，可以文字配合圖片，如畫一張衣櫃，再寫上「衣櫃」及其拼音。再分別把卡片藏好,
+            3.替孩子背上小包包，然後給他第一張「衣櫃」卡片，小朋友就可以到衣櫃那邊找另一張指示卡片了,
             4.依此類推直到孩子找到寶藏。
             注意事項：把卡片和寶貝藏在孩子容易找到的地方，同時要確定房間裏沒有讓孩子碰撞或受傷的地方。
             #數學邏輯, #身體動作
@@ -299,15 +300,15 @@ namespace :seed do
         )
 
     Game.create!(
-      user_id:15,
+      user_id:User.all.sample.id,
       title:"買東西嘍！", remote_image_url:"",
       url:"",
       min_age:6,
       max_age:8,
-      tool:"假的錢（可以是錢幣樣式的，也可以是自己做的紙錢）；賣的東西的標價單（自製）；小玩具",
-      step:"1.先簡單介紹一下錢的面值；
-            2.媽媽和孩子一個扮演老闆，一個扮演顧客；
-            3.老闆在要「賣」的小玩具前放上標價單；
+      tool:"假的錢（可以是錢幣樣式的，也可以是自己做的紙錢）,賣的東西的標價單（自製）；小玩具",
+      step:"1.先簡單介紹一下錢的面值,
+            2.媽媽和孩子一個扮演老闆，一個扮演顧客,
+            3.老闆在要「賣」的小玩具前放上標價單,
             4.顧客來買東西，「交易」開始了。
             注意事項：孩子年紀還小，所以，「交易」最好在10元以內。
             #數學邏輯, #角色扮演, #社會化
@@ -319,16 +320,16 @@ namespace :seed do
         )
 
     Game.create!(
-      user_id:21,
+      user_id:User.all.sample.id,
       title:"自己做樂器", remote_image_url:"",
       url:"",
       min_age:6,
       max_age:10,
-      tool:"各種罐子；小豆子；小石子；7個矮玻璃杯；鍋蓋；小鈴鐺；鬆緊帶等",
-      step:"1.在空罐中加入小豆子；
-            2.在另一個罐子中加入小石子，讓孩子比較一下，兩個罐子發出的聲音有什?不同；
-            3.在7 個矮玻璃杯中加入水，比例是1：2：3：4：5：6：7，用不銹鋼湯匙敲就會有不同的音調傳出；
-            4.2個鍋蓋可以當成銅鑼；
+      tool:"各種罐子,小豆子,小石子,7個矮玻璃杯,鍋蓋,小鈴鐺,鬆緊帶等",
+      step:"1.在空罐中加入小豆子,
+            2.在另一個罐子中加入小石子，讓孩子比較一下，兩個罐子發出的聲音有什?不同,
+            3.在7 個矮玻璃杯中加入水，比例是1：2：3：4：5：6：7，用不銹鋼湯匙敲就會有不同的音調傳出,
+            4.2個鍋蓋可以當成銅鑼,
             5.鬆緊帶系上小鈴鐺，套在孩子的手上就是手鐲鈴了。
             6.好了，現在可以舉辦一個小小的家庭音樂會了。
             注意事項：一定要注意安全，確保罐子的開口不尖利，以免傷到孩子。
@@ -341,16 +342,16 @@ namespace :seed do
         )
 
     Game.create!(
-      user_id:17,
+      user_id:User.all.sample.id,
       title:"扔沙包", remote_image_url:"",
       url:"",
       min_age:6,
       max_age:12,
       tool:"一塊小布片；一小堆細沙",
-      step:"1.把布片三面縫合，裝入細沙，再把最後一面縫合，做成一個沙包；
-            2.爸爸媽媽面對面約隔4-5米，孩子站在當中；
-            3.爸爸媽媽負責扔沙包，孩子閃躲，若被扔中了就換人；
-            4.或者和孩子站成一排，每人用腳夾住一個沙包，向前甩出去，接著跑去，用腳抓起自己的沙包再向前甩出去；
+      step:"1.把布片三面縫合，裝入細沙，再把最後一面縫合，做成一個沙包,
+            2.爸爸媽媽面對面約隔4-5米，孩子站在當中,
+            3.爸爸媽媽負責扔沙包，孩子閃躲，若被扔中了就換人,
+            4.或者和孩子站成一排，每人用腳夾住一個沙包，向前甩出去，接著跑去，用腳抓起自己的沙包再向前甩出去,
             5.誰先到達終點，誰就獲得了勝利。
             注意事項：爸爸媽媽扔沙包的時候請注意出手輕一些，孩子用腳甩沙包的時候，也當心他被絆倒。
             #運動, #親子同樂
