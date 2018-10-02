@@ -102,13 +102,13 @@
           </div><br><br><br>
 <%# Game.replies display %>
           <div class="blogComments">
-            <h3>此遊戲有<%= game.replies_count %>則回應</h3>
+            <h3><%= game.replies_count %>則回應</h3>
             <ul class="media-list commentsList">
               <% game.replies.each do |reply| %>
                 <li class="media">
                   <div class="media-left">
                     <% if reply.user.avatar? %>
-                      <%= image_tag reply.user.avatar, width: "30px", class: "rounded img-circle"%>
+                      <%= image_tag reply.user.avatar, width: "50px", class: "rounded img-circle"%>
                     <% else %>
                       <i class="fa fa-user-edit" aria-hidden="true"></i>
                     <% end %>
