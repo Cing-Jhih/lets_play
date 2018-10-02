@@ -75,6 +75,9 @@ before_action :authenticate_user!, only: [:new, :favorite]
       @game = Game.where(id: situation_game_ids & age_game_ids).all.sample
     end
 
+    @step_speech = @game.step.gsub(/[^\u4e00-\u9fa5_a-zA-Z0-9]/,'')
+    @title_speech = @game.title.gsub(/[^\u4e00-\u9fa5_a-zA-Z0-9]/,'')
+
     if @game == nil
       flash[:notice] = "糟糕！您指定的玩家年齡與情境，我們找不到遊戲推薦給您Q_Q 請重新設置或進來逛逛其他遊戲"
       redirect_to root_path

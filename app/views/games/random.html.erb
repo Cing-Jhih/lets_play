@@ -2,46 +2,40 @@
   <script>
   function toggleStopReading() {
     window.speechSynthesis.cancel();
-  };
+  }
   
   function toggleReadStep() {
-    var readStep = '遊戲方式  <%= @game.step %>';
-    var msg4 = new SpeechSynthesisUtterance(readStep, ["zh-TW", 1, 1.5, 0.7]);
-    window.speechSynthesis.speak(msg4);
-  };
+    var readStep = '遊戲方式  <%= @step_speech %>';
+    console.log(readStep);
+    var msg2 = new SpeechSynthesisUtterance(readStep, ["zh-TW", 1, 1.5, 0.7]);
+    window.speechSynthesis.speak(msg2);
+  }
   
   function toggleReadAgain() {
-    var again = "<%= @game.title %>";
+    var again = "<%= @title_speech %>";
     var msg3 = new SpeechSynthesisUtterance(again, ["zh-TW", 1, 1.5, 0.7]);
     window.speechSynthesis.speak(msg3);
-  };
-
+  }
   $("#again").hover(function(){
-    var msg5 = new SpeechSynthesisUtterance("再唸一次", ["zh-TW", 1, 1.5, 0.7]);
-    window.speechSynthesis.speak(msg5);
+    var msg4 = new SpeechSynthesisUtterance("再唸一次", ["zh-TW", 1, 1.5, 0.7]);
+    window.speechSynthesis.speak(msg4);
   });
-
     $("#step").hover(function(){
     var msg5 = new SpeechSynthesisUtterance("唸遊戲方法", ["zh-TW", 1, 1.5, 0.7]);
     window.speechSynthesis.speak(msg5);
   });
-
     $("#stop").hover(function(){
-    var msg5 = new SpeechSynthesisUtterance("不要說了", ["zh-TW", 1, 1.5, 0.7]);
-    window.speechSynthesis.speak(msg5);
+    var msg6 = new SpeechSynthesisUtterance("不要說了", ["zh-TW", 1, 1.5, 0.7]);
+    window.speechSynthesis.speak(msg6);
   });
-
     $("#reload").hover(function(){
-    var msg5 = new SpeechSynthesisUtterance("看其它遊戲", ["zh-TW", 1, 1.5, 0.7]);
-    window.speechSynthesis.speak(msg5);
+    var msg7 = new SpeechSynthesisUtterance("看其它遊戲", ["zh-TW", 1, 1.5, 0.7]);
+    window.speechSynthesis.speak(msg7);
   });
-
-
   var speech = <%= @speech %>;
   console.log(speech);
-
   if (speech == 1) {
-    var title = '<%= @game.title %> 玩這個還是要換一個';
+    var title = '<%= @title_speech %> 玩這個還是要換一個';
     var msg1 = new SpeechSynthesisUtterance(title, ["zh-TW", 1, 1.5, 0.7]);
     window.speechSynthesis.speak(msg1);
     setTimeout(function() {
@@ -53,19 +47,16 @@
           window._recognition.continuous = true;
           window._recognition.interimResults = true;
           window._recognition.lang = "cmn-Hant-TW";
-
           window._recognition.onstart = function() {
             window._recognition.status = true;
             console.log("Start recognize...");
           };
-
           window._recognition.onend = function() {
             console.log("Stop recognize");
             if (window._recognition.status) {
               window._recognition.start();
             }
           };
-
           window._recognition.onresult = function(event, result) {
             result = {};
             result.resultLength = event.results.length - 1;
@@ -78,12 +69,11 @@
               if (result.resultTranscript.indexOf('玩') !== -1) {
                 window._recognition.status = false;
                 window._recognition.stop();
-                var step = '遊戲方式 <%= @game.step %> ';
+                var step = '遊戲方式 <%= @step_speech %> ';
+                console.log(step);
                 var msg2 = new SpeechSynthesisUtterance(step, ["zh-TW", 1, 1.5, 0.7]);
                 window.speechSynthesis.speak(msg2);
-
               }
-
             } else if (event.results[result.resultLength].isFinal === true) {
               console.log("final");
             }
@@ -142,4 +132,3 @@
 
 
 <%= render partial: "shared/game", locals:{game: @game}  %>
-
