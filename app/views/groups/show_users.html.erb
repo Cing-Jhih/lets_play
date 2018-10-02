@@ -6,7 +6,7 @@
   </div>
 </section>
 
-<section class="whiteSection full-width clearfix p-t-n">
+<section class="mainContent full-width clearfix">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
@@ -22,7 +22,24 @@
   </div>
 </section>
 
+<section class="whiteSection full-width clearfix p-t-n">
+  <div class="container">
+    <div class="row">
+    <% @group_users.each do |user| %>
+      <div class="col-sm-4 col-xs-12">
+        <div class="teamContent teamAdjust">    
+          <div class="teamImage">
+          <%= image_tag user.avatar, alt:"img", class:"img-circle img-responsive" %>
+          </div>
+          <div class="teamInfo teamTeacher"> 
+            <h3><%= link_to user.name, user_path(user) %></h3>
+            <p><%= user.kid_age %>歲孩子的玩伴</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</section>
 
-<% @group_users.each do |user| %>
-  <%= link_to user.name, user_path(user) %>
-<% end %>
+
