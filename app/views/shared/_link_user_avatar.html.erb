@@ -1,6 +1,6 @@
 <%= link_to user_path(user) do %>
   <% if user.avatar? %> 
-    <%= image_tag user.avatar, width: "30px", class: "rounded img-circle"%>
+    <%= image_tag user.avatar, width: "50px", class:"rounded img-circle" %>
   <% else %>
     <i class="fa fa-user-edit" aria-hidden="true"></i>
   <% end %>
