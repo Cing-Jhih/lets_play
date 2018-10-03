@@ -47,6 +47,7 @@
             <li class="active"><%= link_to "收藏(#{@user.favorites_count})", user_path %></li>
             <li><%= link_to "發表(#{@user.games_count})", games_user_path %></li>
             <li><%= link_to "回應(#{@user.replies_count})", replies_user_path %></li>
+            <li><%= link_to "追蹤玩家", followships_user_path %></li>
           </ul>
         </div>
       </div>
