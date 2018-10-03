@@ -8,8 +8,6 @@ class UsersController < ApplicationController
 
   def show
     @favorited_games = @user.favorited_games.order(created_at: :desc)
-    @followings = @user.followings.all
-    @followers = @user.followers.all
     
   end
 
@@ -49,13 +47,9 @@ class UsersController < ApplicationController
       flash[:alert] = "非本人不能看悄悄話!"
       redirect_to user_path
     end
-    @message = Message.new
-    if session[:fb_first_login]
-      session[:fb_first_login] = nil
-      redirect_to session[:previous_url]
-    end
-    @msg_received = Message.where(receiver_id: @user.id)
-    @msg_sent = Message.where(user_id: @user.id)
+    
+    @msg_received = Message.where(receiver_id: @user.id).order(created_at: :desc)
+    @msg_sent = Message.where(user_id: @user.id).order(created_at: :desc)
     Notification.all.where(user_id: @user.id).destroy_all
   end
     
