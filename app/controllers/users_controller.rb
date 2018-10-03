@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :games, :replies, :followships, :messages]
+  before_action :set_message, only: [:show, :games, :replies, :followships, :messages]
 
   def index
     @users = User.all
@@ -9,11 +10,7 @@ class UsersController < ApplicationController
     @favorited_games = @user.favorited_games.order(created_at: :desc)
     @followings = @user.followings.all
     @followers = @user.followers.all
-    @message = Message.new
-    if session[:fb_first_login]
-      session[:fb_first_login] = nil
-      redirect_to session[:previous_url]
-    end
+    
   end
 
   def edit
@@ -40,20 +37,10 @@ class UsersController < ApplicationController
 
   def games
     @posted_games = @user.games.order(created_at: :desc)
-    @message = Message.new
-    if session[:fb_first_login]
-      session[:fb_first_login] = nil
-      redirect_to session[:previous_url]
-    end
   end
 
   def replies
     @replied_games = @user.replied_games.uniq
-    @message = Message.new
-    if session[:fb_first_login]
-      session[:fb_first_login] = nil
-      redirect_to session[:previous_url]
-    end
   end
 
 
@@ -76,11 +63,7 @@ class UsersController < ApplicationController
   def followships
     @followings = @user.followings.all
     @followers = @user.followers.all
-    @message = Message.new
-    if session[:fb_first_login]
-      session[:fb_first_login] = nil
-      redirect_to session[:previous_url]
-    end
+    
   end
 
 
@@ -88,6 +71,14 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def set_message
+      @message = Message.new
+      if session[:fb_first_login]
+        session[:fb_first_login] = nil
+        redirect_to session[:previous_url]
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
