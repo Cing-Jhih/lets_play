@@ -7,7 +7,7 @@
   function toggleReadStep() {
     var readStep = '遊戲方式  <%= @step_speech %>';
     console.log(readStep);
-    var msg2 = new SpeechSynthesisUtterance(readStep, ["zh-TW", 1, 1.5, 0.7]);
+    var msg2 = new SpeechSynthesisUtterance(readStep, ["zh-TW", 1, 1.5, 0.5]);
     window.speechSynthesis.speak(msg2);
   }
   
@@ -16,19 +16,19 @@
     var msg3 = new SpeechSynthesisUtterance(again, ["zh-TW", 1, 1.5, 0.7]);
     window.speechSynthesis.speak(msg3);
   }
-  $("#again").hover(function(){
+  $("#again").mouseenter(function(){
     var msg4 = new SpeechSynthesisUtterance("再唸一次", ["zh-TW", 1, 1.5, 0.7]);
     window.speechSynthesis.speak(msg4);
   });
-    $("#step").hover(function(){
+    $("#step").mouseenter(function(){
     var msg5 = new SpeechSynthesisUtterance("唸遊戲方法", ["zh-TW", 1, 1.5, 0.7]);
     window.speechSynthesis.speak(msg5);
   });
-    $("#stop").hover(function(){
+    $("#stop").mouseenter(function(){
     var msg6 = new SpeechSynthesisUtterance("不要說了", ["zh-TW", 1, 1.5, 0.7]);
     window.speechSynthesis.speak(msg6);
   });
-    $("#reload").hover(function(){
+    $("#reload").mouseenter(function(){
     var msg7 = new SpeechSynthesisUtterance("看其它遊戲", ["zh-TW", 1, 1.5, 0.7]);
     window.speechSynthesis.speak(msg7);
   });
@@ -71,7 +71,7 @@
                 window._recognition.stop();
                 var step = '遊戲方式 <%= @step_speech %> ';
                 console.log(step);
-                var msg2 = new SpeechSynthesisUtterance(step, ["zh-TW", 1, 1.5, 0.7]);
+                var msg2 = new SpeechSynthesisUtterance(step, ["zh-TW", 1, 1.5, 0.5]);
                 window.speechSynthesis.speak(msg2);
               }
             } else if (event.results[result.resultLength].isFinal === true) {
@@ -82,7 +82,7 @@
         }
       }
       speechRecognition();
-    }, 1000 * 6);
+    }, 1000 * 4);
   }
   </script>
   <% end %>
