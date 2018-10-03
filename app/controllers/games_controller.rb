@@ -75,7 +75,7 @@ before_action :authenticate_user!, only: [:new, :favorite]
       @game = Game.where(id: situation_game_ids & age_game_ids).all.sample
     end
 
-    @step_speech = @game.step.gsub(/[^\u4e00-\u9fa5_a-zA-Z0-9]/,'')
+    @step_speech = @game.step.gsub(/[^\u4e00-\u9fa5_a-zA-Z0-9]/,' ')
     @title_speech = @game.title.gsub(/[^\u4e00-\u9fa5_a-zA-Z0-9]/,'')
 
     if @game == nil
