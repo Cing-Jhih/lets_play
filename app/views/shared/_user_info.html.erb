@@ -1,15 +1,11 @@
-
 <section class="mainContent full-width clearfix">
   <div class="container">
     <div class="row">
       <div class="col-sm-4 col-xs-12">
         <div class="teachersPhoto">
           <%= image_tag user.avatar, alt:"image", class:"img-rounded img-responsive" %>
-        </div><br />
-      <div>
-    </div>
-  </div>
- 
+        </div>
+      </div>     
       <div class="col-sm-8 col-xs-12">
         <div class="teachersInfo">
           <h3>
@@ -23,7 +19,6 @@
             <% end %>
             </small>
             &nbsp;<%= render partial: "shared/follow", locals: {user: user} %>
-
             <% if current_user %>
               <% if user.email == current_user.email %>
                 <%= link_to '編輯個人檔案', edit_user_path(current_user) , class: "btn btn-outline-info btn-pill" %>
@@ -61,9 +56,9 @@
           <div class="professionDetails"><%= user.intro %></div>
         </div>
       </div>
-    </div>
-
-
+    </div>   
+  </div>
+</section>
 <!-- ====================================
     ——— MESSAGE MODAL
     ===================================== -->
