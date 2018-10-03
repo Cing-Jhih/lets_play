@@ -82,30 +82,54 @@ namespace :dev  do
     puts "Now you have #{Reply.count} fake replies"
   end
 
+  task fake_followships: :environment do
+    Followship.destroy_all
+    puts "creating fake followship..." 
+    User.all.each do |u|
+      @users = User.where.not(id: u.id).shuffle
+      6.times do
+        u.followships.create!(
+        following: @users.pop,
+        )
+      end
+    end
+    puts "now you have #{Followship.count} followship"
+  end
+
+  task fake_messages: :environment do
+    Message.destroy_all
+    User.all.each do |u|
+      @users = User.where.not(id: u.id).shuffle
+      3.times do
+        u.messages.create!(
+        receiver: @users.pop,
+        content: FFaker::Lorem::sentence(13)
+        )
+      end
+    end
+    puts "Now you have #{Message.count} fake replies"
+  end
+
   task rebuild: [
     "db:drop",
     "db:create",
     "db:migrate",
     "db:seed",
     :fake_users,
-    :fake_games,
+    "seed:games",
     :fake_favorites,
-    :fake_replies
-    ]
-
-  task rebuild_heroku: [
-    "db:migrate",
-    :fake_users,
-    :fake_games,
-    :fake_favorites,
-    :fake_replies
+    :fake_replies,
+    :fake_followships,
+    :fake_messages
     ]
     
   task fake_all: [
     :fake_users,
-    :fake_games,
+    "seed:games",
     :fake_favorites,
-    :fake_replies
-    ]  
+    :fake_replies,
+    :fake_followships,
+    :fake_messages
+    ]
 
 end
