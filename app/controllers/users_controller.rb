@@ -40,10 +40,20 @@ class UsersController < ApplicationController
 
   def games
     @posted_games = @user.games.order(created_at: :desc)
+    @message = Message.new
+    if session[:fb_first_login]
+      session[:fb_first_login] = nil
+      redirect_to session[:previous_url]
+    end
   end
 
   def replies
     @replied_games = @user.replied_games.uniq
+    @message = Message.new
+    if session[:fb_first_login]
+      session[:fb_first_login] = nil
+      redirect_to session[:previous_url]
+    end
   end
 
 
@@ -51,6 +61,11 @@ class UsersController < ApplicationController
     unless @user == current_user
       flash[:alert] = "非本人不能看悄悄話!"
       redirect_to user_path
+    end
+    @message = Message.new
+    if session[:fb_first_login]
+      session[:fb_first_login] = nil
+      redirect_to session[:previous_url]
     end
     @msg_received = Message.where(receiver_id: @user.id)
     @msg_sent = Message.where(user_id: @user.id)
