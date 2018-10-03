@@ -1,3 +1,4 @@
+<br><br>
 <!-- 顯示我關注的人的清單 -->
 <% if @followings.present? %>
   <section>
@@ -8,7 +9,7 @@
             <h2 class="wow fadeInUp">
               <span class="shape shape-left bg-color-4"></span>
               <!-- speech interactive buttons -->
-                <span>跟著做</span>
+                <span><%= @user == current_user ? '我' : @user.name %>關注的人</span>
               <span class="shape shape-right bg-color-4"></span>
             </h2>
             <%= render partial: "shared/user_intro_list", locals:{ users: @followings}  %>
@@ -29,7 +30,7 @@
             <h2 class="wow fadeInUp">
               <span class="shape shape-left bg-color-4"></span>
               <!-- speech interactive buttons -->
-                <span>粉絲</span>
+                <span>關注<%= @user == current_user ? '我' : @user.name %>的人</span>
               <span class="shape shape-right bg-color-4"></span>
             </h2>
             <%= render partial: "shared/user_intro_list", locals:{ users: @followers}  %>
