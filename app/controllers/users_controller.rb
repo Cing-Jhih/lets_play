@@ -76,6 +76,11 @@ class UsersController < ApplicationController
   def followships
     @followings = @user.followings.all
     @followers = @user.followers.all
+    @message = Message.new
+    if session[:fb_first_login]
+      session[:fb_first_login] = nil
+      redirect_to session[:previous_url]
+    end
   end
 
 
