@@ -68,6 +68,15 @@
                 <!--search bar -->
                 <%= render partial: "shared/search_bar"%>
                 </li>
+                <li>
+                  <% if current_user %>
+                    <%= link_to new_game_path(current_user), class: "btn btn-success btn-xs" do %>
+                      <i class="fas fa-pen-nib"></i><strong>發表新遊戲</strong>
+                    <% end %>
+                  <% else %>
+                    需先完成<%= link_to "登入", user_session_path %>, 才能表新遊戲
+                  <% end %>
+                </li>
               </ul>
             </div>
             <div class="col-sm-4">

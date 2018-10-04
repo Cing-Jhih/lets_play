@@ -1,164 +1,163 @@
-<section class="mainContent full-width clearfix">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 block">
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 block">
 <%# tags & suitable age sticker & favorite button  %>
-        <div class="thumbnail thumbnailContent">
-          <ul class="list-inline text-right">
-            <li>
-              <% game.tags.each do |tag| %>
-                <button class="btn btn-sm btn-outline-info">
-                  <%= link_to tag.name, "/games/hashtag/#{tag.name}" %>
-                    </span>
-                </button>
-              <% end %>
-            </li>
-            <li>
-              <% if current_user && game.suitable_age?(current_user) %>
-                <div class="btn btn-warning btn-pill" style="pointer-events:none" >
-                  <strong>適齡</strong>
-                </div>
-              <% end %>
-            </li>
-            <li><%= render partial: "shared/favorite", locals:{game: game} %></li>
-          </ul>
+      <div class="thumbnail thumbnailContent">
+        <ul class="list-inline text-right">
+          <li>
+            <% game.tags.each do |tag| %>
+              <button class="btn btn-sm btn-outline-info">
+                <%= link_to tag.name, "/games/hashtag/#{tag.name}" %>
+                  </span>
+              </button>
+            <% end %>
+          </li>
+          <li>
+            <% if current_user && game.suitable_age?(current_user) %>
+              <div class="btn btn-warning btn-pill" style="pointer-events:none" >
+                <strong>適齡</strong>
+              </div>
+            <% end %>
+          </li>
+          <li><%= render partial: "shared/favorite", locals:{game: game} %></li>
+        </ul>
 <%# game info %>            
-          <div class="caption border-color-<%= rand(1..6) %> singleBlog">
-            <%= time_tag game.created_at, class: "pull-right" %>
-              
-          <ul class="list-inline blogInfo">
-            <li>
-              <i class="fa fa-user-edit fa-lg" aria-hidden="true"></i>
-              發表者：<strong><%= link_to game.user.name, user_path(game.user), class:"color-#{rand(1..6)}" %></strong>
-            </li>
-            <li>
-              <i class="far fa-heart fa-lg" aria-hidden="true"></i>
-              收藏數：<%=  game.favorites_count %>
-            </li>
-            <li>
-              <i class="far fa-comment fa-lg" aria-hidden="true"></i>
-              回應數：<%=  game.replies_count %>
-            </li>
-          </ul>
-          
-          <ul class="list-unstyled blogInfo">
-            <li>
-              <i class="fa fa-child fa-lg" aria-hidden="true"></i> 
-              適合年齡：
-              <% game.age_games.each do |age_game| %>
-                <%=  age_game.age.name %>
-              <% end %>
-            </li>
-            <li>
-              <i class="fa fa-theater-masks fa-lg" aria-hidden="true"></i> 
-              適玩情境：
-              <% game.situation_games.each do |situation_game| %>
-                <%= situation_game.situation.condition  %>
-              <% end %>
-            </li>
+        <div class="caption border-color-<%= rand(1..6) %> singleBlog">
+        <h3 class="color-<%= rand(1..6) %>"><%= game.title %></h3>
+          <%= time_tag game.created_at, class: "pull-right" %>
             
-            <li>
-              <i class="fa fa-shapes fa-lg" aria-hidden="true"></i>
-              遊戲道具：
-              <%= game.tool %>
-            </li>
-            <li>
-              <i class="fas fa-list-ol fa-lg" aria-hidden="true"></i>
-              遊戲方式：<br>
-              <%= render_with_hashtags(game.step) %>
-            </li>
-          </ul>
-            <%# social share button  %>
+        <ul class="list-inline blogInfo">
+          <li>
+            <i class="fa fa-user-edit fa-lg" aria-hidden="true"></i>
+            發表者：<strong><%= link_to game.user.name, user_path(game.user), class:"color-#{rand(1..6)}" %></strong>
+          </li>
+          <li>
+            <i class="far fa-heart fa-lg" aria-hidden="true"></i>
+            收藏數：<%=  game.favorites_count %>
+          </li>
+          <li>
+            <i class="far fa-comment fa-lg" aria-hidden="true"></i>
+            回應數：<%=  game.replies_count %>
+          </li>
+        </ul>
+        
+        <ul class="list-unstyled blogInfo">
+          <li>
+            <i class="fa fa-child fa-lg" aria-hidden="true"></i> 
+            適合年齡：
+            <% game.age_games.each do |age_game| %>
+              <%=  age_game.age.name %>
+            <% end %>
+          </li>
+          <li>
+            <i class="fa fa-theater-masks fa-lg" aria-hidden="true"></i> 
+            適玩情境：
+            <% game.situation_games.each do |situation_game| %>
+              <%= situation_game.situation.condition  %>
+            <% end %>
+          </li>
+          <li>
+            <i class="fa fa-shapes fa-lg" aria-hidden="true"></i>
+            遊戲道具：
+            <%= game.tool %>
+          </li>
+          <li>
+            <i class="fas fa-list-ol fa-lg" aria-hidden="true"></i>
+            遊戲方式：<br>
+            <%= render_with_hashtags(game.step) %>
+          </li>
+        </ul>
+        <%# social share button  %>
+        <ul class="list-inline socailLink">
+          <hr class="pd-des-container-bottom-line">
+          <div class="product-show__social-share-button text-right">
+            <%= social_share_button_tag(game.title, :allow_sites => %w(facebook twitter email google_plus ), :image => game.image, desc:game.tool,:url => @url) %>
+          </div>
+          <br>
+        </ul>
+        <% if game.url.present? %>
+          <i class="fab fa-youtube fa-lg" aria-hidden="true"></i> youtube影片:
+          <div class="embed-responsive embed-responsive-4by3">
+            <iframe class="embed-responsive-item" src='<%= @youtube_url %>' frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        <% end %><br>
+        <% if game.image.present? %>
+          <%= image_tag game.image, class:"img-responsive" %>
+        <% end %>  
+        </div>
+        
+        <%# share and favorited again in the end of game info  %>
+        <ul class="list-inline pull-right">
+          <br>
+          <li>
             <ul class="list-inline socailLink">
-              <hr class="pd-des-container-bottom-line">
               <div class="product-show__social-share-button text-right">
                 <%= social_share_button_tag(game.title, :allow_sites => %w(facebook twitter email google_plus ), :image => game.image, desc:game.tool,:url => @url) %>
               </div>
-              <br>
             </ul>
-            <% if game.url.present? %>
-              <i class="fab fa-youtube fa-lg" aria-hidden="true"></i> youtube影片:
-              <div class="embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item" src='<%= @youtube_url %>' frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-              </div>
-            <% end %><br>
-            <% if game.image.present? %>
-              <%= image_tag game.image, class:"img-responsive" %>
-            <% end %>  
-            </div>
-            
-            <%# share and favorited again in the end of game info  %>
-            <ul class="list-inline pull-right">
-              <br>
-              <li>
-                <ul class="list-inline socailLink">
-                  <div class="product-show__social-share-button text-right">
-                    <%= social_share_button_tag(game.title, :allow_sites => %w(facebook twitter email google_plus ), :image => game.image, desc:game.tool,:url => @url) %>
-                  </div>
-                </ul>
-              </li>  
-              <li><%= render partial: "shared/favorite", locals:{game: game} %></li>
-            </ul>
-          </div><br><br><br>
+          </li>  
+          <li><%= render partial: "shared/favorite", locals:{game: game} %></li>
+        </ul>
+      </div><br><br><br>
 <%# Game.replies display %>
-          <div class="blogComments">
-            <h3><%= game.replies_count %>則回應</h3>
-            <ul class="media-list commentsList">
-              <% game.replies.each do |reply| %>
-                <li class="media">
-                  <div class="media-left">
-                    <% if reply.user.avatar? %>
-                      <%= image_tag reply.user.avatar, width: "50px", class: "rounded img-circle"%>
-                    <% else %>
-                      <i class="fa fa-user-edit" aria-hidden="true"></i>
-                    <% end %>
-                  </div>
-                  <div class="media-body">
-                    <h4 class="media-heading"><%= link_to reply.user.name, user_path(reply.user) %></h4>
-                    <p><%= time_ago_in_words(reply.created_at) %> ago</p>
-                    <p><%= reply.content %></p>
-                    <% if current_user %>
-                      <% if reply.user.email == current_user.email || current_user.role == "admin" %>
-                        <%= link_to "刪除", game_reply_path(game, reply), method: :delete, data: { confirm: "你確定嗎?"}, class: "btn btn-primary pull-right" %>
-                      <% end %>
-                    <% end %>
-                  </div>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-          <%# New reply form %>
-          <div class="blogComments">
-            <h3 class="color-2">回應此遊戲</h3>
-            <div class="homeContactContent">
-              <div class="row">
-                <% if current_user %>
-                  <%= form_for [game, @reply] do |f| %>
-                    <div class="col-xs-12">
-                      <div class="form-group">
-                        <%= f.text_area :content, placeholder: "在這裡回應", class: "form-control border-color-4" %>
-                      </div>
-                    </div>
-                    <div class="col-xs-12">
-                      <div class="form-group">
-                        <ul class="list-inline pull-right">
-                          <li><%= f.submit '送出回應', class: "btn btn-danger" %> </li>
-                          <li><%= f.button "清除ㄏ", type: :reset, class: "btn btn-outline-primary" %></li>
-                        </ul>
-                      </div>
-                    </div>
-                  <% end %>
+      <div class="blogComments">
+        <h3><%= game.replies_count %>則回應</h3>
+        <ul class="media-list commentsList">
+          <% game.replies.each do |reply| %>
+            <li class="media">
+              <div class="media-left">
+                <% if reply.user.avatar? %>
+                  <%= image_tag reply.user.avatar, width: "50px", class: "rounded img-circle"%>
                 <% else %>
-                  <div class="col-xs-12">
-                    <div class="professionDetails text-center">
-                      需先完成<%= link_to "登入", user_session_path %>, 才能回應
-                    </div> 
-                  </div>   
+                  <i class="fa fa-user" aria-hidden="true"></i>
                 <% end %>
               </div>
-            </div>
+              <div class="media-body">
+                <h4 class="media-heading"><%= link_to reply.user.name, user_path(reply.user) %></h4>
+                <p><%= time_ago_in_words(reply.created_at) %> ago</p>
+                <p><%= reply.content %></p>
+                <% if current_user %>
+                  <% if reply.user.email == current_user.email || current_user.role == "admin" %>
+                    <%= link_to "刪除", game_reply_path(game, reply), method: :delete, data: { confirm: "你確定嗎?"}, class: "btn btn-primary pull-right" %>
+                  <% end %>
+                <% end %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <%# New reply form %>
+      <div class="blogComments">
+        <h3 class="color-2">回應此遊戲</h3>
+        <div class="homeContactContent">
+          <div class="row">
+            <% if current_user %>
+              <%= form_for [game, @reply] do |f| %>
+                <div class="col-xs-12">
+                  <div class="form-group">
+                    <%= f.text_area :content, placeholder: "在這裡回應", class: "form-control border-color-4" %>
+                  </div>
+                </div>
+                <div class="col-xs-12">
+                  <div class="form-group">
+                    <ul class="list-inline pull-right">
+                      <li><%= f.submit '送出回應', class: "btn btn-danger" %> </li>
+                      <li><%= f.button "清除", type: :reset, class: "btn btn-outline-primary" %></li>
+                    </ul>
+                  </div>
+                </div>
+              <% end %>
+            <% else %>
+              <div class="col-xs-12">
+                <div class="professionDetails text-center">
+                  需先完成<%= link_to "登入", user_session_path %>, 才能回應
+                </div> 
+              </div>   
+            <% end %>
           </div>
         </div>
       </div>
     </div>
-</section>
+  </div>
+</div>
+
