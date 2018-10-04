@@ -4,9 +4,14 @@ before_action :validates_search_key, only: [:search]
 before_action :authenticate_user!, only: [:new, :favorite]
 
   def index
-    @latest_games = Game.all.order(created_at: :desc).limit(4)
-    @popular_games = Game.all.order(favorites_count: :desc).limit(4)
+    @popular_games_1 = Game.all.order(favorites_count: :desc).limit(4)
+    @popular_games_2 = Game.all.order(favorites_count: :desc).limit(4).offset(4)
+    @popular_games_3 = Game.all.order(favorites_count: :desc).limit(4).offset(8)
+    @latest_games_1 = Game.all.order(favorites_count: :desc).limit(4)
+    @latest_games_2 = Game.all.order(favorites_count: :desc).limit(4).offset(4)
+    @latest_games_3 = Game.all.order(favorites_count: :desc).limit(4).offset(8)
   end
+
 
   def search
   	@games = Game.ransack({:title_or_tool_or_step_cont => @q}).result(distinct: true)
