@@ -4,12 +4,12 @@ before_action :validates_search_key, only: [:search]
 before_action :authenticate_user!, only: [:new, :favorite]
 
   def index
-    @popular_games_1 = Game.all.order(favorites_count: :desc).limit(4)
-    @popular_games_2 = Game.all.order(favorites_count: :desc).limit(4).offset(4)
-    @popular_games_3 = Game.all.order(favorites_count: :desc).limit(4).offset(8)
-    @latest_games_1 = Game.all.order(favorites_count: :desc).limit(4)
-    @latest_games_2 = Game.all.order(favorites_count: :desc).limit(4).offset(4)
-    @latest_games_3 = Game.all.order(favorites_count: :desc).limit(4).offset(8)
+    @popular_games_1 = Game.includes(:user,:situation_games, :tags, :favorited_users, age_games: :age).all.order(favorites_count: :desc).limit(4)
+    @popular_games_2 = Game.includes(:user, :situation_games, :tags, :favorited_users, age_games: :age).all.order(favorites_count: :desc).limit(4).offset(4)
+    @popular_games_3 = Game.includes(:user, :situation_games, :tags, :favorited_users, age_games: :age).all.order(favorites_count: :desc).limit(4).offset(8)
+    @latest_games_1 = Game.includes(:user, :situation_games, :tags, :favorited_users, age_games: :age).all.order(favorites_count: :desc).limit(4)
+    @latest_games_2 = Game.includes(:user, :situation_games, :tags, :favorited_users, age_games: :age).all.order(favorites_count: :desc).limit(4).offset(4)
+    @latest_games_3 = Game.includes(:user, :situation_games, :tags, :favorited_users, age_games: :age).all.order(favorites_count: :desc).limit(4).offset(8)
   end
 
 
@@ -46,12 +46,12 @@ before_action :authenticate_user!, only: [:new, :favorite]
 
   def popular
     # need to add a filer to limit games by age
-    @games = Game.all.order(favorites_count: :desc)
+    @games = Game.includes(:user, :tags, :favorited_users, age_games: :age, situation_games: :situation).all.order(favorites_count: :desc)
   end
 
   def latest
     # need to add a filer to limit games by age
-    @games = Game.all.order(created_at: :desc)
+    @games = Game.includes(:user, :tags, :favorited_users, age_games: :age, situation_games: :situation).all.order(created_at: :desc)
   end
 
   def random
