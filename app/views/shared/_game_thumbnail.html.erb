@@ -1,5 +1,5 @@
 <div class="col-sm-3 col-xs-6 block">
-  <div class="thumbnail thumbnailContent thumb-wrapper">
+  <div class="thumbnail thumbnailContent">
     <%= link_to game_path(game) do %>
       <% if game.url.present? && game.image.blank? %>
         <%= image_tag YouTubeRails.extract_video_image("#{game.url}", 'high'), class:"img-responsive" %>

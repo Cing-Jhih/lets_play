@@ -21,13 +21,6 @@
   text-decoration:none;
 }
 
-#random {
-  padding-top: 90px;
-}
-
-#index {
-  padding-top: 70px;
-}
 
 /*--social-share-button--*/
 
@@ -50,3 +43,72 @@ $size: 24px;
     // filter: gray;     //禁掉就變彩色
   }
 }
+
+// games index slider
+.carousel .carousel-control {
+  height: 44px;
+  width: 40px;
+  background: #7ac400;  
+    margin: auto 0;
+    border-radius: 4px;
+  opacity: 0.8;
+}
+.carousel .carousel-control:hover {
+  background: #78bf00;
+  opacity: 1;
+}
+.carousel .carousel-control i {
+    font-size: 36px;
+    position: absolute;
+    top: 50%;
+    display: inline-block;
+    margin: -19px 0 0 0;
+    z-index: 5;
+    left: 0;
+    right: 0;
+    color: #fff;
+  text-shadow: none;
+    font-weight: bold;
+}
+
+.carousel .carousel-control.left i {
+  margin-left: -2px;
+}
+.carousel .carousel-control.right i {
+  margin-right: -4px;
+}
+.carousel .carousel-indicators {
+  bottom: -50px;
+}
+.carousel-indicators li, .carousel-indicators li.active {
+  width: 10px;
+  height: 10px;
+  margin: 4px;
+  border-radius: 50%;
+  border-color: transparent;
+}
+.carousel-indicators li { 
+  background: rgba(0, 0, 0, 0.2);
+}
+.carousel-indicators li.active {  
+  background: rgba(0, 0, 0, 0.6);
+}
+.carousel .wish-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 99;
+  cursor: pointer;
+  font-size: 16px;
+  color: #abb0b8;
+}
+.carousel .wish-icon .fa-heart {
+  color: #ff6161;
+}
+.star-rating li {
+  padding: 0;
+}
+.star-rating i {
+  font-size: 14px;
+  color: #ffc000;
+} 
