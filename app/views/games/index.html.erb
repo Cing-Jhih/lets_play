@@ -347,7 +347,7 @@
         </div>
       </div>
     </section>
- 	<!-- ====================================
+  <!-- ====================================
     ——— index game show
     ===================================== -->
     <section class="mainContent full-width clearfix coursesSection">
@@ -364,13 +364,52 @@
           </div>
         </div>
       </div>
+      <%# POPULAR GAMES SLIDER %>
       <div class="container">
         <div class="row">
-          <% @popular_games.each do |game| %>
-            <%= render partial: "shared/game_thumbnail", locals:{game: game}  %>
-          <% end %>      
+          <div class="col-md-12">
+            <div id="popularCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+            <!-- Carousel indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#popularCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#popularCarousel" data-slide-to="1"></li>
+              <li data-target="#popularCarousel" data-slide-to="2"></li>
+            </ol>   
+            <!-- Wrapper for carousel items -->
+            <div class="carousel-inner">
+              <div class="item carousel-item active">
+                <div class="row">
+                  <% @popular_games_1.each do |game| %>
+                    <%= render partial: "shared/game_thumbnail", locals:{game: game}  %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="item carousel-item">
+                <div class="row">
+                  <% @popular_games_2.each do |game| %>
+                    <%= render partial: "shared/game_thumbnail", locals:{game: game}  %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="item carousel-item">
+                <div class="row">
+                  <% @popular_games_3.each do |game| %>
+                    <%= render partial: "shared/game_thumbnail", locals:{game: game}  %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <!-- Carousel controls -->
+            <a class="carousel-control left carousel-control-prev" href="#popularCarousel" data-slide="prev">
+              <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="carousel-control right carousel-control-next" href="#popularCarousel" data-slide="next">
+              <i class="fa fa-angle-right"></i>
+            </a>
+          </div>
         </div>
       </div>
+
       <div class="btnArea wow fadeInUp">
         <%= link_to '更多熱門遊戲', popular_games_path, class:"btn btn-primary" %>
       </div>
@@ -390,13 +429,53 @@
           </div>
         </div>
       </div>
+
+      <%# LATEST GAMES SLIDER %>
       <div class="container">
         <div class="row">
-          <% @latest_games.each do |game| %>
-            <%= render partial: "shared/game_thumbnail", locals:{game: game}  %>
-          <% end %>      
+          <div class="col-md-12">
+            <div id="latestCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+            <!-- Carousel indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#latestCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#latestCarousel" data-slide-to="1"></li>
+              <li data-target="#latestCarousel" data-slide-to="2"></li>
+            </ol>   
+            <!-- Wrapper for carousel items -->
+            <div class="carousel-inner">
+              <div class="item carousel-item active">
+                <div class="row">
+                  <% @latest_games_1.each do |game| %>
+                    <%= render partial: "shared/game_thumbnail", locals:{game: game}  %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="item carousel-item">
+                <div class="row">
+                  <% @latest_games_2.each do |game| %>
+                    <%= render partial: "shared/game_thumbnail", locals:{game: game}  %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="item carousel-item">
+                <div class="row">
+                  <% @latest_games_3.each do |game| %>
+                    <%= render partial: "shared/game_thumbnail", locals:{game: game}  %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <!-- Carousel controls -->
+            <a class="carousel-control left carousel-control-prev" href="#latestCarousel" data-slide="prev">
+              <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="carousel-control right carousel-control-next" href="#latestCarousel" data-slide="next">
+              <i class="fa fa-angle-right"></i>
+            </a>
+          </div>
         </div>
       </div>
+
       <div class="btnArea wow fadeInUp">
         <%= link_to '更多新進遊戲', latest_games_path, class:"btn btn-primary" %>
       </div>
