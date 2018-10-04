@@ -109,7 +109,7 @@
                   <% if reply.user.avatar? %>
                     <%= image_tag reply.user.avatar, width: "50px", class: "rounded img-circle"%>
                   <% else %>
-                    <i class="fa fa-user-edit" aria-hidden="true"></i>
+                    <i class="fa fa-user" aria-hidden="true"></i>
                   <% end %>
                 </div>
                 <div class="media-body">
@@ -142,7 +142,7 @@
                     <div class="form-group">
                       <ul class="list-inline pull-right">
                         <li><%= f.submit '送出回應', class: "btn btn-danger" %> </li>
-                        <li><%= f.button "清除ㄏ", type: :reset, class: "btn btn-outline-primary" %></li>
+                        <li><%= f.button "清除", type: :reset, class: "btn btn-outline-primary" %></li>
                       </ul>
                     </div>
                   </div>
