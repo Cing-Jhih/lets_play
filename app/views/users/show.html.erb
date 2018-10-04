@@ -1,53 +1,18 @@
 <%= render partial: "shared/user_info", locals:{user:@user}  %>
 
-<section class="mainContent full-width clearfix">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <% if current_user %>
-          <% if current_user != @user %>
-            <div class="blogComments">
-              <h3 class="color-2">悄悄話</h3>
-              <div class="homeContactContent">
-                <div class="row">
-                  <%= form_for [@receiver, @message], :url => user_messages_path(@user) do |f| %>
-                    <div class="col-xs-12">
-                      <div class="form-group">
-                        <%= f.text_area :content, placeholder: "寫些悄悄話吧！", class: "form-control border-color-4" %>
-                      </div>
-                    </div>
-                    <div class="col-xs-12">
-                      <div class="form-group pull-right">
-                        <%= f.submit '送出', class: "btn btn-primary" %>&nbsp;&nbsp;
-                        <%= f.button "清除", type: :reset, class: "btn btn-outline-primary" %>
-                      </div>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% else %>
-          <div class="blogComments">
-            <h3 class="color-2">悄悄話</h3>
-            <div class="professionDetails">需先完成<%= link_to "登入", user_session_path %>, 才能發送悄悄話</div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="whiteSection full-width clearfix p-t-n">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
         <div class="tabCommon">
           <ul class="nav nav-tabs">
-            <li class="active"><%= link_to "收藏(#{@user.favorites_count})", user_path %></li>
-            <li><%= link_to "發表(#{@user.games_count})", games_user_path %></li>
-            <li><%= link_to "回應(#{@user.replies_count})", replies_user_path %></li>
-            <li><%= link_to "追蹤玩家", followships_user_path %></li>
+            <li class="active"><%= link_to "收藏(#{@user.favorites_count})", user_path(@user) %></li>
+            <li><%= link_to "發表(#{@user.games_count})", games_user_path(@user) %></li>
+            <li><%= link_to "回應(#{@user.replies_count})", replies_user_path(@user) %></li>
+            <li><%= link_to "#{@user == current_user ? '我' : @user.name}的關注名單", followships_user_path(@user) %></li>
+            <% if @user == current_user %>
+              <li><%= link_to "悄悄話 (#{current_user.notifications.size}未讀)", messages_user_path(current_user) %></li>
+            <% end %>   
           </ul>
         </div>
       </div>

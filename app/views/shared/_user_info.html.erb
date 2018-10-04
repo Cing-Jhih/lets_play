@@ -1,38 +1,86 @@
-
+<section class="mainContent full-width clearfix">
   <div class="container">
     <div class="row">
       <div class="col-sm-4 col-xs-12">
         <div class="teachersPhoto">
           <%= image_tag user.avatar, alt:"image", class:"img-rounded img-responsive" %>
-        </div><br />
-        <div>
-          <% if current_user %>
-            <% if user.email == current_user.email %>
-              <%= link_to '編輯個人檔案', edit_user_path(current_user) , class: "btn btn-sm btn-outline-info not-rounded" %>
-              <%= link_to '修改密碼', edit_user_registration_path(current_user), class: "btn btn-sm btn-outline-info not-rounded" %>
-              <%= link_to '我的悄悄話', messages_user_path(current_user), class: "btn btn-sm btn-outline-info not-rounded" %>
-            <% end %>
-          <% end %>
         </div>
-        <div>
-          <p><%= render partial: "shared/follow", locals: {user: user} %></p>
-        </div>
-      </div>
+      </div>     
       <div class="col-sm-8 col-xs-12">
         <div class="teachersInfo">
-          <% if user.kid_age.blank? %>
-            <h3>？歲孩子的玩伴</h3>
-            <%= "(未填寫孩子的生日,記得到編輯個人檔案中填寫孩子的生日！)" if user == current_user %>
-          <% else %>
-            <h3><%= user.kid_age %>歲孩子的玩伴</h3>
-          <% end %>
-          <div class="teachersProfession bg-color-1">姓名</div>
-          <div class="professionDetails"><%= user.name %></div>
-          <div class="teachersProfession bg-color-2">個人簡介</div>
+          <h3>
+            <%= user.name %>
+            <small>
+              <% if user.kid_age.blank? %>
+                ？歲孩子的玩伴
+                <%= "(未填寫孩子的生日,記得到編輯個人檔案中填寫孩子的生日！)" if user == current_user %>
+              <% else %>
+                <%= user.kid_age %>歲孩子的玩伴
+              <% end %>
+
+              <% if current_user %>
+                 &nbsp;<%= render partial: "shared/follow", locals: {user: user} %>
+                <% if user.email == current_user.email %>
+                  <%= link_to '編輯個人檔案', edit_user_path(current_user) , class: "btn btn-outline-info btn-pill" %>
+                  <%= link_to '修改密碼', edit_user_registration_path(current_user), class: "btn btn-outline-info btn-pill" %>
+                <% end %>
+                <% if current_user != @user %>
+                  <button class="btn btn-outline-primary btn-pill" href='#loginModal' data-toggle="modal">
+                    發送悄悄話給<%= user.name %>
+                  </button>
+                <% end %>  
+              <% else %>
+                &nbsp;<i class="fas fa-exclamation-circle color-6 fa-2x"></i>
+                需先完成<%= link_to "登入", user_session_path %>, 才能關注或發送悄悄話給 <%= user.name %>
+              <% end %>
+            </small>
+          </h3>
+          <!-- COLOR BAR -->
+          <div class="container-fluid color-bar clearfix">
+            <div class="row">
+              <div class="col-sm-1 col-xs-2 bg-color-1">fix bar</div>
+              <div class="col-sm-1 col-xs-2 bg-color-2">fix bar</div>
+              <div class="col-sm-1 col-xs-2 bg-color-3">fix bar</div>
+              <div class="col-sm-1 col-xs-2 bg-color-4">fix bar</div>
+              <div class="col-sm-1 col-xs-2 bg-color-5">fix bar</div>
+              <div class="col-sm-1 col-xs-2 bg-color-6">fix bar</div>
+              <div class="col-sm-1 bg-color-1 hidden-xs">fix bar</div>
+              <div class="col-sm-1 bg-color-2 hidden-xs">fix bar</div>
+              <div class="col-sm-1 bg-color-3 hidden-xs">fix bar</div>
+              <div class="col-sm-1 bg-color-4 hidden-xs">fix bar</div>
+              <div class="col-sm-1 bg-color-5 hidden-xs">fix bar</div>
+              <div class="col-sm-1 bg-color-6 hidden-xs">fix bar</div>
+            </div>
+          </div>
           <div class="professionDetails"><%= user.intro %></div>
         </div>
       </div>
-    </div>
+    </div>   
   </div>
-
-
+</section>
+<!-- ====================================
+    ——— MESSAGE MODAL
+    ===================================== -->
+    <div class="modal fade customModal" id="loginModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="panel panel-default formPanel">
+            <div class="panel-heading bg-color-1 border-color-1">
+              <h3 class="panel-title">寫些悄悄話吧！</h3>
+            </div>
+            <div class="panel-body">
+              <%= form_for [@receiver, @message], :url => user_messages_path(user) do |f| %>
+                <div class="form-group">
+                  <%= f.text_area :content, placeholder: "這裡寫的內容只有對方看得見喔", rows:"10", class: "form-control border-color-4" %>
+                </div>
+                <div class="form-group pull-right">
+                  <%= f.submit '送出', class: "btn btn-primary" %>&nbsp;&nbsp;
+                  <%= f.button "清除", type: :reset, class: "btn btn-outline-primary" %>
+                </div>
+              <% end %>  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    

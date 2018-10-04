@@ -1,4 +1,26 @@
-<!-- 顯示我關注的人的清單 -->
+<%= render partial: "shared/user_info", locals:{user:@user}  %>
+
+<section class="whiteSection full-width clearfix p-t-n">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="tabCommon">
+          <ul class="nav nav-tabs">
+            <li><%= link_to "收藏(#{@user.favorites_count})", user_path(@user) %></li>
+            <li><%= link_to "發表(#{@user.games_count})", games_user_path(@user) %></li>
+            <li><%= link_to "回應(#{@user.replies_count})", replies_user_path(@user) %></li>
+            <li class="active"><%= link_to "#{@user == current_user ? '我' : @user.name}的關注名單", followships_user_path(@user) %></li>
+            <% if @user == current_user %>
+              <li><%= link_to "悄悄話 (#{current_user.notifications.size}未讀)", messages_user_path(current_user) %></li>
+            <% end %>   
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 顯示user關注的人的清單 -->
 <% if @followings.present? %>
   <section>
     <div class="container">
@@ -8,7 +30,7 @@
             <h2 class="wow fadeInUp">
               <span class="shape shape-left bg-color-4"></span>
               <!-- speech interactive buttons -->
-                <span>跟著做</span>
+                <span><%= @user == current_user ? '我' : @user.name %>關注的人</span>
               <span class="shape shape-right bg-color-4"></span>
             </h2>
             <%= render partial: "shared/user_intro_list", locals:{ users: @followings}  %>
@@ -19,7 +41,7 @@
   </section>
 <% end %>
 
-<!-- 顯示關注我的人的清單 -->
+<!-- 顯示關注user的人的清單 -->
 <% if @followers.present? %>
   <section>
     <div class="container">
@@ -29,7 +51,7 @@
             <h2 class="wow fadeInUp">
               <span class="shape shape-left bg-color-4"></span>
               <!-- speech interactive buttons -->
-                <span>粉絲</span>
+                <span>關注<%= @user == current_user ? '我' : @user.name %>的人</span>
               <span class="shape shape-right bg-color-4"></span>
             </h2>
             <%= render partial: "shared/user_intro_list", locals:{ users: @followers}  %>

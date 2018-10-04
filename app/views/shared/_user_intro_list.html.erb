@@ -8,8 +8,8 @@
           <% users.each do |user| %>
             <%= link_to user_path(user) do %>
               <div class="col-sm-4 col-xs-12">
-                <div class='testimonialContent  bg-color-<%= user.kid_age%4 + 1 %>'>
-                  <span class="userSign border-color-<%= user.kid_age%4 + 1 %>">
+                <div class='testimonialContent  bg-color-<%= user.kid_age.present? ? (user.kid_age%4 + 1) : 1 %>'>
+                  <span class="userSign border-color-<%= user.kid_age.present? ? (user.kid_age%4 + 1) : 1 %>">
                     <%= image_tag user.avatar, class:"img-circle img-responsive" %>
                   </span>
                   <p><%=  truncate(user.intro, length: 100) %></p>
