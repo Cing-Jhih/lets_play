@@ -80,17 +80,17 @@ before_action :authenticate_user!, only: [:new, :favorite]
       @game = Game.where(id: situation_game_ids & age_game_ids).all.sample
     end
 
-    @step_speech = @game.step.gsub(/[^\u4e00-\u9fa5_a-zA-Z0-9]/,' ')
-    @title_speech = @game.title.gsub(/[^\u4e00-\u9fa5_a-zA-Z0-9]/,'')
-    @youtube_url = YouTubeRails.youtube_embed_url_only(@game.url, ssl: true) 
-    @url = request.protocol + request.host + (request.port ? ":#{request.port.to_s}" : nil) + "/games/" + @game.id.to_s
-
     if @game == nil
       flash[:notice] = "糟糕！您指定的玩家年齡與情境，我們找不到遊戲推薦給您Q_Q 請重新設置或進來逛逛其他遊戲"
       redirect_to root_path
-    end
+    else
+      @step_speech = @game.step.gsub(/[^\u4e00-\u9fa5_a-zA-Z0-9]/,' ')
+      @title_speech = @game.title.gsub(/[^\u4e00-\u9fa5_a-zA-Z0-9]/,'')
+      @youtube_url = YouTubeRails.youtube_embed_url_only(@game.url, ssl: true) 
+      @url = request.protocol + request.host + (request.port ? ":#{request.port.to_s}" : nil) + "/games/" + @game.id.to_s
 
-    url = '/games/random??utf8=✓&age_game%5Bage_id%5D=#{params[:age_game][:age_id]}&situation_game%5Bsituation_id%5D=#{params[:situation_game][:situation_id]}&speech%5D=#{@speech}&commit=推薦遊戲'
+      url = '/games/random??utf8=✓&age_game%5Bage_id%5D=#{params[:age_game][:age_id]}&situation_game%5Bsituation_id%5D=#{params[:situation_game][:situation_id]}&speech%5D=#{@speech}&commit=推薦遊戲'
+    end
   end
 
   def new
