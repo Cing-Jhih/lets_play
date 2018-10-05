@@ -83,7 +83,7 @@ before_action :authenticate_user!, only: [:new, :favorite]
     @step_speech = @game.step.gsub(/[^\u4e00-\u9fa5_a-zA-Z0-9]/,' ')
     @title_speech = @game.title.gsub(/[^\u4e00-\u9fa5_a-zA-Z0-9]/,'')
     @youtube_url = YouTubeRails.youtube_embed_url_only(@game.url, ssl: true) 
-    @url = 'https://kidgamebata.herokuapp.com/games/'+@game.id.to_s
+    @url = request.protocol + request.host + (request.port ? ":#{request.port.to_s}" : nil) + "/games/" + @game.id.to_s
 
     if @game == nil
       flash[:notice] = "糟糕！您指定的玩家年齡與情境，我們找不到遊戲推薦給您Q_Q 請重新設置或進來逛逛其他遊戲"
