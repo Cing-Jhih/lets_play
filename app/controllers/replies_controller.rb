@@ -6,7 +6,6 @@ class RepliesController < ApplicationController
     @reply = @game.replies.build(reply_params)
     @reply.user = current_user
     @reply.save!
-    redirect_to game_path(@game)
   end
 
   def destroy

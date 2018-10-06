@@ -1,0 +1,6 @@
+var ul = document.getElementById("game-<%= @game.id.to_s %>-reply");
+var newReplyNode = document.createElement("li");
+newReplyNode.classList += "media";
+newReplyNode.innerHTML = "<%= j render(:partial => "shared/game_reply", :locals => { game: @game, reply: @reply }) %>";
+ul.appendChild(newReplyNode)
+document.getElementById("reply_content").value = ""
