@@ -107,7 +107,7 @@
                     <% end %>  
                   </li>
                 <% end %>  
-                <% if current_user.notifications.present? %>
+                <% if current_user && current_user.notifications.present? %>
                   <li class="nav-item">
                     <%= link_to messages_user_path(current_user), class:"bg-color-4 shop-cart" do %>
                     <i class="fas fa-envelope " aria-hidden="true"></i>
@@ -132,7 +132,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/games"><%= image_tag "logo.png", alt: "Let's Play"%></a>
+            <a class="navbar-brand" href="/games"><%= image_tag "letsplay.png", alt: "Let's Play"%></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
