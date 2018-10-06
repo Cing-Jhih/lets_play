@@ -98,20 +98,24 @@
                   <% if @speech %>
                     <button class="btn btn-info btn-xl btn-pill" id="again" onclick="toggleReadAgain();">
                       <i class="fas fa-volume-up fa-2x"></i>
+                      <strong>唸標題</strong>
                     </button>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <button class="btn btn-warning btn-xl btn-pill" id="step" onclick="toggleReadStep();" >
                       <i class="fas fa-list-ol fa-2x"></i>
+                       <strong>唸方式</strong>
                     </button>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <button class="btn btn-danger btn-xl btn-pill" id="stop" onclick="toggleStopReading();" >
                       <i class="fas fa-comment-slash fa-2x"></i>
+                       <strong>停止朗讀</strong>
                     </button>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                   <% end %>
                   <a href= #{url} >
                     <button class="btn btn-success btn-xl btn-pill" id="reload">
                       <i class="fas fa-redo fa-2x"></i>
+                       <strong>再推薦</strong>
                     </button>
                   </a>
                 <span class="shape shape-right bg-color-4"></span>
