@@ -45,9 +45,7 @@
           <li>
             <i class="fa fa-child fa-lg" aria-hidden="true"></i> 
             適合年齡：
-            <% game.age_games.each do |age_game| %>
-              <%=  age_game.age.name %>
-            <% end %>
+            <%= game.min_age %><%= - game.max_age if game.max_age > game.min_age %>歲
           </li>
           <li>
             <i class="fa fa-theater-masks fa-lg" aria-hidden="true"></i> 
@@ -71,7 +69,7 @@
         <ul class="list-inline socailLink">
           <hr class="pd-des-container-bottom-line">
           <div class="product-show__social-share-button text-right">
-            <%= social_share_button_tag(game.title, :allow_sites => %w(facebook twitter email google_plus ), :image => game.image, desc:game.tool,:url => @url) %>
+            <%= social_share_button_tag(game.title, :allow_sites => %w(facebook twitter email google_plus ), :image => game.image, desc:game.title,:url => @url) %>
           </div>
           <br>
         </ul>
@@ -84,19 +82,18 @@
         <% if game.image.present? %>
           <%= image_tag game.image, class:"img-responsive" %>
         <% end %>  
-        </div>
+        </div> <br>
         
         <%# share and favorited again in the end of game info  %>
-        <ul class="list-inline pull-right">
-          <br>
+        <ul class="list-unstyled">
           <li>
             <ul class="list-inline socailLink">
-              <div class="product-show__social-share-button text-right">
-                <%= social_share_button_tag(game.title, :allow_sites => %w(facebook twitter email google_plus ), :image => game.image, desc:game.tool,:url => @url) %>
+              <div class="product-show__social-share-button">
+                <%= social_share_button_tag(game.title, :allow_sites => %w(facebook twitter email google_plus ), :image => game.image, desc:game.title,:url => @url) %>
               </div>
             </ul>
           </li>  
-          <li><%= render partial: "shared/favorite", locals:{game: game} %></li>
+          <li class="text-right"><%= render partial: "shared/favorite", locals:{game: game} %></li>
         </ul>
       </div><br><br><br>
 <%# Game.replies display %>

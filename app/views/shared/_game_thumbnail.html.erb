@@ -15,30 +15,16 @@
         <h3 class="color-<%= game.situation_games.present? ? game.situation_games.first.situation_id : 1 %>"><%= game.title %></h3>
 
         <ul class="list-inline">
-        <li class="pull-right">發表者&nbsp;<%= game.user.name %></li>
           <li>
             <i class="fa fa-child" aria-hidden="true"></i>
-            <% game.age_games.each do |age_game| %>
-              <%=  age_game.age.name %>
-            <% end %>
-          </li>
-          <li>
+            <%= game.min_age %><%= - game.max_age if game.max_age > game.min_age %>歲
             <i class="fa fa-theater-masks" aria-hidden="true"></i>
             <% game.situation_games.each do |situation_game| %>
               <%= situation_game.situation.condition  %>
             <% end %>
           </li>
           <li>
-            <i class="far fa-heart" aria-hidden="true"></i>
-              <%=  game.favorites_count %>
-          </li>
-          <li>
-            <i class="far fa-comment" aria-hidden="true"></i>
-              <%=  game.replies_count %>
-          </li>
-          <li>
-            <% if game.tags.present? %><i class="fas fa-hashtag" aria-hidden="true"></i> <% end %>
-              <% game.tags.each do |tag| %>
+              <% game.tags.first(3).each do |tag| %>
               <button class="btn btn-sm btn-outline-info"><%= link_to tag.name, "/games/hashtag/#{tag.name}" %></span></button>
             <% end %>
           </li>
