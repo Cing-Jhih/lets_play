@@ -10,7 +10,7 @@
                 desc: "加入收藏"
               } %>
 
-<%= link_to link_attr[:path], remote: true, method: :post, id: "game-" + game.id.to_s do %>
+<%= link_to link_attr[:path], remote: current_user != nil, method: :post, id: "game-" + game.id.to_s do %>
   <button type="button" class="btn <%= link_attr[:button_class] %> btn-pill">
     <i class="fas fa-heart" aria-hidden="true"><span><%= link_attr[:desc] %></span></i>
   </button>
