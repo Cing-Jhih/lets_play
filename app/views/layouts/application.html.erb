@@ -106,7 +106,7 @@
                       <i class="fas fa-sign-in-alt bg-color-6"></i> 登入
                     <% end %>  
                   </li>
-                <% end %>  
+                <% end %>
                 <% if current_user && current_user.notifications.present? %>
                   <li class="nav-item">
                     <%= link_to messages_user_path(current_user), class:"bg-color-4 shop-cart" do %>
