@@ -18,17 +18,11 @@ before_action :authenticate_user!, only: [:new, :favorite]
   end
 
   def hashtag
-    if params[:search]
-      tag = Tag.find_by(name: params[:search])
-        if tag
-          redirect_to "/games/hashtag/#{tag.name}"
-          params[:name] = params[:search]
-        else
-          flash[:alert] = "Sorry! #{params[:search]} was not found. Here are all hashtags"
-          redirect_to tag_all_path
-       end
+    @tag = Tag.find_by(name: params[:name])
+    if @tag == nil
+      flash[:alert] = "抱歉!「#{params[:name]}」目前並未關聯任何遊戲，請試試別的標籤"
+      redirect_to root_path
     else
-      @tag = Tag.find_by(name: params[:name])
       @games = @tag.games.all.order(favorites_count: :asc)
     end
   end
