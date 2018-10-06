@@ -18,6 +18,8 @@
           <li>
             <i class="fa fa-child" aria-hidden="true"></i>
             <%= game.min_age %><%= - game.max_age if game.max_age > game.min_age %>歲
+          </li>
+          <li>
             <i class="fa fa-theater-masks" aria-hidden="true"></i>
             <% game.situation_games.each do |situation_game| %>
               <%= situation_game.situation.condition  %>
