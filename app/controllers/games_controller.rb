@@ -116,7 +116,7 @@ before_action :authenticate_user!, only: [:new, :favorite]
     if @game.user == current_user || current_user.role == "admin"
       if @game.update(game_params)
         create_age
-        create_sutuation
+        create_situation
         redirect_to game_path(@game) #better to js:histroy.go(-2) or games_uer_path
         flash[:notice] = "成功編輯遊戲"
       else
