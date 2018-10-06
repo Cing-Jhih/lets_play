@@ -25,7 +25,7 @@
                   <%= link_to '修改密碼', edit_user_registration_path(current_user), class: "btn btn-outline-info btn-pill" %>
                 <% end %>
                 <% if current_user != @user %>
-                  <button class="btn btn-outline-primary btn-pill" href='#loginModal' data-toggle="modal">
+                  <button class="btn btn-outline-warning btn-pill" href='#loginModal' data-toggle="modal">
                     發送悄悄話給<%= user.name %>
                   </button>
                 <% end %>  

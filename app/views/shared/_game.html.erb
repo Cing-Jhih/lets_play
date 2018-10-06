@@ -85,16 +85,18 @@
         </div> <br>
         
         <%# share and favorited again in the end of game info  %>
-        <ul class="list-unstyled">
-          <li>
-            <ul class="list-inline socailLink">
-              <div class="product-show__social-share-button">
-                <%= social_share_button_tag(game.title, :allow_sites => %w(facebook twitter email google_plus ), :image => game.image, desc:game.title,:url => @url) %>
-              </div>
-            </ul>
-          </li>  
-          <li class="text-right"><%= render partial: "shared/favorite", locals:{game: game} %></li>
-        </ul>
+        <% if game.url.present? || game.image.present? %>
+          <ul class="list-unstyled">
+            <li>
+              <ul class="list-inline socailLink">
+                <div class="product-show__social-share-button">
+                  <%= social_share_button_tag(game.title, :allow_sites => %w(facebook twitter email google_plus ), :image => game.image, desc:game.title,:url => @url) %>
+                </div>
+              </ul>
+            </li>  
+            <li class="text-right"><%= render partial: "shared/favorite", locals:{game: game} %></li>
+          </ul>
+        <% end %>
       </div><br><br><br>
 <%# Game.replies display %>
       <div class="blogComments">
@@ -153,6 +155,14 @@
             <% end %>
           </div>
         </div>
+      </div>
+
+      <div>
+        <% if current_user %>
+          <% if game.user.email == current_user.email %>
+            <%= link_to "編輯遊戲", edit_game_path(game), class: "btn btn-sm btn-success" %>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
