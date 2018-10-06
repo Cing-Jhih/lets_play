@@ -4,12 +4,12 @@ before_action :validates_search_key, only: [:search]
 before_action :authenticate_user!, only: [:new, :favorite]
 
   def index
-    @popular_games_1 = Game.all.order(favorites_count: :desc).limit(4)
-    @popular_games_2 = Game.all.order(favorites_count: :desc).limit(4).offset(4)
-    @popular_games_3 = Game.all.order(favorites_count: :desc).limit(4).offset(8)
-    @latest_games_1 = Game.all.order(favorites_count: :desc).limit(4)
-    @latest_games_2 = Game.all.order(favorites_count: :desc).limit(4).offset(4)
-    @latest_games_3 = Game.all.order(favorites_count: :desc).limit(4).offset(8)
+    @popular_games_1 = Game.includes(:user,:situation_games, :tags, :favorited_users, age_games: :age).all.order(favorites_count: :desc).limit(4)
+    @popular_games_2 = Game.includes(:user, :situation_games, :tags, :favorited_users, age_games: :age).all.order(favorites_count: :desc).limit(4).offset(4)
+    @popular_games_3 = Game.includes(:user, :situation_games, :tags, :favorited_users, age_games: :age).all.order(favorites_count: :desc).limit(4).offset(8)
+    @latest_games_1 = Game.includes(:user, :situation_games, :tags, :favorited_users, age_games: :age).all.order(favorites_count: :desc).limit(4)
+    @latest_games_2 = Game.includes(:user, :situation_games, :tags, :favorited_users, age_games: :age).all.order(favorites_count: :desc).limit(4).offset(4)
+    @latest_games_3 = Game.includes(:user, :situation_games, :tags, :favorited_users, age_games: :age).all.order(favorites_count: :desc).limit(4).offset(8)
   end
 
 
@@ -46,12 +46,12 @@ before_action :authenticate_user!, only: [:new, :favorite]
 
   def popular
     # need to add a filer to limit games by age
-    @games = Game.all.order(favorites_count: :desc)
+    @games = Game.includes(:user, :tags, :favorited_users, age_games: :age, situation_games: :situation).all.order(favorites_count: :desc)
   end
 
   def latest
     # need to add a filer to limit games by age
-    @games = Game.all.order(created_at: :desc)
+    @games = Game.includes(:user, :tags, :favorited_users, age_games: :age, situation_games: :situation).all.order(created_at: :desc)
   end
 
   def random
@@ -80,17 +80,17 @@ before_action :authenticate_user!, only: [:new, :favorite]
       @game = Game.where(id: situation_game_ids & age_game_ids).all.sample
     end
 
-    @step_speech = @game.step.gsub(/[^\u4e00-\u9fa5_a-zA-Z0-9]/,' ')
-    @title_speech = @game.title.gsub(/[^\u4e00-\u9fa5_a-zA-Z0-9]/,'')
-    @youtube_url = YouTubeRails.youtube_embed_url_only(@game.url, ssl: true) 
-    @url = 'https://kidgamebata.herokuapp.com/games/'+@game.id.to_s
-
     if @game == nil
       flash[:notice] = "糟糕！您指定的玩家年齡與情境，我們找不到遊戲推薦給您Q_Q 請重新設置或進來逛逛其他遊戲"
       redirect_to root_path
-    end
+    else
+      @step_speech = @game.step.gsub(/[^\u4e00-\u9fa5_a-zA-Z0-9]/,' ')
+      @title_speech = @game.title.gsub(/[^\u4e00-\u9fa5_a-zA-Z0-9]/,'')
+      @youtube_url = YouTubeRails.youtube_embed_url_only(@game.url, ssl: true) 
+      @url = request.protocol + request.host + (request.port ? ":#{request.port.to_s}" : nil) + "/games/" + @game.id.to_s
 
-    url = '/games/random??utf8=✓&age_game%5Bage_id%5D=#{params[:age_game][:age_id]}&situation_game%5Bsituation_id%5D=#{params[:situation_game][:situation_id]}&speech%5D=#{@speech}&commit=推薦遊戲'
+      url = '/games/random??utf8=✓&age_game%5Bage_id%5D=#{params[:age_game][:age_id]}&situation_game%5Bsituation_id%5D=#{params[:situation_game][:situation_id]}&speech%5D=#{@speech}&commit=推薦遊戲'
+    end
   end
 
   def new
