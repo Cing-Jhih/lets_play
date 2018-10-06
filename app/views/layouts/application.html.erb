@@ -71,10 +71,10 @@
                 <li>
                   <% if current_user %>
                     <%= link_to new_game_path(current_user), class: "btn btn-success btn-xs" do %>
-                      <i class="fas fa-pen-nib"></i><strong>發表新遊戲</strong>
+                      <i class="fas fa-pen-nib"></i><strong>發表遊戲</strong>
                     <% end %>
                   <% else %>
-                    需先完成<%= link_to "登入", user_session_path %>, 才能發表新遊戲
+                    需先完成<%= link_to "登入", user_session_path %>, 才能發表遊戲
                   <% end %>
                 </li>
               </ul>
@@ -87,13 +87,6 @@
                       咍囉! <%= current_user.name %> 
                     </span>
                   </li>
-                  <% if current_user.notifications.present? %>
-                    <li class="nav-item">
-                      <%= link_to messages_user_path(current_user) do %>
-                      你有<%= current_user.notifications.size %>則新悄悄話
-                      <% end %>
-                    </li>
-                  <% end %>
                   <li>
                     <%= link_to destroy_user_session_path, method: :delete do %>
                       <i class="fas fa-sign-out-alt bg-color-6"></i> 登出
@@ -114,6 +107,14 @@
                     <% end %>  
                   </li>
                 <% end %>  
+                <% if current_user.notifications.present? %>
+                  <li class="nav-item">
+                    <%= link_to messages_user_path(current_user), class:"bg-color-4 shop-cart" do %>
+                    <i class="fas fa-envelope " aria-hidden="true"></i>
+                  <span class="badge bg-color-1"><%= current_user.notifications.size %></span>
+                    <% end %>
+                  </li>
+                <% end %>
               </ul>
             </div>
           </div>
@@ -143,122 +144,137 @@
               <%= render partial: "shared/search_bar"%>
               <hr>
             </li>
-              <% if current_user %>  
-                  <li class="visible-xs">
-                    <%= link_to destroy_user_session_path, method: :delete do %>
-                      <i class="fas fa-sign-out-alt bg-color-6"></i> 
-                      <span>登出</span>
-                    <% end %>
-                  </li>
-                <% else %>
-                  <li class="visible-xs">
-                    <%= link_to new_user_registration_path do %>
-                      <i class="fas fa-user-plus  bg-color-5"></i>
-                      <span>註冊</span>
-                    <% end %>  
-                  </li>
-                   <li class="visible-xs">
-                    <%= link_to new_user_session_path do %>
-                      <i class="fas fa-sign-in-alt bg-color-6"></i>
-                      <span>登入</span>
-                    <% end %>  
-                  </li>
+            
+            <% if current_user %>  
+              <li class="visible-xs">
+                <%= link_to new_game_path(current_user) do %>
+                  <i class="fas fa-pen-nib bg-color-2"></i>
+                  <span>發表遊戲</span>
                 <% end %>
-              <% if current_user %>
-                <li class="dropdown singleDrop color-5">
-                  <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-address-card bg-color-5" aria-hidden="true"></i> <span>會員專區</span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-left">
-                    <li><%= link_to '個資與收藏', user_path(current_user) %></li>
-                    <li><%= link_to '遊戲創作', games_user_path(current_user) %></li>
-                    <li><%= link_to '評論交流', replies_user_path(current_user) %></li>
-                    <li><%= link_to '分齡玩伴', groups_user_path(current_user) %></li>
-                  </ul>
+              </li>
+              <% if current_user.notifications.present? %>
+                <li class="visible-xs">
+                  <%= link_to messages_user_path(current_user)do %>
+                  <i class="fas fa-envelope bg-color-4"></i>
+                <span><%= current_user.notifications.size %>則未讀悄悄話</span>
+                  <% end %>
                 </li>
               <% end %>
-              <li class="dropdown singleDrop color-4">
+              <li class="visible-xs">
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <i class="fas fa-sign-out-alt bg-color-6"></i> 
+                  <span>登出</span>
+                <% end %>
+              </li>
+            <% else %>
+              <li class="visible-xs">
+                <%= link_to new_user_registration_path do %>
+                  <i class="fas fa-user-plus  bg-color-5"></i>
+                  <span>註冊</span>
+                <% end %>  
+              </li>
+               <li class="visible-xs">
+                <%= link_to new_user_session_path do %>
+                  <i class="fas fa-sign-in-alt bg-color-6"></i>
+                  <span>登入</span>
+                <% end %>  
+              </li>
+            <% end %>
+            <% if current_user %>
+              <li class="dropdown singleDrop color-5">
                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <i class="fas fa-theater-masks bg-color-4" aria-hidden="true"></i>
-                  <span>適合情境</span>
+                  <i class="fa fa-address-card bg-color-5" aria-hidden="true"></i> <span>會員專區</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-left">
-                  <% Situation.all.order(id: :asc).each do |situation| %>
-                    <li><%= link_to situation.condition, situation_path(situation) %></li>
-                  <% end %>
+                  <li><%= link_to '個資與收藏', user_path(current_user) %></li>
+                  <li><%= link_to '遊戲創作', games_user_path(current_user) %></li>
+                  <li><%= link_to '評論交流', replies_user_path(current_user) %></li>
+                  <li><%= link_to '分齡玩伴', groups_user_path(current_user) %></li>
                 </ul>
               </li>
-              <li class="dropdown singleDrop color-3">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <i class="fas fa-child bg-color-3" aria-hidden="true"></i>
-                  <span>適玩年齡</span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-left">
-                  <li><%= link_to '嬰兒 (0~2歲)', baby_ages_path %></li>
-                  <li><%= link_to '幼兒 (3~5歲)', kidergarten_ages_path %></li>
-                  <li><%= link_to '低年級(6~7歲)', junior_ages_path %></li>
-                  <li><%= link_to '中年級(8~9歲)', middle_ages_path %></li>
-                  <li><%= link_to '高年級(10~12歲)', senior_ages_path %></li>
-                </ul>
-              </li>
-              <li class="dropdown singleDrop color-1">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <i class="fas fa-crown bg-color-1" aria-hidden="true"></i>
-                  <span>排行榜</span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-left">
-                  <li><%= link_to '最新遊戲', latest_games_path %></li>
-                  <li><%= link_to '熱門遊戲', popular_games_path %></li>
-                </ul>
-              </li>
-              <li class=" dropdown megaDropMenu color-2">
-                <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true" aria-expanded="false">
-                  <i class="fas fa-hashtag bg-color-2" aria-hidden="true"></i>
-                  <span>熱門標簽</span>
-                </a>
-                <ul class="row dropdown-menu">
-                  <li class="col-sm-3 col-xs-12">
-                    <ul class="list-unstyled">
-                      <li>感覺統合</li>
-                      <li class=""><a href="/games/hashtag/大肢體">大肢體</a></li>
-                      <li class=""><a href="/games/hashtag/小肌肉">小肌肉</a></li>
-                      <li class=""><a href="/games/hashtag/五感體驗">五感體驗</a></li>
-                      <li class=""><a href="/games/hashtag/音樂律動">音樂律動</a></li>  
-                    </ul>
-                  </li>
-                  <li class="col-sm-3 col-xs-12">
-                    <ul class="list-unstyled">
-                      <li>育教於樂</li>
-                      <li class=""><a href="/games/hashtag/情緒EQ">情緒EQ</a></li>
-                      <li class=""><a href="/games/hashtag/科學邏輯">科學邏輯</a></li>
-                      <li class=""><a href="/games/hashtag/語言表答">語言表答</a></li>
-                      <li class=""><a href="/games/hashtag/生活常規">生活常規</a></li>
-                    </ul>
-                  </li>
-                  <li class="col-sm-3 col-xs-12">
-                    <ul class="list-unstyled">
-                      <li>親子手作</li>
-                      <li class=""><a href="/games/hashtag/料理">料理</a></li>
-                      <li class=""><a href="/games/hashtag/玩具">玩具</a></li>
-                      <li class=""><a href="/games/hashtag/美術">美術</a></li>
-                    </ul>
-                  </li>
-                  <li class="col-sm-3 col-xs-12">
-                    <ul class="list-unstyled">
-                      <li>生活常規</li>
-                      <li class=""><a href="/games/hashtag/做家事">做家事</a></li>
-                      <li class=""><a href="/games/hashtag/自理">自理</a></li>
-                      <li class=""><a href="/games/hashtag/安全">安全</a></li>
-                      <li class=""><a href="/games/hashtag/人際禮儀">人際禮儀</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
+            <% end %>
+            <li class="dropdown singleDrop color-4">
+              <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-theater-masks bg-color-4" aria-hidden="true"></i>
+                <span>適合情境</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-left">
+                <% Situation.all.order(id: :asc).each do |situation| %>
+                  <li><%= link_to situation.condition, situation_path(situation) %></li>
+                <% end %>
+              </ul>
+            </li>
+            <li class="dropdown singleDrop color-3">
+              <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-child bg-color-3" aria-hidden="true"></i>
+                <span>適玩年齡</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-left">
+                <li><%= link_to '嬰兒 (0~2歲)', baby_ages_path %></li>
+                <li><%= link_to '幼兒 (3~5歲)', kidergarten_ages_path %></li>
+                <li><%= link_to '低年級(6~7歲)', junior_ages_path %></li>
+                <li><%= link_to '中年級(8~9歲)', middle_ages_path %></li>
+                <li><%= link_to '高年級(10~12歲)', senior_ages_path %></li>
+              </ul>
+            </li>
+            <li class="dropdown singleDrop color-1">
+              <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-crown bg-color-1" aria-hidden="true"></i>
+                <span>排行榜</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-left">
+                <li><%= link_to '最新遊戲', latest_games_path %></li>
+                <li><%= link_to '熱門遊戲', popular_games_path %></li>
+              </ul>
+            </li>
+            <li class=" dropdown megaDropMenu color-2">
+              <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true" aria-expanded="false">
+                <i class="fas fa-hashtag bg-color-2" aria-hidden="true"></i>
+                <span>熱門標簽</span>
+              </a>
+              <ul class="row dropdown-menu">
+                <li class="col-sm-3 col-xs-12">
+                  <ul class="list-unstyled">
+                    <li>感覺統合</li>
+                    <li class=""><a href="/games/hashtag/大肢體">大肢體</a></li>
+                    <li class=""><a href="/games/hashtag/小肌肉">小肌肉</a></li>
+                    <li class=""><a href="/games/hashtag/五感體驗">五感體驗</a></li>
+                    <li class=""><a href="/games/hashtag/音樂律動">音樂律動</a></li>  
+                  </ul>
+                </li>
+                <li class="col-sm-3 col-xs-12">
+                  <ul class="list-unstyled">
+                    <li>育教於樂</li>
+                    <li class=""><a href="/games/hashtag/情緒EQ">情緒EQ</a></li>
+                    <li class=""><a href="/games/hashtag/科學邏輯">科學邏輯</a></li>
+                    <li class=""><a href="/games/hashtag/語言表答">語言表答</a></li>
+                    <li class=""><a href="/games/hashtag/生活常規">生活常規</a></li>
+                  </ul>
+                </li>
+                <li class="col-sm-3 col-xs-12">
+                  <ul class="list-unstyled">
+                    <li>親子手作</li>
+                    <li class=""><a href="/games/hashtag/料理">料理</a></li>
+                    <li class=""><a href="/games/hashtag/玩具">玩具</a></li>
+                    <li class=""><a href="/games/hashtag/美術">美術</a></li>
+                  </ul>
+                </li>
+                <li class="col-sm-3 col-xs-12">
+                  <ul class="list-unstyled">
+                    <li>生活常規</li>
+                    <li class=""><a href="/games/hashtag/做家事">做家事</a></li>
+                    <li class=""><a href="/games/hashtag/自理">自理</a></li>
+                    <li class=""><a href="/games/hashtag/安全">安全</a></li>
+                    <li class=""><a href="/games/hashtag/人際禮儀">人際禮儀</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
-      </nav>
-    </header>
+      </div>
+    </nav>
+  </header>
 
   <!-- ====================================
   ——— Call controller-action
