@@ -1,0 +1,20 @@
+<section class="whiteSection full-width clearfix p-t-n">
+  <div class="container">
+    <div class="row">
+    <% users.each do |user| %>
+      <div class="col-sm-3 col-lg-3 col-xs-6">
+        <div class="teamContent teamAdjust">    
+          <div class="teamImage">
+          <%= image_tag user.avatar, alt:"img", class:"img-circle img-responsive" %>
+          </div>
+          <div class="teamInfo teamTeacher"> 
+            <h3><%= link_to user.name, user_path(user) %></h3>
+            <p><%= user.kid_age %>歲孩子的玩伴</p>
+            <p><%= render partial: "shared/follow", locals: {user: user} %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</section>

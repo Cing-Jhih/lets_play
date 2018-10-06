@@ -33,7 +33,7 @@
                 <span><%= @user == current_user ? '我' : @user.name %>關注的人</span>
               <span class="shape shape-right bg-color-4"></span>
             </h2>
-            <%= render partial: "shared/user_intro_list", locals:{ users: @followings}  %>
+            <%= render partial: "shared/user_circle_list", locals:{ users: @followings}  %>
           </div>
         </div>
       </div>
