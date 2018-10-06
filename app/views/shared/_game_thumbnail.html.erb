@@ -18,9 +18,7 @@
         <li class="pull-right">發表者&nbsp;<%= game.user.name %></li>
           <li>
             <i class="fa fa-child" aria-hidden="true"></i>
-            <% game.age_games.each do |age_game| %>
-              <%=  age_game.age.name %>
-            <% end %>
+            <%= game.min_age %><%= - game.max_age if game.max_age > game.min_age %>歲
           </li>
           <li>
             <i class="fa fa-theater-masks" aria-hidden="true"></i>
