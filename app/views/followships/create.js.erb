@@ -1,0 +1,7 @@
+var el = document.getElementById("<%= "followship_" + @followship.following_id.to_s %>");
+el.innerHTML = "取消關注";
+el.classList.remove("btn-warning");
+el.classList.add("btn-outline-warning");
+el.setAttribute('data-method', "delete");
+el.href = "<%= followship_path(@followship.following_id) %>"
+el.blur()
