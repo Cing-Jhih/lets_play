@@ -1,0 +1,6 @@
+var el = document.getElementById("<%= "game-" + @game.id.to_s %>");
+el.querySelector('button i span').innerHTML = "移出收藏";
+el.querySelector('button').classList.remove("btn-danger");
+el.querySelector('button').classList.add("btn-outline-primary");
+el.href = "<%= unfavorite_game_path(@game) %>"
+el.querySelector('button').blur()
