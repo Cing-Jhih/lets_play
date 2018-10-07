@@ -139,14 +139,12 @@ before_action :authenticate_user!, only: [:new, :favorite]
   def favorite
     @game = Game.find(params[:id])
     @game.favorites.create!(user: current_user)
-    redirect_back(fallback_location: root_path)  # 導回上一頁
   end
 
   def unfavorite
     @game = Game.find(params[:id])
     favorites = Favorite.where(game: @game, user: current_user)
     favorites.destroy_all
-    redirect_back(fallback_location: root_path)
   end
 
 private
