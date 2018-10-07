@@ -13,7 +13,6 @@ class RepliesController < ApplicationController
     @reply = Reply.find(params[:id])
     if @reply.user == current_user || current_user.role == "admin"
       @reply.destroy
-      redirect_to game_path(@game)
     end
   end
 

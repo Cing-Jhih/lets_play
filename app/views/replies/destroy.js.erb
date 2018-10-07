@@ -1,0 +1,3 @@
+var ul = document.getElementById("game-<%= @game.id.to_s %>-reply");
+var li = document.getElementById("reply-<%= @reply.id.to_s %>");
+ul.removeChild(li)
