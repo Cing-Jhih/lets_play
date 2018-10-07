@@ -7,7 +7,7 @@
         <div class="tabCommon">
           <ul class="nav nav-tabs">
             <li><%= link_to "收藏(#{@user.favorites_count})", user_path(@user) %></li>
-            <li class="active"><%= link_to "發表(#{@user.games_count})", games_user_path(@user) %></li>
+            <li class="active"><%= link_to "創作(#{@user.games_count})", games_user_path(@user) %></li>
             <li><%= link_to "回應(#{@user.replies_count})", replies_user_path(@user) %></li>
             <li><%= link_to "#{@user == current_user ? '我' : @user.name}的關注名單", followships_user_path(@user) %></li>
             <% if @user == current_user %>
