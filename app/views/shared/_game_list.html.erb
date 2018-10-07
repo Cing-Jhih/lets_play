@@ -5,7 +5,7 @@
       <div class="col-xs-12">
         <% games.each do |game| %>
           <div class="media courseList couresListPage" >
-            <%= link_to game_path(game), class:"media-left border-color-1" do %>
+            <%= link_to game_path(game), class:"media-left media-middle border-color-1" do %>
               <% if game.url.present? && game.image.blank? %>
                 <%= image_tag YouTubeRails.extract_video_image("#{game.url}", 'high'), class:"img-responsive" %>
               <% else %>
@@ -18,7 +18,7 @@
               <% end %>
             <% end %>
             <div class="media-body">
-              <h3 class="media-heading"><%= link_to game.title, game_path(game), class: game.situation_games.present? ? "color-#{ game.situation_games.first.situation_id }" : "color-1"%></h3>
+              <h4 class="media-heading"><%= link_to game.title, game_path(game), class: "color-#{ rand(1..6) }"%></h4>
               <p class="pull-right">發表者&nbsp;<%= render partial: "shared/link_user_avatar", locals:{user: game.user} %> </p>
               <ul class="list-inline">
                 <li>
@@ -40,8 +40,7 @@
                     <%=  game.replies_count %>
                 </li>
                 <li>
-                  <% if game.tags.present? %><i class="fas fa-hashtag" aria-hidden="true"></i> <% end %>
-                    <% game.tags.each do |tag| %>
+                  <% game.tags.each do |tag| %>
                     <button class="btn btn-sm btn-outline-info"><%= link_to tag.name, "/games/hashtag/#{tag.name}" %></span></button>
                   <% end %>
                 </li>
@@ -50,7 +49,7 @@
                 <i class="fa fa-shapes" aria-hidden="true"></i>
                 <strong><%= game.tool %></strong>
               </p>
-              <p><%= truncate(game.step, length: 300) %></p>
+              <p><%= truncate(game.step, length: 200) %></p>
               <br>
               <ul class="list-inline btn-yellow btnPart">
                 <li><%= render partial: "shared/favorite", locals:{game: game} %> </li>
