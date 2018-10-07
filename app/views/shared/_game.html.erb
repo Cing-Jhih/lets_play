@@ -101,26 +101,10 @@
 <%# Game.replies display %>
       <div class="blogComments">
         <h3><%= game.replies_count %>則回應</h3>
-        <ul class="media-list commentsList">
+        <ul class="media-list commentsList" id="game-<%= game.id.to_s %>-reply">
           <% game.replies.each do |reply| %>
-            <li class="media">
-              <div class="media-left">
-                <% if reply.user.avatar? %>
-                  <%= image_tag reply.user.avatar, width: "50px", class: "rounded img-circle"%>
-                <% else %>
-                  <i class="fa fa-user" aria-hidden="true"></i>
-                <% end %>
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading"><%= link_to reply.user.name, user_path(reply.user) %></h4>
-                <p><%= time_ago_in_words(reply.created_at) %> ago</p>
-                <p><%= reply.content %></p>
-                <% if current_user %>
-                  <% if reply.user.email == current_user.email || current_user.role == "admin" %>
-                    <%= link_to "刪除", game_reply_path(game, reply), method: :delete, data: { confirm: "你確定嗎?"}, class: "btn btn-primary pull-right" %>
-                  <% end %>
-                <% end %>
-              </div>
+            <li class="media" id="reply-<%= reply.id.to_s %>">
+              <%= render partial: "shared/game_reply", locals:{game: game, reply: reply}  %>
             </li>
           <% end %>
         </ul>
@@ -131,7 +115,7 @@
         <div class="homeContactContent">
           <div class="row">
             <% if current_user %>
-              <%= form_for [game, @reply] do |f| %>
+              <%= form_for [game, @reply], { remote: true } do |f| %>
                 <div class="col-xs-12">
                   <div class="form-group">
                     <%= f.text_area :content, placeholder: "在這裡回應", class: "form-control border-color-4" %>

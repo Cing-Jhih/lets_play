@@ -6,7 +6,6 @@ class RepliesController < ApplicationController
     @reply = @game.replies.build(reply_params)
     @reply.user = current_user
     @reply.save!
-    redirect_to game_path(@game)
   end
 
   def destroy
@@ -14,7 +13,6 @@ class RepliesController < ApplicationController
     @reply = Reply.find(params[:id])
     if @reply.user == current_user || current_user.role == "admin"
       @reply.destroy
-      redirect_to game_path(@game)
     end
   end
 
