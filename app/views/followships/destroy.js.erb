@@ -1,0 +1,7 @@
+var el = document.getElementById("<%= "followship_" + @followship.following_id.to_s %>");
+el.innerHTML = "加入關注";
+el.classList.remove("btn-outline-warning");
+el.classList.add("btn-warning");
+el.setAttribute('data-method', "post");
+el.href = "<%= followships_path(following_id: @followship.following_id) %>"
+el.blur()
