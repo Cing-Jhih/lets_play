@@ -186,10 +186,12 @@
                   <i class="fa fa-address-card bg-color-5" aria-hidden="true"></i> <span>會員專區</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-left">
-                  <li><%= link_to '個資與收藏', user_path(current_user) %></li>
-                  <li><%= link_to '遊戲創作', games_user_path(current_user) %></li>
-                  <li><%= link_to '評論交流', replies_user_path(current_user) %></li>
                   <li><%= link_to '分齡玩伴', groups_user_path(current_user) %></li>
+                  <li><%= link_to '個資與收藏', user_path(current_user) %></li>
+                  <li><%= link_to '創作', games_user_path(current_user) %></li>
+                  <li><%= link_to '回應', replies_user_path(current_user) %></li>
+                  <li><%= link_to '關注', followships_user_path(current_user) %></li>
+                  <li><%= link_to '悄悄話', messages_user_path(current_user) %></li>
                 </ul>
               </li>
             <% end %>

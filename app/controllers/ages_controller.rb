@@ -17,7 +17,7 @@ class AgesController < ApplicationController
       end
     end
     games_ids.uniq
-    @games = Game.where(id: games_ids).all.order(favorites_count: :asc)
+    @games = Game.where(id: games_ids).all.order(created_at: :desc)
    end
   
 
@@ -29,7 +29,7 @@ class AgesController < ApplicationController
       end
     end
     games_ids.uniq
-    @games = Game.where(id: games_ids).all.order(favorites_count: :asc)
+    @games = Game.where(id: games_ids).all.order(created_at: :desc)
   end
 
   def junior
@@ -40,7 +40,7 @@ class AgesController < ApplicationController
       end
     end
     games_ids.uniq
-    @games = Game.where(id: games_ids).all.order(favorites_count: :asc)
+    @games = Game.where(id: games_ids).all.order(created_at: :desc)
   end
 
   def middle
@@ -51,7 +51,7 @@ class AgesController < ApplicationController
       end
     end
     games_ids.uniq
-    @games = Game.where(id: games_ids).all.order(favorites_count: :asc)
+    @games = Game.where(id: games_ids).all.order(created_at: :desc)
   end
 
   def senior
@@ -62,6 +62,6 @@ class AgesController < ApplicationController
       end
     end
     games_ids.uniq
-    @games = Game.where(id: games_ids).all.order(favorites_count: :asc)
+    @games = Game.where(id: games_ids).all.order(created_at: :desc)
   end
 end

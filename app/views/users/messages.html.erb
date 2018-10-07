@@ -7,7 +7,7 @@
         <div class="tabCommon">
           <ul class="nav nav-tabs">
             <li><%= link_to "收藏(#{@user.favorites_count})", user_path(@user) %></li>
-            <li><%= link_to "發表(#{@user.games_count})", games_user_path(@user) %></li>
+            <li><%= link_to "創作(#{@user.games_count})", games_user_path(@user) %></li>
             <li><%= link_to "回應(#{@user.replies_count})", replies_user_path(@user) %></li>
             <li><%= link_to "#{@user == current_user ? '我' : @user.name}的關注名單", followships_user_path(@user) %></li>
             <% if @user == current_user %>
@@ -23,7 +23,7 @@
 <section class="mainContent full-width clearfix">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-md-6 col-xs-12">
         <div class="blogComments">
           <h3 class="color-2">我收到的悄悄話</h3>
           <div class="homeContactContent">
@@ -54,14 +54,8 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="mainContent full-width clearfix">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
+    
+      <div class="col-md-6 col-xs-12">
         <div class="blogComments">
           <h3 class="color-2">我發送的悄悄話</h3>
           <div class="homeContactContent">
