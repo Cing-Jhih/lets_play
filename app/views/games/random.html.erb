@@ -16,74 +16,121 @@
     var msg3 = new SpeechSynthesisUtterance(again, ["zh-TW", 1, 1.5, 0.7]);
     window.speechSynthesis.speak(msg3);
   }
+  
   $("#again").mouseenter(function(){
+    window.speechSynthesis.cancel();
     var msg4 = new SpeechSynthesisUtterance("再唸一次", ["zh-TW", 1, 1.5, 0.7]);
     window.speechSynthesis.speak(msg4);
   });
     $("#step").mouseenter(function(){
+    window.speechSynthesis.cancel();
     var msg5 = new SpeechSynthesisUtterance("唸遊戲方法", ["zh-TW", 1, 1.5, 0.7]);
     window.speechSynthesis.speak(msg5);
   });
     $("#stop").mouseenter(function(){
+    window.speechSynthesis.cancel();
     var msg6 = new SpeechSynthesisUtterance("不要說了", ["zh-TW", 1, 1.5, 0.7]);
     window.speechSynthesis.speak(msg6);
   });
     $("#reload").mouseenter(function(){
+    window.speechSynthesis.cancel();
     var msg7 = new SpeechSynthesisUtterance("看其它遊戲", ["zh-TW", 1, 1.5, 0.7]);
     window.speechSynthesis.speak(msg7);
   });
+
   var speech = <%= @speech %>;
   console.log(speech);
+
   if (speech == 1) {
     var title = '<%= @title_speech %> 玩這個還是要換一個';
     var msg1 = new SpeechSynthesisUtterance(title, ["zh-TW", 1, 1.5, 0.7]);
     window.speechSynthesis.speak(msg1);
-    setTimeout(function() {
-      function speechRecognition() {
-        if (!("webkitSpeechRecognition" in window)) {
-          alert("本瀏覽器不支援語音辨識，請更換瀏覽器！(Chrome 25 版以上才支援語音辨識)");
-        } else {
-          window._recognition = new webkitSpeechRecognition();
-          window._recognition.continuous = true;
-          window._recognition.interimResults = true;
-          window._recognition.lang = "cmn-Hant-TW";
-          window._recognition.onstart = function() {
-            window._recognition.status = true;
-            console.log("Start recognize...");
-          };
-          window._recognition.onend = function() {
-            console.log("Stop recognize");
-            if (window._recognition.status) {
-              window._recognition.start();
-            }
-          };
-          window._recognition.onresult = function(event, result) {
-            result = {};
-            result.resultLength = event.results.length - 1;
-            result.resultTranscript = event.results[result.resultLength][0].transcript;
-            if (event.results[result.resultLength].isFinal === false) {
-              console.log(result.resultTranscript);
-              if (result.resultTranscript.indexOf('換') !== -1) {
-                history.go(0);
+
+    function speechRecognition2(){
+      if (!("webkitSpeechRecognition" in window)) {
+        alert("本瀏覽器不支援語音辨識，請更換瀏覽器！(Chrome 25 版以上才支援語音辨識)");
+      } else{
+        window._recognition = new webkitSpeechRecognition();
+        window._recognition.continuous = true;
+        window._recognition.interimResults = true;
+        window._recognition.lang = "cmn-Hant-TW";
+
+        window._recognition.onstart = function() {
+          window._recognition.status = true;
+          console.log("Start recognize...");
+        };
+
+        window._recognition.onend = function() {
+          console.log("Stop recognize");
+          if(window._recognition.status){
+            window._recognition.start();
+          }
+        };
+
+        window._recognition.onresult = function(event,result) {
+          result = {};
+          result.resultLength = event.results.length-1;
+          result.resultTranscript = event.results[result.resultLength][0].transcript;
+          if(event.results[result.resultLength].isFinal===false){
+            console.log(result.resultTranscript);
+              if(result.resultTranscript.indexOf("要換一個")!== -1){
+                function speechRecognition(){
+          if (!("webkitSpeechRecognition" in window)) {
+            alert("本瀏覽器不支援語音辨識，請更換瀏覽器！(Chrome 25 版以上才支援語音辨識)");
+          } else{
+            window._recognition = new webkitSpeechRecognition();
+            window._recognition.continuous = true;
+            window._recognition.interimResults = true;
+            window._recognition.lang = "cmn-Hant-TW";
+
+            window._recognition.onstart = function() {
+              window._recognition.status = true;
+              console.log("Start recognize...");
+            };
+
+            window._recognition.onend = function() {
+              console.log("Stop recognize");
+              if(window._recognition.status){
+                window._recognition.start();
               }
-              if (result.resultTranscript.indexOf('玩') !== -1) {
-                window._recognition.status = false;
-                window._recognition.stop();
-                var step = '遊戲方式 <%= @step_speech %> ';
-                console.log(step);
-                var msg2 = new SpeechSynthesisUtterance(step, ["zh-TW", 1, 1.5, 0.5]);
-                window.speechSynthesis.speak(msg2);
+            };
+
+            window._recognition.onresult = function(event,result) {
+              result = {};
+              result.resultLength = event.results.length-1;
+              result.resultTranscript = event.results[result.resultLength][0].transcript;
+              if(event.results[result.resultLength].isFinal===false){
+                console.log(result.resultTranscript);
+                  if (result.resultTranscript.indexOf('換') !== -1) {
+                    history.go(0);
+                  }
+                  if (result.resultTranscript.indexOf('玩') !== -1) {
+                    window._recognition.status = false;
+                    window._recognition.stop();
+                    var step = '遊戲方式 <%= @step_speech %> ';
+                    console.log(step);
+                    var msg2 = new SpeechSynthesisUtterance(step, ["zh-TW", 1, 1.5, 0.3]);
+                    window.speechSynthesis.speak(msg2);
+                  }
+                } else if (event.results[result.resultLength].isFinal === true) {
+                  console.log("final");
               }
-            } else if (event.results[result.resultLength].isFinal === true) {
-              console.log("final");
-            }
-          };
-          window._recognition.start();
+            };
+            window._recognition.start();
+          }
         }
+        speechRecognition();
+              console.log(event.results[result.resultLength]);
+            }
+                  }else if(event.results[result.resultLength].isFinal===true){
+            console.log("final");
+          }
+        };
+        window._recognition.start();
       }
-      speechRecognition();
-    }, 1000 * 4);
-  }
+    }
+    speechRecognition2();
+  };
   </script>
   <% end %>
 <section>
