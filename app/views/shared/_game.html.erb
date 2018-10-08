@@ -82,10 +82,12 @@
         <% if game.image.present? %>
           <%= image_tag game.image, class:"img-responsive" %>
         <% end %>  
-        </div> <br>
-        
+        </div> 
+      </div>
+       
         <%# share and favorited again in the end of game info  %>
-        <% if game.url.present? || game.image.present? %>
+       <div class="col-md-12 col-xs-12">
+         <% if game.url.present? || game.image.present? %>
           <ul class="list-unstyled">
             <li>
               <ul class="list-inline socailLink">
@@ -97,7 +99,8 @@
             <li class="text-right"><%= render partial: "shared/favorite", locals:{game: game} %></li>
           </ul>
         <% end %>
-      </div><br><br><br>
+       </div>
+      <br><br><br>
 <%# Game.replies display %>
       <div class="blogComments">
         <h3><%= game.replies_count %>則回應</h3>

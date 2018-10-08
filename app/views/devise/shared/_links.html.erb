@@ -1,6 +1,16 @@
 <%- if controller_name != 'sessions' %>
-  已經有帳號了嗎？ <%= link_to "登入", new_session_path(resource_name) %><br />
+  已經有帳號了嗎？ <br>
+  <%= link_to "登入", new_session_path(resource_name),class:"btn btn-primary btn-block bg-color-3 border-color-3" %>
 <% end -%>
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <%= link_to  omniauth_authorize_path(resource_name, provider), class: "btn btn-block btn-facebook-filled btn-rounded" do%>
+      <i class="fab fa-facebook fa-lg"></i> 
+        <span><%= OmniAuth::Utils.camelize(provider) %> 登入</span>
+      </button> 
+    <% end %>  
+  <% end -%>
+<% end -%><br /><br />
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
   還沒有帳號？<%= link_to "註冊", new_registration_path(resource_name) %><br />
@@ -18,8 +28,4 @@
   <%= link_to "還沒收到解鎖指引?", new_unlock_path(resource_name) %><br />
 <% end -%>
 
-<%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    或 <%= link_to "使用#{OmniAuth::Utils.camelize(provider)}登入", omniauth_authorize_path(resource_name, provider) %><br />
-  <% end -%>
-<% end -%>
+
