@@ -15,20 +15,26 @@
             <% end %>   
           </ul>
         </div>
+      </div><br><br><br>
+      <div class="col-md-6 col-md-offset-3 col-xs-12">
+        <% if current_user %>
+          <% if @user.email == current_user.email %>
+            <%= link_to new_game_path(current_user), class: "btn btn-success btn-lg btn-block" do %>
+              <i class="fas fa-pen-nib"></i><strong>發表遊戲</strong>
+            <% end %>  
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
 </section>
 
 <section class="mainContent full-width clearfix">
+  
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-          <% if current_user %>
-            <% if @user.email == current_user.email %>
-              <%= link_to "發表新遊戲", new_game_path(current_user), class: "btn btn-warning btn-pill" %>
-            <% end %>
-          <% end %>
+          
         <% @posted_games.each do |game| %>
           <div class="media courseList couresListPage" >
             <%= link_to game_path(game), class:"media-left border-color-1" do %>

@@ -12,7 +12,7 @@
                   <span class="userSign border-color-<%= user.kid_age.present? ? (user.kid_age%5 + 2) : 1 %>">
                     <%= image_tag user.avatar, class:"img-circle img-responsive" %>
                   </span>
-                  <p><%=  truncate(user.intro, length: 100) %></p>
+                  <p><%=  truncate(user.intro, length: 80) %></p>
                   <h3><strong><%= user.name %></strong> 
                     <small><strong><%= user.kid_age %>歲孩子的玩伴</strong></small>
                   </h3>

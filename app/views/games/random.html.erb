@@ -73,7 +73,7 @@
           result.resultTranscript = event.results[result.resultLength][0].transcript;
           if(event.results[result.resultLength].isFinal===false){
             console.log(result.resultTranscript);
-              if(result.resultTranscript.indexOf("要換一個")!== -1){
+              if(result.resultTranscript.indexOf("換一個")!== -1){
                 function speechRecognition(){
           if (!("webkitSpeechRecognition" in window)) {
             alert("本瀏覽器不支援語音辨識，請更換瀏覽器！(Chrome 25 版以上才支援語音辨識)");
