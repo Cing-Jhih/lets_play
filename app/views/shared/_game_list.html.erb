@@ -1,8 +1,4 @@
 
-<section class="mainContent full-width clearfix">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
         <% games.each do |game| %>
           <div class="media courseList couresListPage" >
             <%= link_to game_path(game), class:"media-left media-middle border-color-1" do %>
@@ -45,10 +41,12 @@
                   <% end %>
                 </li>
               </ul>
-              <p>
-                <i class="fa fa-shapes" aria-hidden="true"></i>
-                <strong><%= game.tool %></strong>
-              </p>
+              <% if game.tool.present? %>
+                <p>
+                  <i class="fa fa-shapes" aria-hidden="true"></i>
+                  遊戲道具：<%= game.tool %>
+                </p>
+              <% end %>
               <p><%= truncate(game.step, length: 200) %></p>
               <br>
               <ul class="list-inline btn-yellow btnPart">
