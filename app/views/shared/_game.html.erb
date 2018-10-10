@@ -40,20 +40,21 @@
             回應數：<%=  game.replies_count %>
           </li>
         </ul>
-        
         <ul class="list-unstyled blogInfo">
           <li>
             <i class="fa fa-child fa-lg" aria-hidden="true"></i> 
             適合年齡：
             <%= game.min_age %><%= - game.max_age if game.max_age > game.min_age %>歲
           </li>
-          <li>
-            <i class="fa fa-theater-masks fa-lg" aria-hidden="true"></i> 
-            適玩情境：
-            <% game.situation_games.each do |situation_game| %>
-              <%= situation_game.situation.condition  %>
-            <% end %>
-          </li>
+          <% if game.situation_games.present? %>
+            <li>
+              <i class="fa fa-theater-masks fa-lg" aria-hidden="true"></i> 
+              適玩情境：
+              <% game.situation_games.each do |situation_game| %>
+                <%= situation_game.situation.condition  %>
+              <% end %>
+            </li>
+          <% end %>
           <li>
             <i class="fa fa-shapes fa-lg" aria-hidden="true"></i>
             遊戲道具：
