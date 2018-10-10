@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <% if @game.present? %>
+    <meta property="og:title" content="<%= @game.title %>" />
     <meta property="og:description" content="<%= @game.step %>" />
     <meta property="og:image" content="<%= @game.image %>" />
   <% end %>
