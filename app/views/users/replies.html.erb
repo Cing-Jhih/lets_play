@@ -1,23 +1,27 @@
-<%= render partial: "shared/user_info", locals:{user:@user}  %>
-
-<section class="whiteSection full-width clearfix p-t-n">
+<section class="mainContent full-width clearfix">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12">
-        <div class="tabCommon">
+      <div class="col-md-3 col-sm-54 col-xs-12 pull-left">
+  <%# user info  %>    
+        <%= render partial: "shared/user_info", locals:{user:@user}  %>
+        <br>
+  <%# user's personal list link %>      
+        <div class="tabCommon tabLeft pull-right">
           <ul class="nav nav-tabs">
             <li><%= link_to "收藏(#{@user.favorites_count})", user_path(@user) %></li>
             <li><%= link_to "創作(#{@user.games_count})", games_user_path(@user) %></li>
-            <li class="active"><%= link_to "回應(#{@replied_games.size})", replies_user_path(@user) %></li>
-            <li><%= link_to "#{@user == current_user ? '我' : @user.name}的關注名單", followships_user_path(@user) %></li>
+            <li class="active"><%= link_to "回應(#{@user.replies_count})", replies_user_path(@user) %></li>
+            <li><%= link_to "關注名單", followships_user_path(@user) %></li>
             <% if @user == current_user %>
               <li><%= link_to "悄悄話 (#{current_user.notifications.size}未讀)", messages_user_path(current_user) %></li>
             <% end %>   
           </ul>
         </div>
       </div>
+  <%# render list  %>
+      <div class="col-md-9 col-sm-8 col-xs-12 pull-right">
+        <%= render partial: "shared/game_list", locals:{games: @replied_games} %>
+      </div>
     </div>
   </div>
-</section>
-
-<%= render partial: "shared/game_list", locals:{games: @replied_games} %>
+</section>    
