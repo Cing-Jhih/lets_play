@@ -4,3 +4,6 @@ el.querySelector('button').classList.remove("btn-danger");
 el.querySelector('button').classList.add("btn-outline-primary");
 el.href = "<%= unfavorite_game_path(@game) %>"
 el.querySelector('button').blur()
+if (document.getElementById('fav-count')) {
+  document.getElementById('fav-count').innerHTML = '收藏(' + <%= @favorites_count %> + ')'
+}

@@ -139,12 +139,14 @@ before_action :authenticate_user!, only: [:new, :favorite]
   def favorite
     @game = Game.find(params[:id])
     @game.favorites.create!(user: current_user)
+    @favorites_count = current_user.favorites_count
   end
 
   def unfavorite
     @game = Game.find(params[:id])
     favorites = Favorite.where(game: @game, user: current_user)
     favorites.destroy_all
+    @favorites_count = Favorite.where(user: current_user).size
   end
 
 private
