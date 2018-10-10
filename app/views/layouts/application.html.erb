@@ -6,6 +6,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <% if @game.present? %>
+    <meta property="og:description" content="<%= @game.step %>" />
+    <meta property="og:image" content="<%= @game.image %>" />
+  <% end %>
   <title>Let's Play </title>
   <!-- GOOGLE FONT -->
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
@@ -136,11 +140,10 @@
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
-          
           <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-right">
+               <!--search bar when xs-->
               <li class="col-xs-12 visible-xs">
-              <!--search bar when xs-->
               <%= render partial: "shared/search_bar"%>
               <hr>
             </li>
@@ -238,8 +241,7 @@
                 <li class="col-sm-3 col-xs-12">
                   <ul class="list-unstyled">
                     <li>感覺統合</li>
-                    <li class=""><a href="/games/hashtag/大肢體">大肢體</a></li>
-                    <li class=""><a href="/games/hashtag/小肌肉">小肌肉</a></li>
+                    <li class=""><a href="/games/hashtag/肢體發展">肢體發展</a></li>
                     <li class=""><a href="/games/hashtag/五感體驗">五感體驗</a></li>
                     <li class=""><a href="/games/hashtag/音樂律動">音樂律動</a></li>  
                   </ul>
@@ -247,10 +249,9 @@
                 <li class="col-sm-3 col-xs-12">
                   <ul class="list-unstyled">
                     <li>育教於樂</li>
-                    <li class=""><a href="/games/hashtag/情緒EQ">情緒EQ</a></li>
+                    <li class=""><a href="/games/hashtag/人際與EQ">人際與EQ</a></li>
                     <li class=""><a href="/games/hashtag/科學邏輯">科學邏輯</a></li>
                     <li class=""><a href="/games/hashtag/語言表答">語言表答</a></li>
-                    <li class=""><a href="/games/hashtag/生活常規">生活常規</a></li>
                   </ul>
                 </li>
                 <li class="col-sm-3 col-xs-12">
@@ -265,9 +266,8 @@
                   <ul class="list-unstyled">
                     <li>生活常規</li>
                     <li class=""><a href="/games/hashtag/做家事">做家事</a></li>
-                    <li class=""><a href="/games/hashtag/自理">自理</a></li>
-                    <li class=""><a href="/games/hashtag/安全">安全</a></li>
-                    <li class=""><a href="/games/hashtag/人際禮儀">人際禮儀</a></li>
+                    <li class=""><a href="/games/hashtag/自理能力">自理能力</a></li>
+                    <li class=""><a href="/games/hashtag/安全與健康">安全與健康</a></li>
                   </ul>
                 </li>
               </ul>
