@@ -1,26 +1,19 @@
 <!-- ====================================
   ——— User list with intro
   ===================================== -->
-    <section class="whiteSection full-width clearfix testimonialArea">
-      <div class="container">
-        <div class="row testimonial-grid">
-
-          <% users.each do |user| %>
-            <%= link_to user_path(user) do %>
-              <div class="col-sm-4 col-xs-12">
-                <div class='testimonialContent  bg-color-<%= user.kid_age.present? ? (user.kid_age%5 + 2) : 1 %>'>
-                  <span class="userSign border-color-<%= user.kid_age.present? ? (user.kid_age%5 + 2) : 1 %>">
-                    <%= image_tag user.avatar, class:"img-circle img-responsive" %>
-                  </span>
-                  <p><%=  truncate(user.intro, length: 80) %></p>
-                  <h3><strong><%= user.name %></strong> 
-                    <small><strong><%= user.kid_age %>歲孩子的玩伴</strong></small>
-                  </h3>
-                  <%= render partial: "shared/follow", locals: {user: user} %>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
+  <% users.each do |user| %>
+    <%= link_to user_path(user) do %>
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class='testimonialContent bg-color-<%= user.kid_age.present? ? (user.kid_age%5 + 2) : 1 %>'>
+          <span class="userSign border-color-<%= user.kid_age.present? ? (user.kid_age%5 + 2) : 1 %>">
+            <%= image_tag user.avatar, class:"img-circle img-responsive" %>
+          </span>
+          <p><%=  truncate(user.intro, length: 80) %></p>
+          <h3><strong><%= user.name %></strong> 
+            <small><strong><%= user.kid_age %>歲孩子的玩伴</strong></small>
+          </h3>
+          <%= render partial: "shared/follow", locals: {user: user} %>
         </div>
       </div>
-    </section>
+    <% end %>
+  <% end %>

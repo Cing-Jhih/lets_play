@@ -1,12 +1,14 @@
 <section class="mainContent full-width clearfix">
   <div class="container">
     <div class="row">
-      <div class="col-md-3 col-sm-54 col-xs-12 pull-left">
+      <div class="col-md-3 col-sm-4 col-xs-12 pull-left">
   <%# user info  %>    
         <%= render partial: "shared/user_info", locals:{user:@user}  %>
         <br>
-  <%# user's personal list link %>      
-        <div class="tabCommon tabLeft pull-right">
+      </div>
+      <div class="col-md-9 col-sm-8 col-xs-12 pull-right">
+        <%# user's personal list link %>      
+        <div class="tabCommon">
           <ul class="nav nav-tabs">
             <li class="active"><%= link_to "收藏(#{@user.favorites_count})", user_path(@user) %></li>
             <li><%= link_to "創作(#{@user.games_count})", games_user_path(@user) %></li>
@@ -17,9 +19,7 @@
             <% end %>   
           </ul>
         </div>
-      </div>
-  <%# render list  %>
-      <div class="col-md-9 col-sm-8 col-xs-12 pull-right">
+         <%# render list  %>
         <%= render partial: "shared/game_list", locals:{games: @favorited_games} %>
       </div>
     </div>
