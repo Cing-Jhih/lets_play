@@ -1,6 +1,24 @@
 var el = document.getElementById("<%= "game-" + @game.id.to_s %>");
-el.querySelector('button i span').innerHTML = "加入收藏";
-el.querySelector('button').classList.remove("btn-outline-primary");
-el.querySelector('button').classList.add("btn-danger");
-el.href = "<%= favorite_game_path(@game) %>"
-el.querySelector('button').blur()
+if (/^\/users\/[0-9]+/.test(window.location.pathname)) {
+  document.getElementById('fav-count').innerHTML = '收藏(' + <%= @favorites_count %> + ')'
+  if (/^\/users\/[0-9]+$/.test(window.location.pathname)) {
+    var gameDivs = document.querySelectorAll('.media.courseList.couresListPage')
+    gameDivs.forEach(function(gameDiv) {
+      if (gameDiv.contains(el)) {
+        gameDiv.parentNode.removeChild(gameDiv)
+      }
+    })
+  } else {
+    changeBtn(el)
+  }
+} else {
+  changeBtn(el)
+}
+
+function changeBtn (el) {
+  el.querySelector('button i span').innerHTML = "加入收藏";
+  el.querySelector('button').classList.remove("btn-outline-primary");
+  el.querySelector('button').classList.add("btn-danger");
+  el.href = "<%= favorite_game_path(@game) %>"
+  el.querySelector('button').blur()
+}

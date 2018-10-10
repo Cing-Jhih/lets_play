@@ -10,7 +10,7 @@
       <%# user's personal list link %>      
         <div class="tabCommon">
           <ul class="nav nav-tabs">
-            <li><%= link_to "收藏(#{@user.favorites_count})", user_path(@user) %></li>
+            <li><%= link_to "收藏(#{@user.favorites_count})", user_path(@user), id: "fav-count" %></li>
             <li class="active"><%= link_to "創作(#{@user.games_count})", games_user_path(@user) %></li>
             <% if current_user %>
               <% if @user.email == current_user.email %>
