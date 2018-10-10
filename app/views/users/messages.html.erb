@@ -8,12 +8,12 @@
   <%# user's personal list link %>      
         <div class="tabCommon tabLeft pull-right">
           <ul class="nav nav-tabs">
-            <li class="active"><%= link_to "收藏(#{@user.favorites_count})", user_path(@user) %></li>
+            <li><%= link_to "收藏(#{@user.favorites_count})", user_path(@user) %></li>
             <li><%= link_to "創作(#{@user.games_count})", games_user_path(@user) %></li>
             <li><%= link_to "回應(#{@user.replies_count})", replies_user_path(@user) %></li>
             <li><%= link_to "關注名單", followships_user_path(@user) %></li>
             <% if @user == current_user %>
-              <li><%= link_to "悄悄話 (#{current_user.notifications.size}未讀)", messages_user_path(current_user) %></li>
+              <li class="active"><%= link_to "悄悄話 (#{current_user.notifications.size}未讀)", messages_user_path(current_user) %></li>
             <% end %>   
           </ul>
         </div>
@@ -34,7 +34,7 @@
                             <% if message.user.avatar? %>
                               <%= image_tag message.user.avatar, width: "30px", class: "rounded img-circle"%>
                             <% else %>
-                              <i class="fa fa-user-edit" aria-hidden="true"></i>
+                              <i class="fas fa-user-circle fa-4x" aria-hidden="true"></i>
                             <% end %>
                           </div>
                           <div class="media-body">
@@ -66,7 +66,7 @@
                             <% if message.receiver.avatar? %>
                               <%= image_tag message.receiver.avatar, width: "30px", class: "rounded img-circle"%>
                             <% else %>
-                              <i class="fa fa-user-edit" aria-hidden="true"></i>
+                              <i class="fas fa-user-circle fa-4x" aria-hidden="true"></i>
                             <% end %>
                           </div>
                           <div class="media-body">
