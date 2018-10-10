@@ -1,6 +1,16 @@
 var el = document.getElementById("<%= "game-" + @game.id.to_s %>");
-el.querySelector('button i span').innerHTML = "加入收藏";
-el.querySelector('button').classList.remove("btn-outline-primary");
-el.querySelector('button').classList.add("btn-danger");
-el.href = "<%= favorite_game_path(@game) %>"
-el.querySelector('button').blur()
+if (/^\/users\/[0-9]+$/.test(window.location.pathname)) {
+  var gameDivs = document.querySelectorAll('.media.courseList.couresListPage')
+  gameDivs.forEach(function(gameDiv) {
+    if (gameDiv.contains(el)) {
+      gameDiv.parentNode.removeChild(gameDiv)
+    }
+  })
+  document.querySelector('.active a').innerHTML = '收藏(' + (gameDivs.length - 1) + ')'
+} else {
+  el.querySelector('button i span').innerHTML = "加入收藏";
+  el.querySelector('button').classList.remove("btn-outline-primary");
+  el.querySelector('button').classList.add("btn-danger");
+  el.href = "<%= favorite_game_path(@game) %>"
+  el.querySelector('button').blur()
+}
