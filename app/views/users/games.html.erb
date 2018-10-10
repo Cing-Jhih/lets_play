@@ -64,8 +64,7 @@
                     <%=  game.replies_count %>
                 </li>
                 <li>
-                  <% if game.tags.present? %><i class="fas fa-hashtag" aria-hidden="true"></i> <% end %>
-                    <% game.tags.each do |tag| %>
+                  <% game.tags.each do |tag| %>
                     <button class="btn btn-sm btn-outline-info"><%= link_to tag.name, "/games/hashtag/#{tag.name}" %></span></button>
                   <% end %>
                 </li>
@@ -81,8 +80,8 @@
               <ul class="list-inline btn-yellow btnPart">
                 <% if current_user %>
                     <% if @user.email == current_user.email %>
-                      <%= link_to "編輯遊戲", edit_game_path(game), class: "btn btn-sm btn-success" %>
-                      <%= link_to "刪除遊戲", game_path(game), method: :delete, data: { confirm: "你確定嗎?"}, class: "btn btn-sm btn-outline-primary" %>
+                      <li><%= link_to "編輯遊戲", edit_game_path(game), class: "btn btn-sm btn-success" %></li>
+                      <li><%= link_to "刪除遊戲", game_path(game), method: :delete, data: { confirm: "你確定嗎?"}, class: "btn btn-sm btn-outline-primary" %></li>
                     <% end %>
                   <% end %>
               </ul>
