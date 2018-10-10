@@ -2,7 +2,7 @@
   <% if user.avatar? %> 
     <%= image_tag user.avatar, width: "50px", class:"rounded img-circle" %>
   <% else %>
-    <i class="fa fa-user" aria-hidden="true"></i>
+    <i class="fas fa-user-circle fa-4x" aria-hidden="true"></i>
   <% end %>
   <%= user.name %>
 <% end %>
