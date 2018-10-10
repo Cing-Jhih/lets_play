@@ -39,28 +39,26 @@ https://www.ac-letsplay.site/    <br>
 	用戶可以發表/編輯/刪除自己創建的遊戲單<br>
 	用戶可以關注其他用戶，可以查看自己關注的對象與關注自己的人<br>
 	用戶可以在其它用戶的頁面填寫留言給對方<br>
-	用戶自己的頁面有其它用戶發送來的留言並可以刪除<br>
-	用戶自己的頁面有自己發送給其它用戶的留言<br>
-	用戶看不見其它用戶給別人的留言<br>
+	用戶自己的頁面有其它用戶發送來的悄悄話<br>
+	用戶自己的頁面有自己發送給其它用戶的悄悄話<br>
+	用戶看不見其它用戶給別人的悄悄話<br>
 	解決專案語音功能不完整的問題<br>
 
 <br>
 用戶可以用語音啟動遊戲推薦功能(限回答1~12歲)<br>
 用戶可以利用圖示按鈕，啟動朗讀遊戲單標題與朗讀遊戲單實施步驟<br>
 用戶可以利用遊戲標題、遊戲道具與遊戲方法進行關鍵字搜尋<br>
-將留言改成ajax不跳轉<br>
+將收藏遊戲/關注使用者/遊戲留言改成ajax不跳轉<br>
 解決專案在GCP無法用FB登入的問題<br>
 提升網站效能（主要在避免 N + 1 SQL 查詢 )<br>
 實作 Open Graph 標籤<br>
 遊戲列表介面調整<br>
 熱門標籤，在頁面 scroll down 之後，會因為無 hover 到 menu （logo icon 高度問題導致）<br>
 語音按鈕，會重複播放問題<br>
-
+ActiveRecord Object Life Cycle中重覆的database query<br>
+熱門遊戲，最新遊戲 的 slider 點點點按鈕，會蓋住『更多遊戲』按鈕<br>
 <br><br>
 --進行中--<br>
 註冊帳號的生日優化<br>
-ActiveRecord Object Life Cycle中重覆的database query<br>
 ActiveRecord Callback 應避免跨collection的操作<br>
-熱門遊戲，最新遊戲 的 slider 點點點按鈕，會蓋住『更多遊戲』按鈕<br>
 js 等靜態檔案，可以直接使用 assets 資料夾作為路徑使用<br>
-搜尋之後，再次搜尋還是會出現同樣結果。（不知道是不是 bug)<br>
