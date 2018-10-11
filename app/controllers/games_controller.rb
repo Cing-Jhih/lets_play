@@ -7,9 +7,9 @@ before_action :authenticate_user!, only: [:new, :favorite]
     @popular_games_1 = Game.includes(:user,:situation_games, :tags, :favorited_users, age_games: :age).all.order(favorites_count: :desc).limit(4)
     @popular_games_2 = Game.includes(:user, :situation_games, :tags, :favorited_users, age_games: :age).all.order(favorites_count: :desc).limit(4).offset(4)
     @popular_games_3 = Game.includes(:user, :situation_games, :tags, :favorited_users, age_games: :age).all.order(favorites_count: :desc).limit(4).offset(8)
-    @latest_games_1 = Game.includes(:user, :situation_games, :tags, :favorited_users, age_games: :age).all.order(favorites_count: :desc).limit(4)
-    @latest_games_2 = Game.includes(:user, :situation_games, :tags, :favorited_users, age_games: :age).all.order(favorites_count: :desc).limit(4).offset(4)
-    @latest_games_3 = Game.includes(:user, :situation_games, :tags, :favorited_users, age_games: :age).all.order(favorites_count: :desc).limit(4).offset(8)
+    @latest_games_1 = Game.includes(:user, :situation_games, :tags, :favorited_users, age_games: :age).all.order(created_at: :desc).limit(4)
+    @latest_games_2 = Game.includes(:user, :situation_games, :tags, :favorited_users, age_games: :age).all.order(created_at: :desc).limit(4).offset(4)
+    @latest_games_3 = Game.includes(:user, :situation_games, :tags, :favorited_users, age_games: :age).all.order(created_at: :desc).limit(4).offset(8)
   end
 
 

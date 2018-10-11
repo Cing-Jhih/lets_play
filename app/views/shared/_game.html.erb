@@ -44,10 +44,12 @@
               <% end %>
             </li>
           </ul>
-          <p>
-            <i class="fa fa-shapes" aria-hidden="true"></i>
-            遊戲道具：<strong><%= game.tool %></strong>
-          </p>
+          <% if game.tool.present? %>
+            <p>
+              <i class="fa fa-shapes" aria-hidden="true"></i>
+              遊戲道具：<%= game.tool %>
+            </p>
+          <% end %>
           <p>
             <i class="fas fa-list-ol fa-lg" aria-hidden="true"></i>
             遊戲方式：<br>
@@ -59,7 +61,7 @@
             <li>
               <ul class="list-inline socailLink">
                 <div class="product-show__social-share-button">
-                  <%= social_share_button_tag(game.title, :allow_sites => %w(facebook twitter email google_plus ), :image => game.image, desc:game.title,:url => @url) %>
+                  <%= social_share_button_tag(game.title, :allow_sites => %w(facebook twitter email google_plus ), desc:game.title,:url => @url) %>
                 </div>
               </ul>
             </li>  
@@ -84,7 +86,7 @@
               <li>
                 <ul class="list-inline socailLink">
                   <div class="product-show__social-share-button">
-                    <%= social_share_button_tag(game.title, :allow_sites => %w(facebook twitter email google_plus ), :image => game.image, desc:game.title,:url => @url) %>
+                    <%= social_share_button_tag(game.title, :allow_sites => %w(facebook twitter email google_plus ), desc:game.title,:url => @url) %>
                   </div>
                 </ul>
               </li>  
