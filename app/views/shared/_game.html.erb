@@ -44,10 +44,12 @@
               <% end %>
             </li>
           </ul>
-          <p>
-            <i class="fa fa-shapes" aria-hidden="true"></i>
-            遊戲道具：<strong><%= game.tool %></strong>
-          </p>
+          <% if game.tool.present? %>
+            <p>
+              <i class="fa fa-shapes" aria-hidden="true"></i>
+              遊戲道具：<%= game.tool %>
+            </p>
+          <% end %>
           <p>
             <i class="fas fa-list-ol fa-lg" aria-hidden="true"></i>
             遊戲方式：<br>

@@ -9,6 +9,7 @@ class Game < ApplicationRecord
   has_many :replies
   has_and_belongs_to_many :tags
   has_many :suitable_ages, through: :age_games, source: :age
+  validates_presence_of :title, :min_age, :max_age, :step
 
   after_create do
     game = Game.find_by(id: self.id)
