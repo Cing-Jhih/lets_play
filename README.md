@@ -1,8 +1,7 @@
 # Let's PLAY 親子遊戲分享平台
 提案影片 https://youtu.be/Yx10EbCkJa0 <br>
 <h3>Deploy Site:</h3>
-https://kidgamebata.herokuapp.com  Heroku(功能完整但速度較慢)<br>
-https://www.ac-letsplay.site/      GCP(測試中) <br>
+https://www.ac-letsplay.site/    <br>
 
 <h3>專案目標用戶:</h3>
 新手爸媽、非嬰幼兒父母的照顧者與暫時陪伴者，以及幼兒本人。<br>
@@ -52,8 +51,14 @@ https://www.ac-letsplay.site/      GCP(測試中) <br>
 將收藏遊戲/關注使用者/遊戲留言改成ajax不跳轉<br>
 解決專案在GCP無法用FB登入的問題<br>
 提升網站效能（主要在避免 N + 1 SQL 查詢 )<br>
+實作 Open Graph 標籤<br>
+遊戲列表介面調整<br>
+熱門標籤，在頁面 scroll down 之後，會因為無 hover 到 menu （logo icon 高度問題導致）<br>
+語音按鈕，會重複播放問題<br>
+ActiveRecord Object Life Cycle中重覆的database query<br>
+熱門遊戲，最新遊戲 的 slider 點點點按鈕，會蓋住『更多遊戲』按鈕<br>
 <br><br>
 --進行中--<br>
-將界面改為更適合寬螢幕瀏覽<br>
-用戶可以刪除收到的悄悄話<br>
-解決年齡範圍選擇器無法在觸屏使用的問題<br>
+註冊帳號的生日優化<br>
+ActiveRecord Callback 應避免跨collection的操作<br>
+js 等靜態檔案，可以直接使用 assets 資料夾作為路徑使用<br>
