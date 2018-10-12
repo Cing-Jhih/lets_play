@@ -43,7 +43,7 @@ https://www.ac-letsplay.site/    <br>
 	用戶自己的頁面有自己發送給其它用戶的悄悄話<br>
 	用戶看不見其它用戶給別人的悄悄話<br>
 	解決專案語音功能不完整的問題<br>
-
+	可在手機上進行語音操控推薦遊戲<br>
 <br>
 用戶可以用語音啟動遊戲推薦功能(限回答1~12歲)<br>
 用戶可以利用圖示按鈕，啟動朗讀遊戲單標題與朗讀遊戲單實施步驟<br>
@@ -59,6 +59,7 @@ ActiveRecord Object Life Cycle中重覆的database query<br>
 熱門遊戲，最新遊戲 的 slider 點點點按鈕，會蓋住『更多遊戲』按鈕<br>
 <br><br>
 --進行中--<br>
-註冊帳號的生日優化<br>
 ActiveRecord Callback 應避免跨collection的操作<br>
 js 等靜態檔案，可以直接使用 assets 資料夾作為路徑使用<br>
+用戶可以刪除收到的悄悄話<br>
+解決年齡範圍選擇器無法在觸屏使用的問題<br>

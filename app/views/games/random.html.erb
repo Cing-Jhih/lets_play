@@ -71,7 +71,7 @@
           result = {};
           result.resultLength = event.results.length-1;
           result.resultTranscript = event.results[result.resultLength][0].transcript;
-          if(event.results[result.resultLength].isFinal===false){
+          if(event.results[result.resultLength].isFinal===true){
             console.log(result.resultTranscript);
               if(result.resultTranscript.indexOf("換一個")!== -1){
                 function speechRecognition(){
@@ -99,7 +99,7 @@
               result = {};
               result.resultLength = event.results.length-1;
               result.resultTranscript = event.results[result.resultLength][0].transcript;
-              if(event.results[result.resultLength].isFinal===false){
+              if(event.results[result.resultLength].isFinal===true){
                 console.log(result.resultTranscript);
                   if (result.resultTranscript.indexOf('換') !== -1) {
                     history.go(0);
@@ -170,7 +170,5 @@
             </div>
           </div>
         </div>
-
-
 
 <%= render partial: "shared/game", locals:{game: @game}  %>

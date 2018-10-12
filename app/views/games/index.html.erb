@@ -29,7 +29,7 @@
             result = {};
             result.resultLength = event.results.length - 1;
             result.resultTranscript = event.results[result.resultLength][0].transcript;
-            if (event.results[result.resultLength].isFinal === false) {
+            if (event.results[result.resultLength].isFinal === true) {
               console.log(result.resultTranscript);
               if (result.resultTranscript.indexOf("我們來玩") !== -1) {
                 var age = new SpeechSynthesisUtterance('好的寶貝請問你幾歲', ["zh-TW", 1, 1, 0.7]);
@@ -60,7 +60,7 @@
                       result = {};
                       result.resultLength = event.results.length - 1;
                       result.resultTranscript = event.results[result.resultLength][0].transcript;
-                      if (event.results[result.resultLength].isFinal === false) {
+                      if (event.results[result.resultLength].isFinal === true) {
                         console.log(result.resultTranscript);
                         if (result.resultTranscript.indexOf("兩歲") !== -1) {
                           window._recognition.status = false;
